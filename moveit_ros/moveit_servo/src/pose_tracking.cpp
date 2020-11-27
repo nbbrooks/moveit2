@@ -140,7 +140,7 @@ void PoseTracking::readROSParams()
 {
   // Optional parameter sub-namespace specified in the launch file. All other parameters will be read from this namespace.
   std::string parameter_ns;
-  ros::param::get("~parameter_ns", parameter_ns);
+  rclcpp::param::get("~parameter_ns", parameter_ns);
 
   // If parameters have been loaded into sub-namespace within the node namespace, append the parameter namespace
   // to load the parameters correctly.
