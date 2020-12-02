@@ -145,11 +145,17 @@ void PoseTracking::readROSParams()
 
   // If parameters have been loaded into sub-namespace within the node namespace, append the parameter namespace
   // to load the parameters correctly.
-  rclcpp::Node::SharedPtr node = parameter_ns.empty() ? node : ros::NodeHandle(nh_, parameter_ns);
+  rclcpp::Node::SharedPtr node;
+  //= node_->has_parameter("~parameter_ns") ? node_ : rclcpp::Node::SharedPtr(node_, parameter_ns.as_string());
+  if (node_->has_parameter("~parameter_ns"))
+    node = node_;
+  else
+    node->declare_parameter("~parameter_ns");
+    //node->set_parameter("~parameter_ns", parameter_ns.as_string());
 
   // Wait for ROS parameters to load
   rclcpp::Time begin = node->now();
-  while (rclcpp::ok() && !nh.hasParam("planning_frame") && ((node->now() - begin).to_chrono<std::chrono::duration<double>>().count() < ROS_STARTUP_WAIT))
+  while (rclcpp::ok() && !node->has_parameter("planning_frame") && ((node->now() - begin).to_chrono<std::chrono::duration<double>>().count() < ROS_STARTUP_WAIT))
   {
     RCLCPP_WARN_STREAM(LOGGER, "Waiting for parameter: "
                                    << "planning_frame");
@@ -158,8 +164,8 @@ void PoseTracking::readROSParams()
 
   std::size_t error = 0;
 
-  error += !rosparam_shortcuts::get(LOGGER, node_, "planning_frame", planning_frame_);
-  error += !rosparam_shortcuts::get(LOGGER, node_, "move_group_name", move_group_name_);
+  error += !rosparam_shortcuts::get(LOGGER, node, "planning_frame", planning_frame_);
+  error += !rosparam_shortcuts::get(LOGGER, node, "move_group_name", move_group_name_);
   if (!planning_scene_monitor_->getRobotModel()->hasJointModelGroup(move_group_name_))
   {
     ++error;
@@ -167,7 +173,7 @@ void PoseTracking::readROSParams()
   }
 
   double publish_period;
-  error += !rosparam_shortcuts::get(LOGGER, nh, "publish_period", publish_period);
+  error += !rosparam_shortcuts::get(LOGGER, node, "publish_period", publish_period);
   loop_rate_ = rclcpp::Rate(1 / publish_period);
 
   x_pid_config_.dt = publish_period;
@@ -176,27 +182,27 @@ void PoseTracking::readROSParams()
   angular_pid_config_.dt = publish_period;
 
   double windup_limit;
-  error += !rosparam_shortcuts::get(LOGGER, nh, "windup_limit", windup_limit);
+  error += !rosparam_shortcuts::get(LOGGER, node, "windup_limit", windup_limit);
   x_pid_config_.windup_limit = windup_limit;
   y_pid_config_.windup_limit = windup_limit;
   z_pid_config_.windup_limit = windup_limit;
   angular_pid_config_.windup_limit = windup_limit;
 
-  error += !rosparam_shortcuts::get(LOGGER, nh, "x_proportional_gain", x_pid_config_.k_p);
-  error += !rosparam_shortcuts::get(LOGGER, nh, "y_proportional_gain", y_pid_config_.k_p);
-  error += !rosparam_shortcuts::get(LOGGER, nh, "z_proportional_gain", z_pid_config_.k_p);
-  error += !rosparam_shortcuts::get(LOGGER, nh, "x_integral_gain", x_pid_config_.k_i);
-  error += !rosparam_shortcuts::get(LOGGER, nh, "y_integral_gain", y_pid_config_.k_i);
-  error += !rosparam_shortcuts::get(LOGGER, nh, "z_integral_gain", z_pid_config_.k_i);
-  error += !rosparam_shortcuts::get(LOGGER, nh, "x_derivative_gain", x_pid_config_.k_d);
-  error += !rosparam_shortcuts::get(LOGGER, nh, "y_derivative_gain", y_pid_config_.k_d);
-  error += !rosparam_shortcuts::get(LOGGER, nh, "z_derivative_gain", z_pid_config_.k_d);
+  error += !rosparam_shortcuts::get(LOGGER, node, "x_proportional_gain", x_pid_config_.k_p);
+  error += !rosparam_shortcuts::get(LOGGER, node, "y_proportional_gain", y_pid_config_.k_p);
+  error += !rosparam_shortcuts::get(LOGGER, node, "z_proportional_gain", z_pid_config_.k_p);
+  error += !rosparam_shortcuts::get(LOGGER, node, "x_integral_gain", x_pid_config_.k_i);
+  error += !rosparam_shortcuts::get(LOGGER, node, "y_integral_gain", y_pid_config_.k_i);
+  error += !rosparam_shortcuts::get(LOGGER, node, "z_integral_gain", z_pid_config_.k_i);
+  error += !rosparam_shortcuts::get(LOGGER, node, "x_derivative_gain", x_pid_config_.k_d);
+  error += !rosparam_shortcuts::get(LOGGER, node, "y_derivative_gain", y_pid_config_.k_d);
+  error += !rosparam_shortcuts::get(LOGGER, node, "z_derivative_gain", z_pid_config_.k_d);
 
-  error += !rosparam_shortcuts::get(LOGGER, nh, "angular_proportional_gain", angular_pid_config_.k_p);
-  error += !rosparam_shortcuts::get(LOGGER, nh, "angular_integral_gain", angular_pid_config_.k_i);
-  error += !rosparam_shortcuts::get(LOGGER, nh, "angular_derivative_gain", angular_pid_config_.k_d);
+  error += !rosparam_shortcuts::get(LOGGER, node, "angular_proportional_gain", angular_pid_config_.k_p);
+  error += !rosparam_shortcuts::get(LOGGER, node, "angular_integral_gain", angular_pid_config_.k_i);
+  error += !rosparam_shortcuts::get(LOGGER, node, "angular_derivative_gain", angular_pid_config_.k_d);
 
-  rosparam_shortcuts::shutdownIfError(ros::this_node::getName(), error);
+  rosparam_shortcuts::shutdownIfError(rclcpp::this_node::getName(), error);
 }
 
 void PoseTracking::initializePID(const PIDConfig& pid_config, std::vector<control_toolbox::Pid>& pid_vector)

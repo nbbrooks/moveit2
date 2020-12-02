@@ -1,0 +1,551 @@
+-- The C compiler identification is GNU 9.3.0
+-- The CXX compiler identification is GNU 9.3.0
+-- Check for working C compiler: /usr/bin/cc
+-- Check for working C compiler: /usr/bin/cc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Check for working CXX compiler: /usr/bin/c++
+-- Check for working CXX compiler: /usr/bin/c++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found moveit_common: 2.0.0 (/home/abishalini/ws_ros2/install/moveit_common/share/moveit_common/cmake)
+moveit_servo: You did not request a specific build type: Choosing 'Release' for maximum performance
+-- Found ament_cmake: 0.9.7 (/opt/ros/foxy/share/ament_cmake/cmake)
+-- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.5", minimum required is "3") 
+-- Using PYTHON_EXECUTABLE: /usr/bin/python3
+-- Found rclcpp: 2.2.0 (/opt/ros/foxy/share/rclcpp/cmake)
+-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+-- Found rosidl_adapter: 1.1.0 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+-- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "1.1.1f")  
+-- Found FastRTPS: /opt/ros/foxy/include  
+-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+-- Found rmw_implementation_cmake: 1.0.2 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)
+-- Using RMW implementation 'rmw_fastrtps_cpp' as default
+-- Looking for pthread.h
+-- Looking for pthread.h - found
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+-- Looking for pthread_create in pthreads
+-- Looking for pthread_create in pthreads - not found
+-- Looking for pthread_create in pthread
+-- Looking for pthread_create in pthread - found
+-- Found Threads: TRUE  
+-- Found rclcpp_components: 2.2.0 (/opt/ros/foxy/share/rclcpp_components/cmake)
+-- Found std_srvs: 2.0.3 (/opt/ros/foxy/share/std_srvs/cmake)
+-- Found sensor_msgs: 2.0.3 (/opt/ros/foxy/share/sensor_msgs/cmake)
+-- Found control_msgs: 2.4.1 (/opt/ros/foxy/share/control_msgs/cmake)
+-- Found control_toolbox: 2.0.1 (/opt/ros/foxy/share/control_toolbox/cmake)
+-- Found moveit_msgs: 0.10.0 (/home/abishalini/ws_ros2/install/moveit_msgs/share/moveit_msgs/cmake)
+-- Found tf2_eigen: 0.13.6 (/opt/ros/foxy/share/tf2_eigen/cmake)
+-- Found moveit_ros_planning: 2.0.0 (/home/abishalini/ws_ros2/install/moveit_ros_planning/share/moveit_ros_planning/cmake)
+-- Found Eigen3: TRUE (found version "3.3.7") 
+-- Found ament_cmake_gtest: 0.9.7 (/opt/ros/foxy/share/ament_cmake_gtest/cmake)
+-- Found ros_testing: 0.2.1 (/opt/ros/foxy/share/ros_testing/cmake)
+-- Found launch_testing_ament_cmake: 0.10.3 (/opt/ros/foxy/share/launch_testing_ament_cmake/cmake)
+-- Found python_cmake_module: 0.8.0 (/opt/ros/foxy/share/python_cmake_module/cmake)
+-- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.5", minimum required is "3.5") 
+-- Found PythonLibs: /usr/lib/x86_64-linux-gnu/libpython3.8.so (found suitable version "3.8.5", minimum required is "3.5") 
+-- Using PYTHON_EXECUTABLE: /usr/bin/python3
+-- Using PYTHON_INCLUDE_DIRS: /usr/include/python3.8
+-- Using PYTHON_LIBRARIES: /usr/lib/x86_64-linux-gnu/libpython3.8.so
+-- Found PythonExtra: .so  
+-- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.71.0/BoostConfig.cmake (found version "1.71.0") found components: filesystem 
+-- Found gtest sources under '/opt/ros/foxy/src/gtest_vendor': C++ tests using 'Google Test' will be built
+-- Check if compiler accepts -pthread
+-- Check if compiler accepts -pthread - yes
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/abishalini/ws_ros2/src/moveit2/build/moveit_servo
+[35m[1mScanning dependencies of target gtest[0m
+[35m[1mScanning dependencies of target gtest_main[0m
+[35m[1mScanning dependencies of target servo_controller_input[0m
+[35m[1mScanning dependencies of target fake_command_publisher[0m
+[35m[1mScanning dependencies of target moveit_servo[0m
+[35m[1mScanning dependencies of target test_servo_parameters_node[0m
+[  2%] [32mBuilding CXX object gtest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o[0m
+[  5%] [32mBuilding CXX object gtest/CMakeFiles/gtest.dir/src/gtest-all.cc.o[0m
+[  8%] [32mBuilding CXX object CMakeFiles/fake_command_publisher.dir/test/publish_fake_jog_commands.cpp.o[0m
+[ 11%] [32mBuilding CXX object CMakeFiles/test_servo_parameters_node.dir/test/test_servo_parameters_node.cpp.o[0m
+[ 14%] [32mBuilding CXX object CMakeFiles/servo_controller_input.dir/src/teleop_demo/joystick_servo_example.cpp.o[0m
+[ 17%] [32mBuilding CXX object CMakeFiles/moveit_servo.dir/src/servo_calcs.cpp.o[0m
+[ 20%] [32mBuilding CXX object CMakeFiles/moveit_servo.dir/src/collision_check.cpp.o[0m
+[ 23%] [32mBuilding CXX object CMakeFiles/moveit_servo.dir/src/servo.cpp.o[0m
+[ 26%] [32m[1mLinking CXX static library libgtest_main.a[0m
+[ 26%] Built target gtest_main
+[ 29%] [32mBuilding CXX object CMakeFiles/moveit_servo.dir/src/low_pass_filter.cpp.o[0m
+[ 32%] [32mBuilding CXX object CMakeFiles/moveit_servo.dir/include/moveit_servo/servo_parameters.cpp.o[0m
+[ 35%] [32m[1mLinking CXX executable test_servo_parameters_node[0m
+[ 35%] Built target test_servo_parameters_node
+[ 38%] [32m[1mLinking CXX executable fake_command_publisher[0m
+[ 38%] Built target fake_command_publisher
+[ 41%] [32m[1mLinking CXX static library libgtest.a[0m
+[ 41%] Built target gtest
+[35m[1mScanning dependencies of target test_servo_collision[0m
+[35m[1mScanning dependencies of target test_servo_singularity[0m
+[35m[1mScanning dependencies of target test_servo_integration[0m
+[ 44%] [32mBuilding CXX object CMakeFiles/test_servo_integration.dir/test/test_servo_interface.cpp.o[0m
+[ 47%] [32mBuilding CXX object CMakeFiles/test_servo_singularity.dir/test/test_servo_singularity.cpp.o[0m
+[ 50%] [32mBuilding CXX object CMakeFiles/test_servo_collision.dir/test/test_servo_collision.cpp.o[0m
+[ 52%] [32m[1mLinking CXX shared library libservo_controller_input.so[0m
+[ 52%] Built target servo_controller_input
+[ 55%] [32m[1mLinking CXX executable test_servo_singularity[0m
+[ 55%] Built target test_servo_singularity
+[ 58%] [32m[1mLinking CXX executable test_servo_collision[0m
+[ 58%] Built target test_servo_collision
+[ 61%] [32m[1mLinking CXX executable test_servo_integration[0m
+[ 61%] Built target test_servo_integration
+[ 64%] [32m[1mLinking CXX shared library libmoveit_servo.so[0m
+[ 64%] Built target moveit_servo
+[35m[1mScanning dependencies of target servo_server[0m
+[35m[1mScanning dependencies of target pose_tracking[0m
+[35m[1mScanning dependencies of target servo_cpp_demo[0m
+[35m[1mScanning dependencies of target test_servo_parameters[0m
+[35m[1mScanning dependencies of target test_low_pass_filter[0m
+[35m[1mScanning dependencies of target test_servo[0m
+[ 67%] [32mBuilding CXX object CMakeFiles/test_low_pass_filter.dir/test/test_low_pass_filter.cpp.o[0m
+[ 70%] [32mBuilding CXX object CMakeFiles/test_servo_parameters.dir/test/test_servo_parameters.cpp.o[0m
+[ 73%] [32mBuilding CXX object CMakeFiles/servo_server.dir/src/servo_server.cpp.o[0m
+[ 76%] [32mBuilding CXX object CMakeFiles/pose_tracking.dir/src/pose_tracking.cpp.o[0m
+[ 79%] [32mBuilding CXX object CMakeFiles/servo_cpp_demo.dir/src/cpp_interface_demo/servo_cpp_interface_demo.cpp.o[0m
+[ 82%] [32mBuilding CXX object CMakeFiles/test_servo.dir/test/unit_test_servo_calcs.cpp.o[0m
+[ 85%] [32m[1mLinking CXX executable test_low_pass_filter[0m
+[ 85%] Built target test_low_pass_filter
+[ 88%] [32m[1mLinking CXX executable test_servo_parameters[0m
+[ 88%] Built target test_servo_parameters
+In file included from [01m[K/usr/include/c++/9/ext/alloc_traits.h:36[m[K,
+                 from [01m[K/usr/include/c++/9/bits/stl_construct.h:61[m[K,
+                 from [01m[K/usr/include/c++/9/memory:64[m[K,
+                 from [01m[K/opt/ros/foxy/include/control_toolbox/pid.hpp:37[m[K,
+                 from [01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/include/moveit_servo/pose_tracking.h:42[m[K,
+                 from [01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/src/pose_tracking.cpp:35[m[K:
+/usr/include/c++/9/bits/alloc_traits.h: In instantiation of ‘[01m[Kstruct std::allocator_traits<std::allocator<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&> >[m[K’:
+[01m[K/opt/ros/foxy/include/rclcpp/message_memory_strategy.hpp:47:9:[m[K   required from ‘[01m[Kclass rclcpp::message_memory_strategy::MessageMemoryStrategy<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void> >[m[K’
+[01m[K/opt/ros/foxy/include/rclcpp/node_impl.hpp:91:1:[m[K   required by substitution of ‘[01m[Ktemplate<class MessageT, class CallbackT, class AllocatorT, class CallbackMessageT, class SubscriptionT, class MessageMemoryStrategyT> std::shared_ptr<SubscriptionT> rclcpp::Node::create_subscription(const string&, const rclcpp::QoS&, CallbackT&&, const rclcpp::SubscriptionOptionsWithAllocator<AllocatorT>&, typename MessageMemoryStrategyT::SharedPtr) [with MessageT = geometry_msgs::msg::PoseStamped_<std::allocator<void> >; CallbackT = std::_Bind<void (moveit_servo::PoseTracking::*(moveit_servo::PoseTracking*, std::_Placeholder<1>))(const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&)>; AllocatorT = std::allocator<void>; CallbackMessageT = const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&; SubscriptionT = rclcpp::Subscription<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void>, rclcpp::message_memory_strategy::MessageMemoryStrategy<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void> > >; MessageMemoryStrategyT = rclcpp::message_memory_strategy::MessageMemoryStrategy<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void> >][m[K’
+[01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/src/pose_tracking.cpp:74:98:[m[K   required from here
+[01m[K/usr/include/c++/9/bits/alloc_traits.h:400:13:[m[K [01;31m[Kerror: [m[Kforming pointer to reference type ‘[01m[Kconst std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&[m[K’
+  400 |       using [01;31m[Kpointer[m[K = _Tp*;
+      |             [01;31m[K^~~~~~~[m[K
+[01m[K/usr/include/c++/9/bits/alloc_traits.h:403:13:[m[K [01;31m[Kerror: [m[Kforming pointer to reference type ‘[01m[Kconst std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&[m[K’
+  403 |       using [01;31m[Kconst_pointer[m[K = const _Tp*;
+      |             [01;31m[K^~~~~~~~~~~~~[m[K
+In file included from [01m[K/usr/include/c++/9/memory:80[m[K,
+                 from [01m[K/opt/ros/foxy/include/control_toolbox/pid.hpp:37[m[K,
+                 from [01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/include/moveit_servo/pose_tracking.h:42[m[K,
+                 from [01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/src/pose_tracking.cpp:35[m[K:
+/usr/include/c++/9/bits/unique_ptr.h: In instantiation of ‘[01m[Kstruct std::default_delete<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&>[m[K’:
+[01m[K/opt/ros/foxy/include/rclcpp/message_memory_strategy.hpp:119:18:[m[K   required from ‘[01m[Kclass rclcpp::message_memory_strategy::MessageMemoryStrategy<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void> >[m[K’
+[01m[K/opt/ros/foxy/include/rclcpp/node_impl.hpp:91:1:[m[K   required by substitution of ‘[01m[Ktemplate<class MessageT, class CallbackT, class AllocatorT, class CallbackMessageT, class SubscriptionT, class MessageMemoryStrategyT> std::shared_ptr<SubscriptionT> rclcpp::Node::create_subscription(const string&, const rclcpp::QoS&, CallbackT&&, const rclcpp::SubscriptionOptionsWithAllocator<AllocatorT>&, typename MessageMemoryStrategyT::SharedPtr) [with MessageT = geometry_msgs::msg::PoseStamped_<std::allocator<void> >; CallbackT = std::_Bind<void (moveit_servo::PoseTracking::*(moveit_servo::PoseTracking*, std::_Placeholder<1>))(const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&)>; AllocatorT = std::allocator<void>; CallbackMessageT = const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&; SubscriptionT = rclcpp::Subscription<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void>, rclcpp::message_memory_strategy::MessageMemoryStrategy<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void> > >; MessageMemoryStrategyT = rclcpp::message_memory_strategy::MessageMemoryStrategy<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void> >][m[K’
+[01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/src/pose_tracking.cpp:74:98:[m[K   required from here
+[01m[K/usr/include/c++/9/bits/unique_ptr.h:71:9:[m[K [01;31m[Kerror: [m[Kforming pointer to reference type ‘[01m[Kconst std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&[m[K’
+   71 |         [01;31m[Kdefault_delete[m[K(const default_delete<_Up>&) noexcept { }
+      |         [01;31m[K^~~~~~~~~~~~~~[m[K
+[01m[K/usr/include/c++/9/bits/unique_ptr.h:75:7:[m[K [01;31m[Kerror: [m[Kforming pointer to reference type ‘[01m[Kconst std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&[m[K’
+   75 |       [01;31m[Koperator[m[K()(_Tp* __ptr) const
+      |       [01;31m[K^~~~~~~~[m[K
+In file included from [01m[K/opt/ros/foxy/include/rclcpp/subscription_base.hpp:29[m[K,
+                 from [01m[K/opt/ros/foxy/include/rclcpp/callback_group.hpp:26[m[K,
+                 from [01m[K/opt/ros/foxy/include/rclcpp/node.hpp:39[m[K,
+                 from [01m[K/opt/ros/foxy/include/control_toolbox/pid.hpp:42[m[K,
+                 from [01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/include/moveit_servo/pose_tracking.h:42[m[K,
+                 from [01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/src/pose_tracking.cpp:35[m[K:
+/opt/ros/foxy/include/rclcpp/any_subscription_callback.hpp: In instantiation of ‘[01m[Kclass rclcpp::AnySubscriptionCallback<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void> >[m[K’:
+[01m[K/opt/ros/foxy/include/rclcpp/subscription.hpp:327:57:[m[K   required from ‘[01m[Kclass rclcpp::Subscription<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void>, rclcpp::message_memory_strategy::MessageMemoryStrategy<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void> > >[m[K’
+[01m[K/usr/include/c++/9/type_traits:1320:45:[m[K   required by substitution of ‘[01m[Ktemplate<class _From1, class _To1, class> static std::true_type std::__is_convertible_helper<rclcpp::Subscription<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void>, rclcpp::message_memory_strategy::MessageMemoryStrategy<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void> > >*, rclcpp::Subscription<geometry_msgs::msg::PoseStamped_<std::allocator<void> > >*, false>::__test<_From1, _To1, <template-parameter-1-3> >(int) [with _From1 = rclcpp::Subscription<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void>, rclcpp::message_memory_strategy::MessageMemoryStrategy<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void> > >*; _To1 = rclcpp::Subscription<geometry_msgs::msg::PoseStamped_<std::allocator<void> > >*; <template-parameter-1-3> = <missing>][m[K’
+[01m[K/usr/include/c++/9/type_traits:1329:42:[m[K   required from ‘[01m[Kstruct std::__is_convertible_helper<rclcpp::Subscription<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void>, rclcpp::message_memory_strategy::MessageMemoryStrategy<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void> > >*, rclcpp::Subscription<geometry_msgs::msg::PoseStamped_<std::allocator<void> > >*, false>[m[K’
+[01m[K/usr/include/c++/9/type_traits:1335:12:[m[K   required from ‘[01m[Kstruct std::is_convertible<rclcpp::Subscription<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void>, rclcpp::message_memory_strategy::MessageMemoryStrategy<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void> > >*, rclcpp::Subscription<geometry_msgs::msg::PoseStamped_<std::allocator<void> > >*>[m[K’
+[01m[K/usr/include/c++/9/bits/shared_ptr_base.h:927:12:[m[K   [ skipping 2 instantiation contexts, use -ftemplate-backtrace-limit=0 to disable ]
+[01m[K/usr/include/c++/9/bits/shared_ptr_base.h:1099:8:[m[K   required by substitution of ‘[01m[Ktemplate<class _Tp, __gnu_cxx::_Lock_policy _Lp> template<class _Yp> using _Assignable = std::__shared_ptr<_Tp, _Lp>::_Compatible<_Yp, std::__shared_ptr<_Tp, _Lp>&> [with _Yp = rclcpp::Subscription<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void>, rclcpp::message_memory_strategy::MessageMemoryStrategy<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void> > >; _Tp = rclcpp::Subscription<geometry_msgs::msg::PoseStamped_<std::allocator<void> > >; __gnu_cxx::_Lock_policy _Lp = __gnu_cxx::_S_atomic][m[K’
+[01m[K/usr/include/c++/9/bits/shared_ptr_base.h:1271:2:[m[K   required by substitution of ‘[01m[Ktemplate<class _Yp> std::__shared_ptr<rclcpp::Subscription<geometry_msgs::msg::PoseStamped_<std::allocator<void> > >, __gnu_cxx::_S_atomic>::_Assignable<_Yp> std::__shared_ptr<rclcpp::Subscription<geometry_msgs::msg::PoseStamped_<std::allocator<void> > >, __gnu_cxx::_S_atomic>::operator=<_Yp>(std::__shared_ptr<_Tp>&&) [with _Yp = rclcpp::Subscription<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void>, rclcpp::message_memory_strategy::MessageMemoryStrategy<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void> > >][m[K’
+[01m[K/usr/include/c++/9/type_traits:1017:12:[m[K   required from ‘[01m[Kstruct std::is_assignable<std::__shared_ptr<rclcpp::Subscription<geometry_msgs::msg::PoseStamped_<std::allocator<void> > >, __gnu_cxx::_S_atomic>&, std::shared_ptr<rclcpp::Subscription<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void>, rclcpp::message_memory_strategy::MessageMemoryStrategy<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void> > > > >[m[K’
+[01m[K/usr/include/c++/9/bits/shared_ptr.h:111:8:[m[K   required by substitution of ‘[01m[Ktemplate<class _Tp> template<class _Arg> using _Assignable = typename std::enable_if<std::is_assignable<std::__shared_ptr<_Tp>&, _Arg>::value, std::shared_ptr<_Tp>&>::type [with _Arg = std::shared_ptr<rclcpp::Subscription<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void>, rclcpp::message_memory_strategy::MessageMemoryStrategy<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void> > > >; _Tp = rclcpp::Subscription<geometry_msgs::msg::PoseStamped_<std::allocator<void> > >][m[K’
+[01m[K/usr/include/c++/9/bits/shared_ptr.h:341:2:[m[K   required by substitution of ‘[01m[Ktemplate<class _Yp> std::shared_ptr<rclcpp::Subscription<geometry_msgs::msg::PoseStamped_<std::allocator<void> > > >::_Assignable<std::shared_ptr<_Tp> > std::shared_ptr<rclcpp::Subscription<geometry_msgs::msg::PoseStamped_<std::allocator<void> > > >::operator=<_Yp>(std::shared_ptr<_Tp>&&) [with _Yp = rclcpp::Subscription<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void>, rclcpp::message_memory_strategy::MessageMemoryStrategy<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void> > >][m[K’
+[01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/src/pose_tracking.cpp:74:98:[m[K   required from here
+[01m[K/opt/ros/foxy/include/rclcpp/any_subscription_callback.hpp:111:8:[m[K [01;31m[Kerror: [m[K‘[01m[Ktemplate<class CallbackT, typename std::enable_if<rclcpp::function_traits::same_arguments<CallbackT, std::function<void(std::shared_ptr<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&>)> >::value, void>::type* <anonymous> > void rclcpp::AnySubscriptionCallback<MessageT, Alloc>::set(CallbackT) [with CallbackT = CallbackT; typename std::enable_if<rclcpp::function_traits::same_arguments<CallbackT, std::function<void(std::shared_ptr<const _Tp>)> >::value>::type* <anonymous> = <enumerator>; MessageT = const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&; Alloc = std::allocator<void>][m[K’ cannot be overloaded with ‘[01m[Ktemplate<class CallbackT, typename std::enable_if<rclcpp::function_traits::same_arguments<CallbackT, std::function<void(std::shared_ptr<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&>)> >::value, void>::type* <anonymous> > void rclcpp::AnySubscriptionCallback<MessageT, Alloc>::set(CallbackT) [with CallbackT = CallbackT; typename std::enable_if<rclcpp::function_traits::same_arguments<CallbackT, std::function<void(std::shared_ptr<_Tp>)> >::value>::type* <anonymous> = <enumerator>; MessageT = const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&; Alloc = std::allocator<void>][m[K’
+  111 |   void [01;31m[Kset[m[K(CallbackT callback)
+      |        [01;31m[K^~~[m[K
+[01m[K/opt/ros/foxy/include/rclcpp/any_subscription_callback.hpp:83:8:[m[K [01;36m[Knote: [m[Kprevious declaration ‘[01m[Ktemplate<class CallbackT, typename std::enable_if<rclcpp::function_traits::same_arguments<CallbackT, std::function<void(std::shared_ptr<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&>)> >::value, void>::type* <anonymous> > void rclcpp::AnySubscriptionCallback<MessageT, Alloc>::set(CallbackT) [with CallbackT = CallbackT; typename std::enable_if<rclcpp::function_traits::same_arguments<CallbackT, std::function<void(std::shared_ptr<_Tp>)> >::value>::type* <anonymous> = <enumerator>; MessageT = const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&; Alloc = std::allocator<void>][m[K’
+   83 |   void [01;36m[Kset[m[K(CallbackT callback)
+      |        [01;36m[K^~~[m[K
+[01m[K/opt/ros/foxy/include/rclcpp/any_subscription_callback.hpp:125:8:[m[K [01;31m[Kerror: [m[K‘[01m[Ktemplate<class CallbackT, typename std::enable_if<rclcpp::function_traits::same_arguments<CallbackT, std::function<void(std::shared_ptr<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&>, const rclcpp::MessageInfo&)> >::value, void>::type* <anonymous> > void rclcpp::AnySubscriptionCallback<MessageT, Alloc>::set(CallbackT) [with CallbackT = CallbackT; typename std::enable_if<rclcpp::function_traits::same_arguments<CallbackT, std::function<void(std::shared_ptr<const _Tp>, const rclcpp::MessageInfo&)> >::value>::type* <anonymous> = <enumerator>; MessageT = const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&; Alloc = std::allocator<void>][m[K’ cannot be overloaded with ‘[01m[Ktemplate<class CallbackT, typename std::enable_if<rclcpp::function_traits::same_arguments<CallbackT, std::function<void(std::shared_ptr<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&>, const rclcpp::MessageInfo&)> >::value, void>::type* <anonymous> > void rclcpp::AnySubscriptionCallback<MessageT, Alloc>::set(CallbackT) [with CallbackT = CallbackT; typename std::enable_if<rclcpp::function_traits::same_arguments<CallbackT, std::function<void(std::shared_ptr<_Tp>, const rclcpp::MessageInfo&)> >::value>::type* <anonymous> = <enumerator>; MessageT = const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&; Alloc = std::allocator<void>][m[K’
+  125 |   void [01;31m[Kset[m[K(CallbackT callback)
+      |        [01;31m[K^~~[m[K
+[01m[K/opt/ros/foxy/include/rclcpp/any_subscription_callback.hpp:97:8:[m[K [01;36m[Knote: [m[Kprevious declaration ‘[01m[Ktemplate<class CallbackT, typename std::enable_if<rclcpp::function_traits::same_arguments<CallbackT, std::function<void(std::shared_ptr<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&>, const rclcpp::MessageInfo&)> >::value, void>::type* <anonymous> > void rclcpp::AnySubscriptionCallback<MessageT, Alloc>::set(CallbackT) [with CallbackT = CallbackT; typename std::enable_if<rclcpp::function_traits::same_arguments<CallbackT, std::function<void(std::shared_ptr<_Tp>, const rclcpp::MessageInfo&)> >::value>::type* <anonymous> = <enumerator>; MessageT = const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&; Alloc = std::allocator<void>][m[K’
+   97 |   void [01;36m[Kset[m[K(CallbackT callback)
+      |        [01;36m[K^~~[m[K
+[01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/src/pose_tracking.cpp:[m[K In constructor ‘[01m[Kmoveit_servo::PoseTracking::PoseTracking(const SharedPtr&, const ServoParametersPtr&, const PlanningSceneMonitorPtr&)[m[K’:
+[01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/src/pose_tracking.cpp:74:98:[m[K [01;31m[Kerror: [m[Kno match for ‘[01m[Koperator=[m[K’ (operand types are ‘[01m[Krclcpp::Subscription<geometry_msgs::msg::PoseStamped_<std::allocator<void> > >::SharedPtr[m[K’ {aka ‘[01m[Kstd::shared_ptr<rclcpp::Subscription<geometry_msgs::msg::PoseStamped_<std::allocator<void> > > >[m[K’} and ‘[01m[Kstd::shared_ptr<rclcpp::Subscription<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void>, rclcpp::message_memory_strategy::MessageMemoryStrategy<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void> > > >[m[K’)
+   74 |       "target_pose", 1, std::bind(&PoseTracking::targetPoseCallback, this, std::placeholders::_1)[01;31m[K)[m[K;
+      |                                                                                                  [01;31m[K^[m[K
+In file included from [01m[K/usr/include/c++/9/memory:81[m[K,
+                 from [01m[K/opt/ros/foxy/include/control_toolbox/pid.hpp:37[m[K,
+                 from [01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/include/moveit_servo/pose_tracking.h:42[m[K,
+                 from [01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/src/pose_tracking.cpp:35[m[K:
+[01m[K/usr/include/c++/9/bits/shared_ptr.h:309:19:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Kstd::shared_ptr<_Tp>& std::shared_ptr<_Tp>::operator=(const std::shared_ptr<_Tp>&) [with _Tp = rclcpp::Subscription<geometry_msgs::msg::PoseStamped_<std::allocator<void> > >][m[K’
+  309 |       shared_ptr& [01;36m[Koperator[m[K=(const shared_ptr&) noexcept = default;
+      |                   [01;36m[K^~~~~~~~[m[K
+[01m[K/usr/include/c++/9/bits/shared_ptr.h:309:29:[m[K [01;36m[Knote: [m[K  no known conversion for argument 1 from ‘[01m[Kstd::shared_ptr<rclcpp::Subscription<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void>, rclcpp::message_memory_strategy::MessageMemoryStrategy<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void> > > >[m[K’ to ‘[01m[Kconst std::shared_ptr<rclcpp::Subscription<geometry_msgs::msg::PoseStamped_<std::allocator<void> > > >&[m[K’
+  309 |       shared_ptr& operator=([01;36m[Kconst shared_ptr&[m[K) noexcept = default;
+      |                             [01;36m[K^~~~~~~~~~~~~~~~~[m[K
+[01m[K/usr/include/c++/9/bits/shared_ptr.h:313:2:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _Yp> std::shared_ptr<_Tp>::_Assignable<const std::shared_ptr<_Yp>&> std::shared_ptr<_Tp>::operator=(const std::shared_ptr<_Yp>&) [with _Yp = _Yp; _Tp = rclcpp::Subscription<geometry_msgs::msg::PoseStamped_<std::allocator<void> > >][m[K’
+  313 |  [01;36m[Koperator[m[K=(const shared_ptr<_Yp>& __r) noexcept
+      |  [01;36m[K^~~~~~~~[m[K
+[01m[K/usr/include/c++/9/bits/shared_ptr.h:313:2:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+/usr/include/c++/9/bits/shared_ptr.h: In substitution of ‘[01m[Ktemplate<class _Tp> template<class _Arg> using _Assignable = typename std::enable_if<std::is_assignable<std::__shared_ptr<_Tp>&, _Arg>::value, std::shared_ptr<_Tp>&>::type [with _Arg = const std::shared_ptr<rclcpp::Subscription<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void>, rclcpp::message_memory_strategy::MessageMemoryStrategy<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void> > > >&; _Tp = rclcpp::Subscription<geometry_msgs::msg::PoseStamped_<std::allocator<void> > >][m[K’:
+[01m[K/usr/include/c++/9/bits/shared_ptr.h:313:2:[m[K   required by substitution of ‘[01m[Ktemplate<class _Yp> std::shared_ptr<rclcpp::Subscription<geometry_msgs::msg::PoseStamped_<std::allocator<void> > > >::_Assignable<const std::shared_ptr<_Tp>&> std::shared_ptr<rclcpp::Subscription<geometry_msgs::msg::PoseStamped_<std::allocator<void> > > >::operator=<_Yp>(const std::shared_ptr<_Tp>&) [with _Yp = rclcpp::Subscription<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void>, rclcpp::message_memory_strategy::MessageMemoryStrategy<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void> > >][m[K’
+[01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/src/pose_tracking.cpp:74:98:[m[K   required from here
+[01m[K/usr/include/c++/9/bits/shared_ptr.h:111:8:[m[K [01;31m[Kerror: [m[Kno type named ‘[01m[Ktype[m[K’ in ‘[01m[Kstruct std::enable_if<false, std::shared_ptr<rclcpp::Subscription<geometry_msgs::msg::PoseStamped_<std::allocator<void> > > >&>[m[K’
+  111 |  using [01;31m[K_Assignable[m[K = typename enable_if<
+      |        [01;31m[K^~~~~~~~~~~[m[K
+[01m[K/usr/include/c++/9/bits/shared_ptr.h:324:2:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _Yp> std::shared_ptr<_Tp>::_Assignable<std::auto_ptr<_Up> > std::shared_ptr<_Tp>::operator=(std::auto_ptr<_Up>&&) [with _Yp = _Yp; _Tp = rclcpp::Subscription<geometry_msgs::msg::PoseStamped_<std::allocator<void> > >][m[K’
+  324 |  [01;36m[Koperator[m[K=(auto_ptr<_Yp>&& __r)
+      |  [01;36m[K^~~~~~~~[m[K
+[01m[K/usr/include/c++/9/bits/shared_ptr.h:324:2:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/src/pose_tracking.cpp:74:98:[m[K [01;36m[Knote: [m[K  ‘[01m[Kstd::shared_ptr<rclcpp::Subscription<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void>, rclcpp::message_memory_strategy::MessageMemoryStrategy<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void> > > >[m[K’ is not derived from ‘[01m[Kstd::auto_ptr<_Up>[m[K’
+   74 |       "target_pose", 1, std::bind(&PoseTracking::targetPoseCallback, this, std::placeholders::_1)[01;36m[K)[m[K;
+      |                                                                                                  [01;36m[K^[m[K
+In file included from [01m[K/usr/include/c++/9/memory:81[m[K,
+                 from [01m[K/opt/ros/foxy/include/control_toolbox/pid.hpp:37[m[K,
+                 from [01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/include/moveit_servo/pose_tracking.h:42[m[K,
+                 from [01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/src/pose_tracking.cpp:35[m[K:
+[01m[K/usr/include/c++/9/bits/shared_ptr.h:333:7:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Kstd::shared_ptr<_Tp>& std::shared_ptr<_Tp>::operator=(std::shared_ptr<_Tp>&&) [with _Tp = rclcpp::Subscription<geometry_msgs::msg::PoseStamped_<std::allocator<void> > >][m[K’
+  333 |       [01;36m[Koperator[m[K=(shared_ptr&& __r) noexcept
+      |       [01;36m[K^~~~~~~~[m[K
+[01m[K/usr/include/c++/9/bits/shared_ptr.h:333:30:[m[K [01;36m[Knote: [m[K  no known conversion for argument 1 from ‘[01m[Kstd::shared_ptr<rclcpp::Subscription<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void>, rclcpp::message_memory_strategy::MessageMemoryStrategy<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void> > > >[m[K’ to ‘[01m[Kstd::shared_ptr<rclcpp::Subscription<geometry_msgs::msg::PoseStamped_<std::allocator<void> > > >&&[m[K’
+  333 |       operator=([01;36m[Kshared_ptr&& __r[m[K) noexcept
+      |                 [01;36m[K~~~~~~~~~~~~~^~~[m[K
+[01m[K/usr/include/c++/9/bits/shared_ptr.h:341:2:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _Yp> std::shared_ptr<_Tp>::_Assignable<std::shared_ptr<_Yp> > std::shared_ptr<_Tp>::operator=(std::shared_ptr<_Yp>&&) [with _Yp = _Yp; _Tp = rclcpp::Subscription<geometry_msgs::msg::PoseStamped_<std::allocator<void> > >][m[K’
+  341 |  [01;36m[Koperator[m[K=(shared_ptr<_Yp>&& __r) noexcept
+      |  [01;36m[K^~~~~~~~[m[K
+[01m[K/usr/include/c++/9/bits/shared_ptr.h:341:2:[m[K [01;36m[Knote: [m[K  substitution of deduced template arguments resulted in errors seen above
+[01m[K/usr/include/c++/9/bits/shared_ptr.h:349:2:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _Yp, class _Del> std::shared_ptr<_Tp>::_Assignable<std::unique_ptr<_Up, _Ep> > std::shared_ptr<_Tp>::operator=(std::unique_ptr<_Up, _Ep>&&) [with _Yp = _Yp; _Del = _Del; _Tp = rclcpp::Subscription<geometry_msgs::msg::PoseStamped_<std::allocator<void> > >][m[K’
+  349 |  [01;36m[Koperator[m[K=(unique_ptr<_Yp, _Del>&& __r)
+      |  [01;36m[K^~~~~~~~[m[K
+[01m[K/usr/include/c++/9/bits/shared_ptr.h:349:2:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/src/pose_tracking.cpp:74:98:[m[K [01;36m[Knote: [m[K  ‘[01m[Kstd::shared_ptr<rclcpp::Subscription<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void>, rclcpp::message_memory_strategy::MessageMemoryStrategy<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void> > > >[m[K’ is not derived from ‘[01m[Kstd::unique_ptr<_Tp, _Dp>[m[K’
+   74 |       "target_pose", 1, std::bind(&PoseTracking::targetPoseCallback, this, std::placeholders::_1)[01;36m[K)[m[K;
+      |                                                                                                  [01;36m[K^[m[K
+[01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/src/pose_tracking.cpp:[m[K In member function ‘[01m[Kmoveit_servo::PoseTrackingStatusCode moveit_servo::PoseTracking::moveToPose(const Vector3d&, double, double)[m[K’:
+[01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/src/pose_tracking.cpp:132:70:[m[K [01;31m[Kerror: [m[Kno matching function for call to ‘[01m[Krclcpp::Publisher<geometry_msgs::msg::TwistStamped_<std::allocator<void> > >::publish(geometry_msgs::msg::TwistStamped_<std::allocator<void> >::ConstSharedPtr)[m[K’
+  132 |     twist_stamped_pub_->publish(PoseTracking::calculateTwistCommand()[01;31m[K)[m[K;
+      |                                                                      [01;31m[K^[m[K
+In file included from [01m[K/opt/ros/foxy/include/rclcpp/node_interfaces/node_topics_interface.hpp:29[m[K,
+                 from [01m[K/opt/ros/foxy/include/rclcpp/node.hpp:55[m[K,
+                 from [01m[K/opt/ros/foxy/include/control_toolbox/pid.hpp:42[m[K,
+                 from [01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/include/moveit_servo/pose_tracking.h:42[m[K,
+                 from [01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/src/pose_tracking.cpp:35[m[K:
+[01m[K/opt/ros/foxy/include/rclcpp/publisher.hpp:185:3:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Kvoid rclcpp::Publisher<MessageT, AllocatorT>::publish(std::unique_ptr<MessageT, typename std::conditional<std::is_same<typename std::allocator_traits<typename std::allocator_traits<_Alloc>::rebind_traits<MessageT>::allocator_type>::rebind_alloc<MessageT>, typename std::allocator<void>::rebind<_Tp1>::other>::value, std::default_delete<_Tp>, rclcpp::allocator::AllocatorDeleter<typename std::allocator_traits<_Alloc>::rebind_traits<MessageT>::allocator_type> >::type>) [with MessageT = geometry_msgs::msg::TwistStamped_<std::allocator<void> >; AllocatorT = std::allocator<void>; typename std::conditional<std::is_same<typename std::allocator_traits<typename std::allocator_traits<_Alloc>::rebind_traits<MessageT>::allocator_type>::rebind_alloc<MessageT>, typename std::allocator<void>::rebind<_Tp1>::other>::value, std::default_delete<_Tp>, rclcpp::allocator::AllocatorDeleter<typename std::allocator_traits<_Alloc>::rebind_traits<MessageT>::allocator_type> >::type = std::default_delete<geometry_msgs::msg::TwistStamped_<std::allocator<void> > >][m[K’
+  185 |   [01;36m[Kpublish[m[K(std::unique_ptr<MessageT, MessageDeleter> msg)
+      |   [01;36m[K^~~~~~~[m[K
+[01m[K/opt/ros/foxy/include/rclcpp/publisher.hpp:185:53:[m[K [01;36m[Knote: [m[K  no known conversion for argument 1 from ‘[01m[Kgeometry_msgs::msg::TwistStamped_<std::allocator<void> >::ConstSharedPtr[m[K’ {aka ‘[01m[Kstd::shared_ptr<const geometry_msgs::msg::TwistStamped_<std::allocator<void> > >[m[K’} to ‘[01m[Kstd::unique_ptr<geometry_msgs::msg::TwistStamped_<std::allocator<void> >, std::default_delete<geometry_msgs::msg::TwistStamped_<std::allocator<void> > > >[m[K’
+  185 |   publish([01;36m[Kstd::unique_ptr<MessageT, MessageDeleter> msg[m[K)
+      |           [01;36m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~[m[K
+[01m[K/opt/ros/foxy/include/rclcpp/publisher.hpp:209:3:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Kvoid rclcpp::Publisher<MessageT, AllocatorT>::publish(const MessageT&) [with MessageT = geometry_msgs::msg::TwistStamped_<std::allocator<void> >; AllocatorT = std::allocator<void>][m[K’
+  209 |   [01;36m[Kpublish[m[K(const MessageT & msg)
+      |   [01;36m[K^~~~~~~[m[K
+[01m[K/opt/ros/foxy/include/rclcpp/publisher.hpp:209:28:[m[K [01;36m[Knote: [m[K  no known conversion for argument 1 from ‘[01m[Kgeometry_msgs::msg::TwistStamped_<std::allocator<void> >::ConstSharedPtr[m[K’ {aka ‘[01m[Kstd::shared_ptr<const geometry_msgs::msg::TwistStamped_<std::allocator<void> > >[m[K’} to ‘[01m[Kconst geometry_msgs::msg::TwistStamped_<std::allocator<void> >&[m[K’
+  209 |   publish([01;36m[Kconst MessageT & msg[m[K)
+      |           [01;36m[K~~~~~~~~~~~~~~~~~^~~[m[K
+[01m[K/opt/ros/foxy/include/rclcpp/publisher.hpp:226:3:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Kvoid rclcpp::Publisher<MessageT, AllocatorT>::publish(const rcl_serialized_message_t&) [with MessageT = geometry_msgs::msg::TwistStamped_<std::allocator<void> >; AllocatorT = std::allocator<void>; rcl_serialized_message_t = rcutils_uint8_array_t][m[K’
+  226 |   [01;36m[Kpublish[m[K(const rcl_serialized_message_t & serialized_msg)
+      |   [01;36m[K^~~~~~~[m[K
+[01m[K/opt/ros/foxy/include/rclcpp/publisher.hpp:226:44:[m[K [01;36m[Knote: [m[K  no known conversion for argument 1 from ‘[01m[Kgeometry_msgs::msg::TwistStamped_<std::allocator<void> >::ConstSharedPtr[m[K’ {aka ‘[01m[Kstd::shared_ptr<const geometry_msgs::msg::TwistStamped_<std::allocator<void> > >[m[K’} to ‘[01m[Kconst rcl_serialized_message_t&[m[K’ {aka ‘[01m[Kconst rcutils_uint8_array_t&[m[K’}
+  226 |   publish([01;36m[Kconst rcl_serialized_message_t & serialized_msg[m[K)
+      |           [01;36m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~[m[K
+[01m[K/opt/ros/foxy/include/rclcpp/publisher.hpp:232:3:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Kvoid rclcpp::Publisher<MessageT, AllocatorT>::publish(const rclcpp::SerializedMessage&) [with MessageT = geometry_msgs::msg::TwistStamped_<std::allocator<void> >; AllocatorT = std::allocator<void>][m[K’
+  232 |   [01;36m[Kpublish[m[K(const SerializedMessage & serialized_msg)
+      |   [01;36m[K^~~~~~~[m[K
+[01m[K/opt/ros/foxy/include/rclcpp/publisher.hpp:232:37:[m[K [01;36m[Knote: [m[K  no known conversion for argument 1 from ‘[01m[Kgeometry_msgs::msg::TwistStamped_<std::allocator<void> >::ConstSharedPtr[m[K’ {aka ‘[01m[Kstd::shared_ptr<const geometry_msgs::msg::TwistStamped_<std::allocator<void> > >[m[K’} to ‘[01m[Kconst rclcpp::SerializedMessage&[m[K’
+  232 |   publish([01;36m[Kconst SerializedMessage & serialized_msg[m[K)
+      |           [01;36m[K~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~[m[K
+[01m[K/opt/ros/foxy/include/rclcpp/publisher.hpp:246:3:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Kvoid rclcpp::Publisher<MessageT, AllocatorT>::publish(rclcpp::LoanedMessage<MessageT, AllocatorT>&&) [with MessageT = geometry_msgs::msg::TwistStamped_<std::allocator<void> >; AllocatorT = std::allocator<void>][m[K’
+  246 |   [01;36m[Kpublish[m[K(rclcpp::LoanedMessage<MessageT, AllocatorT> && loaned_msg)
+      |   [01;36m[K^~~~~~~[m[K
+[01m[K/opt/ros/foxy/include/rclcpp/publisher.hpp:246:58:[m[K [01;36m[Knote: [m[K  no known conversion for argument 1 from ‘[01m[Kgeometry_msgs::msg::TwistStamped_<std::allocator<void> >::ConstSharedPtr[m[K’ {aka ‘[01m[Kstd::shared_ptr<const geometry_msgs::msg::TwistStamped_<std::allocator<void> > >[m[K’} to ‘[01m[Krclcpp::LoanedMessage<geometry_msgs::msg::TwistStamped_<std::allocator<void> >, std::allocator<void> >&&[m[K’
+  246 |   publish([01;36m[Krclcpp::LoanedMessage<MessageT, AllocatorT> && loaned_msg[m[K)
+      |           [01;36m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~[m[K
+[01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/src/pose_tracking.cpp:[m[K In member function ‘[01m[Kvoid moveit_servo::PoseTracking::readROSParams()[m[K’:
+[01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/src/pose_tracking.cpp:148:47:[m[K [01;31m[Kerror: [m[K‘[01m[Kclass rclcpp::Parameter[m[K’ has no member named ‘[01m[Kempty[m[K’
+  148 |   rclcpp::Node::SharedPtr node = parameter_ns.[01;31m[Kempty[m[K() ? node : ros::NodeHandle(nh_, parameter_ns);
+      |                                               [01;31m[K^~~~~[m[K
+[01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/src/pose_tracking.cpp:148:64:[m[K [01;31m[Kerror: [m[K‘[01m[Kros[m[K’ has not been declared
+  148 |   rclcpp::Node::SharedPtr node = parameter_ns.empty() ? node : [01;31m[Kros[m[K::NodeHandle(nh_, parameter_ns);
+      |                                                                [01;31m[K^~~[m[K
+[01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/src/pose_tracking.cpp:148:80:[m[K [01;31m[Kerror: [m[K‘[01m[Knh_[m[K’ was not declared in this scope
+  148 |   rclcpp::Node::SharedPtr node = parameter_ns.empty() ? node : ros::NodeHandle([01;31m[Knh_[m[K, parameter_ns);
+      |                                                                                [01;31m[K^~~[m[K
+[01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/src/pose_tracking.cpp:152:27:[m[K [01;31m[Kerror: [m[K‘[01m[Knh[m[K’ was not declared in this scope
+  152 |   while (rclcpp::ok() && ![01;31m[Knh[m[K.hasParam("planning_frame") && ((node->now() - begin).to_chrono<std::chrono::duration<double>>().count() < ROS_STARTUP_WAIT))
+      |                           [01;31m[K^~[m[K
+[01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/src/pose_tracking.cpp:161:13:[m[K [01;31m[Kerror: [m[K‘[01m[Krosparam_shortcuts[m[K’ has not been declared
+  161 |   error += ![01;31m[Krosparam_shortcuts[m[K::get(LOGGER, node_, "planning_frame", planning_frame_);
+      |             [01;31m[K^~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/src/pose_tracking.cpp:162:13:[m[K [01;31m[Kerror: [m[K‘[01m[Krosparam_shortcuts[m[K’ has not been declared
+  162 |   error += ![01;31m[Krosparam_shortcuts[m[K::get(LOGGER, node_, "move_group_name", move_group_name_);
+      |             [01;31m[K^~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/src/pose_tracking.cpp:170:13:[m[K [01;31m[Kerror: [m[K‘[01m[Krosparam_shortcuts[m[K’ has not been declared
+  170 |   error += ![01;31m[Krosparam_shortcuts[m[K::get(LOGGER, nh, "publish_period", publish_period);
+      |             [01;31m[K^~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/src/pose_tracking.cpp:170:45:[m[K [01;31m[Kerror: [m[K‘[01m[Knh[m[K’ was not declared in this scope
+  170 |   error += !rosparam_shortcuts::get(LOGGER, [01;31m[Knh[m[K, "publish_period", publish_period);
+      |                                             [01;31m[K^~[m[K
+[01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/src/pose_tracking.cpp:171:47:[m[K [01;31m[Kerror: [m[Kuse of deleted function ‘[01m[Krclcpp::GenericRate<Clock>& rclcpp::GenericRate<Clock>::operator=(const rclcpp::GenericRate<Clock>&) [with Clock = std::chrono::_V2::system_clock][m[K’
+  171 |   loop_rate_ = rclcpp::Rate(1 / publish_period[01;31m[K)[m[K;
+      |                                               [01;31m[K^[m[K
+In file included from [01m[K/opt/ros/foxy/include/rclcpp/clock.hpp:22[m[K,
+                 from [01m[K/opt/ros/foxy/include/control_toolbox/pid.hpp:40[m[K,
+                 from [01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/include/moveit_servo/pose_tracking.h:42[m[K,
+                 from [01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/src/pose_tracking.cpp:35[m[K:
+[01m[K/opt/ros/foxy/include/rclcpp/rate.hpp:108:3:[m[K [01;36m[Knote: [m[Kdeclared here
+  108 |   [01;36m[KRCLCPP_DISABLE_COPY[m[K(GenericRate)
+      |   [01;36m[K^~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/src/pose_tracking.cpp:179:13:[m[K [01;31m[Kerror: [m[K‘[01m[Krosparam_shortcuts[m[K’ has not been declared
+  179 |   error += ![01;31m[Krosparam_shortcuts[m[K::get(LOGGER, nh, "windup_limit", windup_limit);
+      |             [01;31m[K^~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/src/pose_tracking.cpp:185:13:[m[K [01;31m[Kerror: [m[K‘[01m[Krosparam_shortcuts[m[K’ has not been declared
+  185 |   error += ![01;31m[Krosparam_shortcuts[m[K::get(LOGGER, nh, "x_proportional_gain", x_pid_config_.k_p);
+      |             [01;31m[K^~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/src/pose_tracking.cpp:186:13:[m[K [01;31m[Kerror: [m[K‘[01m[Krosparam_shortcuts[m[K’ has not been declared
+  186 |   error += ![01;31m[Krosparam_shortcuts[m[K::get(LOGGER, nh, "y_proportional_gain", y_pid_config_.k_p);
+      |             [01;31m[K^~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/src/pose_tracking.cpp:187:13:[m[K [01;31m[Kerror: [m[K‘[01m[Krosparam_shortcuts[m[K’ has not been declared
+  187 |   error += ![01;31m[Krosparam_shortcuts[m[K::get(LOGGER, nh, "z_proportional_gain", z_pid_config_.k_p);
+      |             [01;31m[K^~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/src/pose_tracking.cpp:188:13:[m[K [01;31m[Kerror: [m[K‘[01m[Krosparam_shortcuts[m[K’ has not been declared
+  188 |   error += ![01;31m[Krosparam_shortcuts[m[K::get(LOGGER, nh, "x_integral_gain", x_pid_config_.k_i);
+      |             [01;31m[K^~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/src/pose_tracking.cpp:189:13:[m[K [01;31m[Kerror: [m[K‘[01m[Krosparam_shortcuts[m[K’ has not been declared
+  189 |   error += ![01;31m[Krosparam_shortcuts[m[K::get(LOGGER, nh, "y_integral_gain", y_pid_config_.k_i);
+      |             [01;31m[K^~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/src/pose_tracking.cpp:190:13:[m[K [01;31m[Kerror: [m[K‘[01m[Krosparam_shortcuts[m[K’ has not been declared
+  190 |   error += ![01;31m[Krosparam_shortcuts[m[K::get(LOGGER, nh, "z_integral_gain", z_pid_config_.k_i);
+      |             [01;31m[K^~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/src/pose_tracking.cpp:191:13:[m[K [01;31m[Kerror: [m[K‘[01m[Krosparam_shortcuts[m[K’ has not been declared
+  191 |   error += ![01;31m[Krosparam_shortcuts[m[K::get(LOGGER, nh, "x_derivative_gain", x_pid_config_.k_d);
+      |             [01;31m[K^~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/src/pose_tracking.cpp:192:13:[m[K [01;31m[Kerror: [m[K‘[01m[Krosparam_shortcuts[m[K’ has not been declared
+  192 |   error += ![01;31m[Krosparam_shortcuts[m[K::get(LOGGER, nh, "y_derivative_gain", y_pid_config_.k_d);
+      |             [01;31m[K^~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/src/pose_tracking.cpp:193:13:[m[K [01;31m[Kerror: [m[K‘[01m[Krosparam_shortcuts[m[K’ has not been declared
+  193 |   error += ![01;31m[Krosparam_shortcuts[m[K::get(LOGGER, nh, "z_derivative_gain", z_pid_config_.k_d);
+      |             [01;31m[K^~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/src/pose_tracking.cpp:195:13:[m[K [01;31m[Kerror: [m[K‘[01m[Krosparam_shortcuts[m[K’ has not been declared
+  195 |   error += ![01;31m[Krosparam_shortcuts[m[K::get(LOGGER, nh, "angular_proportional_gain", angular_pid_config_.k_p);
+      |             [01;31m[K^~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/src/pose_tracking.cpp:196:13:[m[K [01;31m[Kerror: [m[K‘[01m[Krosparam_shortcuts[m[K’ has not been declared
+  196 |   error += ![01;31m[Krosparam_shortcuts[m[K::get(LOGGER, nh, "angular_integral_gain", angular_pid_config_.k_i);
+      |             [01;31m[K^~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/src/pose_tracking.cpp:197:13:[m[K [01;31m[Kerror: [m[K‘[01m[Krosparam_shortcuts[m[K’ has not been declared
+  197 |   error += ![01;31m[Krosparam_shortcuts[m[K::get(LOGGER, nh, "angular_derivative_gain", angular_pid_config_.k_d);
+      |             [01;31m[K^~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/src/pose_tracking.cpp:199:3:[m[K [01;31m[Kerror: [m[K‘[01m[Krosparam_shortcuts[m[K’ has not been declared
+  199 |   [01;31m[Krosparam_shortcuts[m[K::shutdownIfError(ros::this_node::getName(), error);
+      |   [01;31m[K^~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/src/pose_tracking.cpp:199:39:[m[K [01;31m[Kerror: [m[K‘[01m[Kros[m[K’ has not been declared
+  199 |   rosparam_shortcuts::shutdownIfError([01;31m[Kros[m[K::this_node::getName(), error);
+      |                                       [01;31m[K^~~[m[K
+[01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/src/pose_tracking.cpp:[m[K In member function ‘[01m[Kgeometry_msgs::msg::TwistStamped_<std::allocator<void> >::ConstSharedPtr moveit_servo::PoseTracking::calculateTwistCommand()[m[K’:
+[01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/src/pose_tracking.cpp:298:10:[m[K [01;31m[Kerror: [m[Kcould not convert ‘[01m[Kmsg[m[K’ from ‘[01m[Kboost::shared_ptr<geometry_msgs::msg::TwistStamped_<std::allocator<void> > >[m[K’ to ‘[01m[Kgeometry_msgs::msg::TwistStamped_<std::allocator<void> >::ConstSharedPtr[m[K’ {aka ‘[01m[Kstd::shared_ptr<const geometry_msgs::msg::TwistStamped_<std::allocator<void> > >[m[K’}
+  298 |   return [01;31m[Kmsg[m[K;
+      |          [01;31m[K^~~[m[K
+      |          [01;31m[K|[m[K
+      |          [01;31m[Kboost::shared_ptr<geometry_msgs::msg::TwistStamped_<std::allocator<void> > >[m[K
+In file included from [01m[K/opt/ros/foxy/include/rclcpp/node_interfaces/node_topics_interface.hpp:32[m[K,
+                 from [01m[K/opt/ros/foxy/include/rclcpp/node.hpp:55[m[K,
+                 from [01m[K/opt/ros/foxy/include/control_toolbox/pid.hpp:42[m[K,
+                 from [01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/include/moveit_servo/pose_tracking.h:42[m[K,
+                 from [01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/src/pose_tracking.cpp:35[m[K:
+/opt/ros/foxy/include/rclcpp/subscription_factory.hpp: In instantiation of ‘[01m[Krclcpp::SubscriptionFactory rclcpp::create_subscription_factory(CallbackT&&, const rclcpp::SubscriptionOptionsWithAllocator<AllocatorT>&, typename MessageMemoryStrategyT::SharedPtr, std::shared_ptr<rclcpp::topic_statistics::SubscriptionTopicStatistics<CallbackMessageT> >) [with MessageT = geometry_msgs::msg::PoseStamped_<std::allocator<void> >; CallbackT = std::_Bind<void (moveit_servo::PoseTracking::*(moveit_servo::PoseTracking*, std::_Placeholder<1>))(const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&)>; AllocatorT = std::allocator<void>; CallbackMessageT = const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&; SubscriptionT = rclcpp::Subscription<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void>, rclcpp::message_memory_strategy::MessageMemoryStrategy<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void> > >; MessageMemoryStrategyT = rclcpp::message_memory_strategy::MessageMemoryStrategy<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void> >; typename MessageMemoryStrategyT::SharedPtr = std::shared_ptr<rclcpp::message_memory_strategy::MessageMemoryStrategy<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void> > >][m[K’:
+[01m[K/opt/ros/foxy/include/rclcpp/create_subscription.hpp:138:63:[m[K   required from ‘[01m[Kstd::shared_ptr<SubscriptionT> rclcpp::create_subscription(NodeT&&, const string&, const rclcpp::QoS&, CallbackT&&, const rclcpp::SubscriptionOptionsWithAllocator<AllocatorT>&, typename MessageMemoryStrategyT::SharedPtr) [with MessageT = geometry_msgs::msg::PoseStamped_<std::allocator<void> >; CallbackT = std::_Bind<void (moveit_servo::PoseTracking::*(moveit_servo::PoseTracking*, std::_Placeholder<1>))(const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&)>; AllocatorT = std::allocator<void>; CallbackMessageT = const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&; SubscriptionT = rclcpp::Subscription<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void>, rclcpp::message_memory_strategy::MessageMemoryStrategy<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void> > >; MessageMemoryStrategyT = rclcpp::message_memory_strategy::MessageMemoryStrategy<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void> >; NodeT = rclcpp::Node&; std::string = std::__cxx11::basic_string<char>; typename MessageMemoryStrategyT::SharedPtr = std::shared_ptr<rclcpp::message_memory_strategy::MessageMemoryStrategy<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void> > >][m[K’
+[01m[K/opt/ros/foxy/include/rclcpp/node_impl.hpp:98:47:[m[K   required from ‘[01m[Kstd::shared_ptr<SubscriptionT> rclcpp::Node::create_subscription(const string&, const rclcpp::QoS&, CallbackT&&, const rclcpp::SubscriptionOptionsWithAllocator<AllocatorT>&, typename MessageMemoryStrategyT::SharedPtr) [with MessageT = geometry_msgs::msg::PoseStamped_<std::allocator<void> >; CallbackT = std::_Bind<void (moveit_servo::PoseTracking::*(moveit_servo::PoseTracking*, std::_Placeholder<1>))(const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&)>; AllocatorT = std::allocator<void>; CallbackMessageT = const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&; SubscriptionT = rclcpp::Subscription<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void>, rclcpp::message_memory_strategy::MessageMemoryStrategy<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void> > >; MessageMemoryStrategyT = rclcpp::message_memory_strategy::MessageMemoryStrategy<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void> >; std::string = std::__cxx11::basic_string<char>; typename MessageMemoryStrategyT::SharedPtr = std::shared_ptr<rclcpp::message_memory_strategy::MessageMemoryStrategy<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void> > >][m[K’
+[01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/src/pose_tracking.cpp:74:98:[m[K   required from here
+[01m[K/opt/ros/foxy/include/rclcpp/subscription_factory.hpp:97:3:[m[K [01;31m[Kerror: [m[Kno matching function for call to ‘[01m[Krclcpp::AnySubscriptionCallback<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void> >::set(std::_Bind<void (moveit_servo::PoseTracking::*(moveit_servo::PoseTracking*, std::_Placeholder<1>))(const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&)>)[m[K’
+   97 |   [01;31m[Kany_subscription_callback[m[K.set(std::forward<CallbackT>(callback));
+      |   [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/opt/ros/foxy/include/rclcpp/subscription_base.hpp:29[m[K,
+                 from [01m[K/opt/ros/foxy/include/rclcpp/callback_group.hpp:26[m[K,
+                 from [01m[K/opt/ros/foxy/include/rclcpp/node.hpp:39[m[K,
+                 from [01m[K/opt/ros/foxy/include/control_toolbox/pid.hpp:42[m[K,
+                 from [01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/include/moveit_servo/pose_tracking.h:42[m[K,
+                 from [01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/src/pose_tracking.cpp:35[m[K:
+[01m[K/opt/ros/foxy/include/rclcpp/any_subscription_callback.hpp:83:8:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class CallbackT, typename std::enable_if<rclcpp::function_traits::same_arguments<CallbackT, std::function<void(std::shared_ptr<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&>)> >::value, void>::type* <anonymous> > void rclcpp::AnySubscriptionCallback<MessageT, Alloc>::set(CallbackT) [with CallbackT = CallbackT; typename std::enable_if<rclcpp::function_traits::same_arguments<CallbackT, std::function<void(std::shared_ptr<_Tp>)> >::value>::type* <anonymous> = <enumerator>; MessageT = const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&; Alloc = std::allocator<void>][m[K’
+   83 |   void [01;36m[Kset[m[K(CallbackT callback)
+      |        [01;36m[K^~~[m[K
+[01m[K/opt/ros/foxy/include/rclcpp/any_subscription_callback.hpp:83:8:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[01m[K/opt/ros/foxy/include/rclcpp/any_subscription_callback.hpp:81:17:[m[K [01;31m[Kerror: [m[Kno type named ‘[01m[Ktype[m[K’ in ‘[01m[Kstruct std::enable_if<false, void>[m[K’
+   81 |     >::type * = [01;31m[Knullptr[m[K
+      |                 [01;31m[K^~~~~~~[m[K
+[01m[K/opt/ros/foxy/include/rclcpp/any_subscription_callback.hpp:97:8:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class CallbackT, typename std::enable_if<rclcpp::function_traits::same_arguments<CallbackT, std::function<void(std::shared_ptr<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&>, const rclcpp::MessageInfo&)> >::value, void>::type* <anonymous> > void rclcpp::AnySubscriptionCallback<MessageT, Alloc>::set(CallbackT) [with CallbackT = CallbackT; typename std::enable_if<rclcpp::function_traits::same_arguments<CallbackT, std::function<void(std::shared_ptr<_Tp>, const rclcpp::MessageInfo&)> >::value>::type* <anonymous> = <enumerator>; MessageT = const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&; Alloc = std::allocator<void>][m[K’
+   97 |   void [01;36m[Kset[m[K(CallbackT callback)
+      |        [01;36m[K^~~[m[K
+[01m[K/opt/ros/foxy/include/rclcpp/any_subscription_callback.hpp:97:8:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[01m[K/opt/ros/foxy/include/rclcpp/any_subscription_callback.hpp:95:17:[m[K [01;31m[Kerror: [m[Kno type named ‘[01m[Ktype[m[K’ in ‘[01m[Kstruct std::enable_if<false, void>[m[K’
+   95 |     >::type * = [01;31m[Knullptr[m[K
+      |                 [01;31m[K^~~~~~~[m[K
+[01m[K/opt/ros/foxy/include/rclcpp/any_subscription_callback.hpp:139:8:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class CallbackT, typename std::enable_if<rclcpp::function_traits::same_arguments<CallbackT, std::function<void(std::unique_ptr<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::default_delete<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&> >)> >::value, void>::type* <anonymous> > void rclcpp::AnySubscriptionCallback<MessageT, Alloc>::set(CallbackT) [with CallbackT = CallbackT; typename std::enable_if<rclcpp::function_traits::same_arguments<CallbackT, std::function<void(std::unique_ptr<MessageT, typename std::conditional<std::is_same<typename std::allocator_traits<typename std::allocator_traits<_Alloc>::rebind_traits<MessageT>::allocator_type>::rebind_alloc<MessageT>, typename std::allocator<void>::rebind<_Tp1>::other>::value, std::default_delete<_Tp>, rclcpp::allocator::AllocatorDeleter<typename std::allocator_traits<_Alloc>::rebind_traits<MessageT>::allocator_type> >::type>)> >::value>::type* <anonymous> = <enumerator>; MessageT = const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&; Alloc = std::allocator<void>][m[K’
+  139 |   void [01;36m[Kset[m[K(CallbackT callback)
+      |        [01;36m[K^~~[m[K
+[01m[K/opt/ros/foxy/include/rclcpp/any_subscription_callback.hpp:139:8:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[01m[K/opt/ros/foxy/include/rclcpp/any_subscription_callback.hpp:137:17:[m[K [01;31m[Kerror: [m[Kno type named ‘[01m[Ktype[m[K’ in ‘[01m[Kstruct std::enable_if<false, void>[m[K’
+  137 |     >::type * = [01;31m[Knullptr[m[K
+      |                 [01;31m[K^~~~~~~[m[K
+[01m[K/opt/ros/foxy/include/rclcpp/any_subscription_callback.hpp:153:8:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class CallbackT, typename std::enable_if<rclcpp::function_traits::same_arguments<CallbackT, std::function<void(std::unique_ptr<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::default_delete<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&> >, const rclcpp::MessageInfo&)> >::value, void>::type* <anonymous> > void rclcpp::AnySubscriptionCallback<MessageT, Alloc>::set(CallbackT) [with CallbackT = CallbackT; typename std::enable_if<rclcpp::function_traits::same_arguments<CallbackT, std::function<void(std::unique_ptr<MessageT, typename std::conditional<std::is_same<typename std::allocator_traits<typename std::allocator_traits<_Alloc>::rebind_traits<MessageT>::allocator_type>::rebind_alloc<MessageT>, typename std::allocator<void>::rebind<_Tp1>::other>::value, std::default_delete<_Tp>, rclcpp::allocator::AllocatorDeleter<typename std::allocator_traits<_Alloc>::rebind_traits<MessageT>::allocator_type> >::type>, const rclcpp::MessageInfo&)> >::value>::type* <anonymous> = <enumerator>; MessageT = const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&; Alloc = std::allocator<void>][m[K’
+  153 |   void [01;36m[Kset[m[K(CallbackT callback)
+      |        [01;36m[K^~~[m[K
+[01m[K/opt/ros/foxy/include/rclcpp/any_subscription_callback.hpp:153:8:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[01m[K/opt/ros/foxy/include/rclcpp/any_subscription_callback.hpp:151:17:[m[K [01;31m[Kerror: [m[Kno type named ‘[01m[Ktype[m[K’ in ‘[01m[Kstruct std::enable_if<false, void>[m[K’
+  151 |     >::type * = [01;31m[Knullptr[m[K
+      |                 [01;31m[K^~~~~~~[m[K
+In file included from [01m[K/usr/include/x86_64-linux-gnu/c++/9/bits/c++allocator.h:33[m[K,
+                 from [01m[K/usr/include/c++/9/bits/allocator.h:46[m[K,
+                 from [01m[K/usr/include/c++/9/memory:63[m[K,
+                 from [01m[K/opt/ros/foxy/include/control_toolbox/pid.hpp:37[m[K,
+                 from [01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/include/moveit_servo/pose_tracking.h:42[m[K,
+                 from [01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/src/pose_tracking.cpp:35[m[K:
+/usr/include/c++/9/ext/new_allocator.h: In instantiation of ‘[01m[Kclass __gnu_cxx::new_allocator<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&>[m[K’:
+[01m[K/usr/include/c++/9/bits/allocator.h:112:11:[m[K   required from ‘[01m[Kclass std::allocator<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&>[m[K’
+[01m[K/usr/include/c++/9/bits/shared_ptr_base.h:1365:63:[m[K   required by substitution of ‘[01m[Ktemplate<class _Yp> struct std::__shared_ptr<std::allocator<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&>, __gnu_cxx::_S_atomic>::__has_esft_base<_Yp, std::__void_t<decltype (__enable_shared_from_this_base(declval<const std::__shared_count<__gnu_cxx::_S_atomic>&>(), declval<_Yp*>()))> > [with _Yp = std::allocator<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&>][m[K’
+[01m[K/usr/include/c++/9/bits/shared_ptr_base.h:1387:21:[m[K   required by substitution of ‘[01m[Ktemplate<class _Yp, class _Yp2> typename std::enable_if<(! std::__shared_ptr<std::allocator<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&>, __gnu_cxx::_S_atomic>::__has_esft_base<_Yp2, void>::value), void>::type std::__shared_ptr<std::allocator<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&>, __gnu_cxx::_S_atomic>::_M_enable_shared_from_this_with<_Yp, _Yp2>(_Yp*) [with _Yp = std::allocator<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&>; _Yp2 = std::allocator<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&>][m[K’
+[01m[K/usr/include/c++/9/bits/shared_ptr_base.h:1345:4:[m[K   required from ‘[01m[Kstd::__shared_ptr<_Tp, _Lp>::__shared_ptr(std::_Sp_alloc_shared_tag<_Tp>, _Args&& ...) [with _Alloc = std::allocator<std::allocator<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&> >; _Args = {std::allocator<void>&}; _Tp = std::allocator<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&>; __gnu_cxx::_Lock_policy _Lp = __gnu_cxx::_S_atomic][m[K’
+[01m[K/usr/include/c++/9/bits/shared_ptr.h:359:59:[m[K   [ skipping 2 instantiation contexts, use -ftemplate-backtrace-limit=0 to disable ]
+[01m[K/usr/include/c++/9/bits/shared_ptr.h:717:39:[m[K   required from ‘[01m[Kstd::shared_ptr<_Tp> std::make_shared(_Args&& ...) [with _Tp = std::allocator<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&>; _Args = {std::allocator<void>&}][m[K’
+[01m[K/opt/ros/foxy/include/rclcpp/any_subscription_callback.hpp:68:56:[m[K   required from ‘[01m[Krclcpp::AnySubscriptionCallback<MessageT, Alloc>::AnySubscriptionCallback(std::shared_ptr<_Tp>) [with MessageT = const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&; Alloc = std::allocator<void>][m[K’
+[01m[K/opt/ros/foxy/include/rclcpp/subscription_factory.hpp:96:57:[m[K   required from ‘[01m[Krclcpp::SubscriptionFactory rclcpp::create_subscription_factory(CallbackT&&, const rclcpp::SubscriptionOptionsWithAllocator<AllocatorT>&, typename MessageMemoryStrategyT::SharedPtr, std::shared_ptr<rclcpp::topic_statistics::SubscriptionTopicStatistics<CallbackMessageT> >) [with MessageT = geometry_msgs::msg::PoseStamped_<std::allocator<void> >; CallbackT = std::_Bind<void (moveit_servo::PoseTracking::*(moveit_servo::PoseTracking*, std::_Placeholder<1>))(const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&)>; AllocatorT = std::allocator<void>; CallbackMessageT = const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&; SubscriptionT = rclcpp::Subscription<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void>, rclcpp::message_memory_strategy::MessageMemoryStrategy<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void> > >; MessageMemoryStrategyT = rclcpp::message_memory_strategy::MessageMemoryStrategy<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void> >; typename MessageMemoryStrategyT::SharedPtr = std::shared_ptr<rclcpp::message_memory_strategy::MessageMemoryStrategy<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void> > >][m[K’
+[01m[K/opt/ros/foxy/include/rclcpp/create_subscription.hpp:138:63:[m[K   required from ‘[01m[Kstd::shared_ptr<SubscriptionT> rclcpp::create_subscription(NodeT&&, const string&, const rclcpp::QoS&, CallbackT&&, const rclcpp::SubscriptionOptionsWithAllocator<AllocatorT>&, typename MessageMemoryStrategyT::SharedPtr) [with MessageT = geometry_msgs::msg::PoseStamped_<std::allocator<void> >; CallbackT = std::_Bind<void (moveit_servo::PoseTracking::*(moveit_servo::PoseTracking*, std::_Placeholder<1>))(const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&)>; AllocatorT = std::allocator<void>; CallbackMessageT = const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&; SubscriptionT = rclcpp::Subscription<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void>, rclcpp::message_memory_strategy::MessageMemoryStrategy<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void> > >; MessageMemoryStrategyT = rclcpp::message_memory_strategy::MessageMemoryStrategy<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void> >; NodeT = rclcpp::Node&; std::string = std::__cxx11::basic_string<char>; typename MessageMemoryStrategyT::SharedPtr = std::shared_ptr<rclcpp::message_memory_strategy::MessageMemoryStrategy<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void> > >][m[K’
+[01m[K/opt/ros/foxy/include/rclcpp/node_impl.hpp:98:47:[m[K   required from ‘[01m[Kstd::shared_ptr<SubscriptionT> rclcpp::Node::create_subscription(const string&, const rclcpp::QoS&, CallbackT&&, const rclcpp::SubscriptionOptionsWithAllocator<AllocatorT>&, typename MessageMemoryStrategyT::SharedPtr) [with MessageT = geometry_msgs::msg::PoseStamped_<std::allocator<void> >; CallbackT = std::_Bind<void (moveit_servo::PoseTracking::*(moveit_servo::PoseTracking*, std::_Placeholder<1>))(const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&)>; AllocatorT = std::allocator<void>; CallbackMessageT = const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&; SubscriptionT = rclcpp::Subscription<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void>, rclcpp::message_memory_strategy::MessageMemoryStrategy<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void> > >; MessageMemoryStrategyT = rclcpp::message_memory_strategy::MessageMemoryStrategy<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void> >; std::string = std::__cxx11::basic_string<char>; typename MessageMemoryStrategyT::SharedPtr = std::shared_ptr<rclcpp::message_memory_strategy::MessageMemoryStrategy<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void> > >][m[K’
+[01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/src/pose_tracking.cpp:74:98:[m[K   required from here
+[01m[K/usr/include/c++/9/ext/new_allocator.h:63:26:[m[K [01;31m[Kerror: [m[Kforming pointer to reference type ‘[01m[Kconst std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&[m[K’
+   63 |       typedef _Tp*       [01;31m[Kpointer[m[K;
+      |                          [01;31m[K^~~~~~~[m[K
+[01m[K/usr/include/c++/9/ext/new_allocator.h:64:26:[m[K [01;31m[Kerror: [m[Kforming pointer to reference type ‘[01m[Kconst std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&[m[K’
+   64 |       typedef const _Tp* [01;31m[Kconst_pointer[m[K;
+      |                          [01;31m[K^~~~~~~~~~~~~[m[K
+In file included from [01m[K/usr/include/c++/9/memory:63[m[K,
+                 from [01m[K/opt/ros/foxy/include/control_toolbox/pid.hpp:37[m[K,
+                 from [01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/include/moveit_servo/pose_tracking.h:42[m[K,
+                 from [01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/src/pose_tracking.cpp:35[m[K:
+/usr/include/c++/9/bits/allocator.h: In instantiation of ‘[01m[Kclass std::allocator<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&>[m[K’:
+[01m[K/usr/include/c++/9/bits/shared_ptr_base.h:1365:63:[m[K   required by substitution of ‘[01m[Ktemplate<class _Yp> struct std::__shared_ptr<std::allocator<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&>, __gnu_cxx::_S_atomic>::__has_esft_base<_Yp, std::__void_t<decltype (__enable_shared_from_this_base(declval<const std::__shared_count<__gnu_cxx::_S_atomic>&>(), declval<_Yp*>()))> > [with _Yp = std::allocator<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&>][m[K’
+[01m[K/usr/include/c++/9/bits/shared_ptr_base.h:1387:21:[m[K   required by substitution of ‘[01m[Ktemplate<class _Yp, class _Yp2> typename std::enable_if<(! std::__shared_ptr<std::allocator<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&>, __gnu_cxx::_S_atomic>::__has_esft_base<_Yp2, void>::value), void>::type std::__shared_ptr<std::allocator<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&>, __gnu_cxx::_S_atomic>::_M_enable_shared_from_this_with<_Yp, _Yp2>(_Yp*) [with _Yp = std::allocator<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&>; _Yp2 = std::allocator<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&>][m[K’
+[01m[K/usr/include/c++/9/bits/shared_ptr_base.h:1345:4:[m[K   required from ‘[01m[Kstd::__shared_ptr<_Tp, _Lp>::__shared_ptr(std::_Sp_alloc_shared_tag<_Tp>, _Args&& ...) [with _Alloc = std::allocator<std::allocator<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&> >; _Args = {std::allocator<void>&}; _Tp = std::allocator<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&>; __gnu_cxx::_Lock_policy _Lp = __gnu_cxx::_S_atomic][m[K’
+[01m[K/usr/include/c++/9/bits/shared_ptr.h:359:59:[m[K   required from ‘[01m[Kstd::shared_ptr<_Tp>::shared_ptr(std::_Sp_alloc_shared_tag<_Tp>, _Args&& ...) [with _Alloc = std::allocator<std::allocator<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&> >; _Args = {std::allocator<void>&}; _Tp = std::allocator<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&>][m[K’
+[01m[K/usr/include/c++/9/bits/shared_ptr.h:701:14:[m[K   required from ‘[01m[Kstd::shared_ptr<_Tp> std::allocate_shared(const _Alloc&, _Args&& ...) [with _Tp = std::allocator<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&>; _Alloc = std::allocator<std::allocator<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&> >; _Args = {std::allocator<void>&}][m[K’
+[01m[K/usr/include/c++/9/bits/shared_ptr.h:717:39:[m[K   required from ‘[01m[Kstd::shared_ptr<_Tp> std::make_shared(_Args&& ...) [with _Tp = std::allocator<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&>; _Args = {std::allocator<void>&}][m[K’
+[01m[K/opt/ros/foxy/include/rclcpp/any_subscription_callback.hpp:68:56:[m[K   required from ‘[01m[Krclcpp::AnySubscriptionCallback<MessageT, Alloc>::AnySubscriptionCallback(std::shared_ptr<_Tp>) [with MessageT = const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&; Alloc = std::allocator<void>][m[K’
+[01m[K/opt/ros/foxy/include/rclcpp/subscription_factory.hpp:96:57:[m[K   required from ‘[01m[Krclcpp::SubscriptionFactory rclcpp::create_subscription_factory(CallbackT&&, const rclcpp::SubscriptionOptionsWithAllocator<AllocatorT>&, typename MessageMemoryStrategyT::SharedPtr, std::shared_ptr<rclcpp::topic_statistics::SubscriptionTopicStatistics<CallbackMessageT> >) [with MessageT = geometry_msgs::msg::PoseStamped_<std::allocator<void> >; CallbackT = std::_Bind<void (moveit_servo::PoseTracking::*(moveit_servo::PoseTracking*, std::_Placeholder<1>))(const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&)>; AllocatorT = std::allocator<void>; CallbackMessageT = const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&; SubscriptionT = rclcpp::Subscription<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void>, rclcpp::message_memory_strategy::MessageMemoryStrategy<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void> > >; MessageMemoryStrategyT = rclcpp::message_memory_strategy::MessageMemoryStrategy<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void> >; typename MessageMemoryStrategyT::SharedPtr = std::shared_ptr<rclcpp::message_memory_strategy::MessageMemoryStrategy<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void> > >][m[K’
+[01m[K/opt/ros/foxy/include/rclcpp/create_subscription.hpp:138:63:[m[K   required from ‘[01m[Kstd::shared_ptr<SubscriptionT> rclcpp::create_subscription(NodeT&&, const string&, const rclcpp::QoS&, CallbackT&&, const rclcpp::SubscriptionOptionsWithAllocator<AllocatorT>&, typename MessageMemoryStrategyT::SharedPtr) [with MessageT = geometry_msgs::msg::PoseStamped_<std::allocator<void> >; CallbackT = std::_Bind<void (moveit_servo::PoseTracking::*(moveit_servo::PoseTracking*, std::_Placeholder<1>))(const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&)>; AllocatorT = std::allocator<void>; CallbackMessageT = const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&; SubscriptionT = rclcpp::Subscription<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void>, rclcpp::message_memory_strategy::MessageMemoryStrategy<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void> > >; MessageMemoryStrategyT = rclcpp::message_memory_strategy::MessageMemoryStrategy<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void> >; NodeT = rclcpp::Node&; std::string = std::__cxx11::basic_string<char>; typename MessageMemoryStrategyT::SharedPtr = std::shared_ptr<rclcpp::message_memory_strategy::MessageMemoryStrategy<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void> > >][m[K’
+[01m[K/opt/ros/foxy/include/rclcpp/node_impl.hpp:98:47:[m[K   required from ‘[01m[Kstd::shared_ptr<SubscriptionT> rclcpp::Node::create_subscription(const string&, const rclcpp::QoS&, CallbackT&&, const rclcpp::SubscriptionOptionsWithAllocator<AllocatorT>&, typename MessageMemoryStrategyT::SharedPtr) [with MessageT = geometry_msgs::msg::PoseStamped_<std::allocator<void> >; CallbackT = std::_Bind<void (moveit_servo::PoseTracking::*(moveit_servo::PoseTracking*, std::_Placeholder<1>))(const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&)>; AllocatorT = std::allocator<void>; CallbackMessageT = const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&; SubscriptionT = rclcpp::Subscription<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void>, rclcpp::message_memory_strategy::MessageMemoryStrategy<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void> > >; MessageMemoryStrategyT = rclcpp::message_memory_strategy::MessageMemoryStrategy<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void> >; std::string = std::__cxx11::basic_string<char>; typename MessageMemoryStrategyT::SharedPtr = std::shared_ptr<rclcpp::message_memory_strategy::MessageMemoryStrategy<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void> > >][m[K’
+[01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/src/pose_tracking.cpp:74:98:[m[K   required from here
+[01m[K/usr/include/c++/9/bits/allocator.h:117:26:[m[K [01;31m[Kerror: [m[Kforming pointer to reference type ‘[01m[Kconst std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&[m[K’
+  117 |       typedef _Tp*       [01;31m[Kpointer[m[K;
+      |                          [01;31m[K^~~~~~~[m[K
+[01m[K/usr/include/c++/9/bits/allocator.h:118:26:[m[K [01;31m[Kerror: [m[Kforming pointer to reference type ‘[01m[Kconst std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&[m[K’
+  118 |       typedef const _Tp* [01;31m[Kconst_pointer[m[K;
+      |                          [01;31m[K^~~~~~~~~~~~~[m[K
+In file included from [01m[K/usr/include/c++/9/bits/shared_ptr.h:52[m[K,
+                 from [01m[K/usr/include/c++/9/memory:81[m[K,
+                 from [01m[K/opt/ros/foxy/include/control_toolbox/pid.hpp:37[m[K,
+                 from [01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/include/moveit_servo/pose_tracking.h:42[m[K,
+                 from [01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/src/pose_tracking.cpp:35[m[K:
+/usr/include/c++/9/bits/shared_ptr_base.h: In instantiation of ‘[01m[Kclass std::__shared_ptr_access<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, __gnu_cxx::_S_atomic, false, false>[m[K’:
+[01m[K/usr/include/c++/9/bits/shared_ptr_base.h:1080:11:[m[K   required from ‘[01m[Kclass std::__shared_ptr<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, __gnu_cxx::_S_atomic>[m[K’
+[01m[K/opt/ros/foxy/include/rclcpp/message_memory_strategy.hpp:85:37:[m[K   recursively required from ‘[01m[Kstd::shared_ptr<_Tp> rclcpp::message_memory_strategy::MessageMemoryStrategy<MessageT, Alloc>::borrow_message() [with MessageT = const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&; Alloc = std::allocator<void>][m[K’
+[01m[K/opt/ros/foxy/include/rclcpp/message_memory_strategy.hpp:85:37:[m[K   required from here
+[01m[K/usr/include/c++/9/bits/shared_ptr_base.h:1012:7:[m[K [01;31m[Kerror: [m[Kforming pointer to reference type ‘[01m[Kstd::__shared_ptr_access<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, __gnu_cxx::_S_atomic, false, false>::element_type[m[K’ {aka ‘[01m[Kconst std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&[m[K’}
+ 1012 |       [01;31m[Koperator[m[K->() const noexcept
+      |       [01;31m[K^~~~~~~~[m[K
+[01m[K/usr/include/c++/9/bits/shared_ptr_base.h:1020:7:[m[K [01;31m[Kerror: [m[Kforming pointer to reference type ‘[01m[Kstd::__shared_ptr_access<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, __gnu_cxx::_S_atomic, false, false>::element_type[m[K’ {aka ‘[01m[Kconst std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&[m[K’}
+ 1020 |       [01;31m[K_M_get[m[K() const noexcept
+      |       [01;31m[K^~~~~~[m[K
+/usr/include/c++/9/bits/shared_ptr_base.h: In instantiation of ‘[01m[Kclass std::__shared_ptr<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, __gnu_cxx::_S_atomic>[m[K’:
+[01m[K/opt/ros/foxy/include/rclcpp/message_memory_strategy.hpp:85:37:[m[K   recursively required from ‘[01m[Kstd::shared_ptr<_Tp> rclcpp::message_memory_strategy::MessageMemoryStrategy<MessageT, Alloc>::borrow_message() [with MessageT = const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&; Alloc = std::allocator<void>][m[K’
+[01m[K/opt/ros/foxy/include/rclcpp/message_memory_strategy.hpp:85:37:[m[K   required from here
+[01m[K/usr/include/c++/9/bits/shared_ptr_base.h:1094:8:[m[K [01;31m[Kerror: [m[Kforming pointer to reference type ‘[01m[Kconst std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&[m[K’
+ 1094 |  using [01;31m[K_Compatible[m[K = typename
+      |        [01;31m[K^~~~~~~~~~~[m[K
+[01m[K/usr/include/c++/9/bits/shared_ptr_base.h:1104:8:[m[K [01;31m[Kerror: [m[Kforming pointer to reference type ‘[01m[Kconst std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&[m[K’
+ 1104 |  using [01;31m[K_UniqCompatible[m[K = typename enable_if<__and_<
+      |        [01;31m[K^~~~~~~~~~~~~~~[m[K
+[01m[K/usr/include/c++/9/bits/shared_ptr_base.h:1162:2:[m[K [01;31m[Kerror: [m[Kforming pointer to reference type ‘[01m[Kstd::__shared_ptr<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, __gnu_cxx::_S_atomic>::element_type[m[K’ {aka ‘[01m[Kconst std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&[m[K’}
+ 1162 |  [01;31m[K__shared_ptr[m[K(const __shared_ptr<_Yp, _Lp>& __r,
+      |  [01;31m[K^~~~~~~~~~~~[m[K
+/usr/include/c++/9/bits/shared_ptr_base.h: In substitution of ‘[01m[Ktemplate<class _Tp, __gnu_cxx::_Lock_policy _Lp> template<class _Yp, class _Res> using _Compatible = typename std::enable_if<std::__sp_compatible_with<_Yp*, _Tp*>::value, _Res>::type [with _Yp = _Yp; _Res = void; _Tp = const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&; __gnu_cxx::_Lock_policy _Lp = __gnu_cxx::_S_atomic][m[K’:
+[01m[K/usr/include/c++/9/bits/shared_ptr_base.h:1172:2:[m[K   required from ‘[01m[Kclass std::__shared_ptr<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, __gnu_cxx::_S_atomic>[m[K’
+[01m[K/opt/ros/foxy/include/rclcpp/message_memory_strategy.hpp:85:37:[m[K   recursively required from ‘[01m[Kstd::shared_ptr<_Tp> rclcpp::message_memory_strategy::MessageMemoryStrategy<MessageT, Alloc>::borrow_message() [with MessageT = const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&; Alloc = std::allocator<void>][m[K’
+[01m[K/opt/ros/foxy/include/rclcpp/message_memory_strategy.hpp:85:37:[m[K   required from here
+[01m[K/usr/include/c++/9/bits/shared_ptr_base.h:1094:8:[m[K [01;31m[Kerror: [m[Kforming pointer to reference type ‘[01m[Kconst std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&[m[K’
+ 1094 |  using [01;31m[K_Compatible[m[K = typename
+      |        [01;31m[K^~~~~~~~~~~[m[K
+/usr/include/c++/9/bits/shared_ptr_base.h: In substitution of ‘[01m[Ktemplate<class _Tp, __gnu_cxx::_Lock_policy _Lp> template<class _Yp, class _Del, class _Res, class _Ptr> using _UniqCompatible = typename std::enable_if<std::__and_<std::__sp_compatible_with<_Yp*, _Tp*>, std::is_convertible<_Ptr, typename std::remove_extent<_Up>::type*> >::value, _Res>::type [with _Yp = _Yp; _Del = _Del; _Res = void; _Ptr = typename std::unique_ptr<_Tp, _Dp>::pointer; _Tp = const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&; __gnu_cxx::_Lock_policy _Lp = __gnu_cxx::_S_atomic][m[K’:
+[01m[K/usr/include/c++/9/bits/shared_ptr_base.h:1203:2:[m[K   required from ‘[01m[Kclass std::__shared_ptr<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, __gnu_cxx::_S_atomic>[m[K’
+[01m[K/opt/ros/foxy/include/rclcpp/message_memory_strategy.hpp:85:37:[m[K   recursively required from ‘[01m[Kstd::shared_ptr<_Tp> rclcpp::message_memory_strategy::MessageMemoryStrategy<MessageT, Alloc>::borrow_message() [with MessageT = const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&; Alloc = std::allocator<void>][m[K’
+[01m[K/opt/ros/foxy/include/rclcpp/message_memory_strategy.hpp:85:37:[m[K   required from here
+[01m[K/usr/include/c++/9/bits/shared_ptr_base.h:1104:8:[m[K [01;31m[Kerror: [m[Kforming pointer to reference type ‘[01m[Kconst std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&[m[K’
+ 1104 |  using [01;31m[K_UniqCompatible[m[K = typename enable_if<__and_<
+      |        [01;31m[K^~~~~~~~~~~~~~~[m[K
+/usr/include/c++/9/bits/shared_ptr_base.h: In instantiation of ‘[01m[Kclass std::__shared_ptr<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, __gnu_cxx::_S_atomic>[m[K’:
+[01m[K/opt/ros/foxy/include/rclcpp/message_memory_strategy.hpp:85:37:[m[K   recursively required from ‘[01m[Kstd::shared_ptr<_Tp> rclcpp::message_memory_strategy::MessageMemoryStrategy<MessageT, Alloc>::borrow_message() [with MessageT = const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&; Alloc = std::allocator<void>][m[K’
+[01m[K/opt/ros/foxy/include/rclcpp/message_memory_strategy.hpp:85:37:[m[K   required from here
+[01m[K/usr/include/c++/9/bits/shared_ptr_base.h:1219:2:[m[K [01;31m[Kerror: [m[Kforming pointer to reference type ‘[01m[Kconst std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&[m[K’
+ 1219 |  [01;31m[K__shared_ptr[m[K(unique_ptr<_Tp1, _Del>&& __r, __sp_array_delete)
+      |  [01;31m[K^~~~~~~~~~~~[m[K
+[01m[K/usr/include/c++/9/bits/shared_ptr_base.h:1309:7:[m[K [01;31m[Kerror: [m[Kforming pointer to reference type ‘[01m[Kstd::__shared_ptr<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, __gnu_cxx::_S_atomic>::element_type[m[K’ {aka ‘[01m[Kconst std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&[m[K’}
+ 1309 |       [01;31m[Kget[m[K() const noexcept
+      |       [01;31m[K^~~[m[K
+[01m[K/usr/include/c++/9/bits/shared_ptr_base.h:1404:24:[m[K [01;31m[Kerror: [m[Kforming pointer to reference type ‘[01m[Kstd::__shared_ptr<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, __gnu_cxx::_S_atomic>::element_type[m[K’ {aka ‘[01m[Kconst std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&[m[K’}
+ 1404 |       element_type*    [01;31m[K_M_ptr[m[K;         // Contained pointer.
+      |                        [01;31m[K^~~~~~[m[K
+In file included from [01m[K/usr/include/c++/9/memory:81[m[K,
+                 from [01m[K/opt/ros/foxy/include/control_toolbox/pid.hpp:37[m[K,
+                 from [01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/include/moveit_servo/pose_tracking.h:42[m[K,
+                 from [01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/src/pose_tracking.cpp:35[m[K:
+/usr/include/c++/9/bits/shared_ptr.h: In instantiation of ‘[01m[Kclass std::shared_ptr<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&>[m[K’:
+[01m[K/opt/ros/foxy/include/rclcpp/message_memory_strategy.hpp:85:37:[m[K   recursively required from ‘[01m[Kstd::shared_ptr<_Tp> rclcpp::message_memory_strategy::MessageMemoryStrategy<MessageT, Alloc>::borrow_message() [with MessageT = const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&; Alloc = std::allocator<void>][m[K’
+[01m[K/opt/ros/foxy/include/rclcpp/message_memory_strategy.hpp:85:37:[m[K   required from here
+[01m[K/usr/include/c++/9/bits/shared_ptr.h:234:2:[m[K [01;31m[Kerror: [m[Kforming pointer to reference type ‘[01m[Kstd::shared_ptr<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&>::element_type[m[K’ {aka ‘[01m[Kconst std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&[m[K’}
+  234 |  [01;31m[Kshared_ptr[m[K(const shared_ptr<_Yp>& __r, element_type* __p) noexcept
+      |  [01;31m[K^~~~~~~~~~[m[K
+In file included from [01m[K/usr/include/c++/9/bits/shared_ptr.h:52[m[K,
+                 from [01m[K/usr/include/c++/9/memory:81[m[K,
+                 from [01m[K/opt/ros/foxy/include/control_toolbox/pid.hpp:37[m[K,
+                 from [01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/include/moveit_servo/pose_tracking.h:42[m[K,
+                 from [01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/src/pose_tracking.cpp:35[m[K:
+/usr/include/c++/9/bits/shared_ptr_base.h: In instantiation of ‘[01m[Kconstexpr std::__shared_ptr<_Tp, _Lp>::__shared_ptr() [with _Tp = const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&; __gnu_cxx::_Lock_policy _Lp = __gnu_cxx::_S_atomic][m[K’:
+[01m[K/usr/include/c++/9/bits/shared_ptr_base.h:1287:9:[m[K   required from ‘[01m[Kvoid std::__shared_ptr<_Tp, _Lp>::reset() [with _Tp = const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&; __gnu_cxx::_Lock_policy _Lp = __gnu_cxx::_S_atomic][m[K’
+[01m[K/opt/ros/foxy/include/rclcpp/message_memory_strategy.hpp:109:5:[m[K   required from ‘[01m[Kvoid rclcpp::message_memory_strategy::MessageMemoryStrategy<MessageT, Alloc>::return_message(std::shared_ptr<_Tp>&) [with MessageT = const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&; Alloc = std::allocator<void>][m[K’
+[01m[K/opt/ros/foxy/include/rclcpp/message_memory_strategy.hpp:107:16:[m[K   required from here
+[01m[K/usr/include/c++/9/bits/shared_ptr_base.h:1119:32:[m[K [01;31m[Kerror: [m[Kusing invalid field ‘[01m[Kstd::__shared_ptr<_Tp, _Lp>::_M_ptr[m[K’
+ 1119 |       : _M_ptr(0), _M_refcount([01;31m[K)[m[K
+      |                                [01;31m[K^[m[K
+/usr/include/c++/9/bits/shared_ptr_base.h: In instantiation of ‘[01m[Kvoid std::__shared_ptr<_Tp, _Lp>::swap(std::__shared_ptr<_Tp, _Lp>&) [with _Tp = const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&; __gnu_cxx::_Lock_policy _Lp = __gnu_cxx::_S_atomic][m[K’:
+[01m[K/usr/include/c++/9/bits/shared_ptr_base.h:1287:24:[m[K   required from ‘[01m[Kvoid std::__shared_ptr<_Tp, _Lp>::reset() [with _Tp = const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&; __gnu_cxx::_Lock_policy _Lp = __gnu_cxx::_S_atomic][m[K’
+[01m[K/opt/ros/foxy/include/rclcpp/message_memory_strategy.hpp:109:5:[m[K   required from ‘[01m[Kvoid rclcpp::message_memory_strategy::MessageMemoryStrategy<MessageT, Alloc>::return_message(std::shared_ptr<_Tp>&) [with MessageT = const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&; Alloc = std::allocator<void>][m[K’
+[01m[K/opt/ros/foxy/include/rclcpp/message_memory_strategy.hpp:107:16:[m[K   required from here
+[01m[K/usr/include/c++/9/bits/shared_ptr_base.h:1326:12:[m[K [01;31m[Kerror: [m[Kusing invalid field ‘[01m[Kstd::__shared_ptr<_Tp, _Lp>::_M_ptr[m[K’
+ 1326 |  std::swap([01;31m[K_M_ptr[m[K, __other._M_ptr);
+      |            [01;31m[K^~~~~~[m[K
+[01m[K/usr/include/c++/9/bits/shared_ptr_base.h:1326:28:[m[K [01;31m[Kerror: [m[K‘[01m[Kclass std::__shared_ptr<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, __gnu_cxx::_S_atomic>[m[K’ has no member named ‘[01m[K_M_ptr[m[K’
+ 1326 |  std::swap(_M_ptr, [01;31m[K__other._M_ptr[m[K);
+      |                    [01;31m[K~~~~~~~~^~~~~~[m[K
+In file included from [01m[K/usr/include/c++/9/functional:59[m[K,
+                 from [01m[K/opt/ros/foxy/include/rclcpp/clock.hpp:18[m[K,
+                 from [01m[K/opt/ros/foxy/include/control_toolbox/pid.hpp:40[m[K,
+                 from [01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/include/moveit_servo/pose_tracking.h:42[m[K,
+                 from [01m[K/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/src/pose_tracking.cpp:35[m[K:
+[01m[K/usr/include/c++/9/bits/std_function.h:[m[K At global scope:
+[01m[K/usr/include/c++/9/bits/std_function.h:667:7:[m[K [01;31m[Kerror: [m[K‘[01m[Kstd::function<_Res(_ArgTypes ...)>::function(_Functor) [with _Functor = rclcpp::create_subscription_factory(CallbackT&&, const rclcpp::SubscriptionOptionsWithAllocator<AllocatorT>&, typename MessageMemoryStrategyT::SharedPtr, std::shared_ptr<rclcpp::topic_statistics::SubscriptionTopicStatistics<CallbackMessageT> >) [with MessageT = geometry_msgs::msg::PoseStamped_<std::allocator<void> >; CallbackT = std::_Bind<void (moveit_servo::PoseTracking::*(moveit_servo::PoseTracking*, std::_Placeholder<1>))(const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&)>; AllocatorT = std::allocator<void>; CallbackMessageT = const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&; SubscriptionT = rclcpp::Subscription<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void>, rclcpp::message_memory_strategy::MessageMemoryStrategy<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void> > >; MessageMemoryStrategyT = rclcpp::message_memory_strategy::MessageMemoryStrategy<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void> >; typename MessageMemoryStrategyT::SharedPtr = std::shared_ptr<rclcpp::message_memory_strategy::MessageMemoryStrategy<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void> > >]::<lambda(rclcpp::node_interfaces::NodeBaseInterface*, const string&, const rclcpp::QoS&)>; <template-parameter-2-2> = void; <template-parameter-2-3> = void; _Res = std::shared_ptr<rclcpp::SubscriptionBase>; _ArgTypes = {rclcpp::node_interfaces::NodeBaseInterface*, const std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, const rclcpp::QoS&}][m[K’, declared using local type ‘[01m[Krclcpp::create_subscription_factory(CallbackT&&, const rclcpp::SubscriptionOptionsWithAllocator<AllocatorT>&, typename MessageMemoryStrategyT::SharedPtr, std::shared_ptr<rclcpp::topic_statistics::SubscriptionTopicStatistics<CallbackMessageT> >) [with MessageT = geometry_msgs::msg::PoseStamped_<std::allocator<void> >; CallbackT = std::_Bind<void (moveit_servo::PoseTracking::*(moveit_servo::PoseTracking*, std::_Placeholder<1>))(const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&)>; AllocatorT = std::allocator<void>; CallbackMessageT = const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&; SubscriptionT = rclcpp::Subscription<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void>, rclcpp::message_memory_strategy::MessageMemoryStrategy<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void> > >; MessageMemoryStrategyT = rclcpp::message_memory_strategy::MessageMemoryStrategy<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void> >; typename MessageMemoryStrategyT::SharedPtr = std::shared_ptr<rclcpp::message_memory_strategy::MessageMemoryStrategy<const std::shared_ptr<const geometry_msgs::msg::PoseStamped_<std::allocator<void> > >&, std::allocator<void> > >]::<lambda(rclcpp::node_interfaces::NodeBaseInterface*, const string&, const rclcpp::QoS&)>[m[K’, is used but never defined [[01;31m[K-fpermissive[m[K]
+  667 |       [01;31m[Kfunction<_Res(_ArgTypes...)>[m[K::
+      |       [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+make[2]: *** [CMakeFiles/pose_tracking.dir/build.make:63: CMakeFiles/pose_tracking.dir/src/pose_tracking.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:452: CMakeFiles/pose_tracking.dir/all] Error 2
+make[1]: *** Waiting for unfinished jobs....
+[ 91%] [32m[1mLinking CXX shared library libservo_server.so[0m
+[ 91%] Built target servo_server
+[ 94%] [32m[1mLinking CXX executable test_servo[0m
+[ 94%] Built target test_servo
+[ 97%] [32m[1mLinking CXX executable servo_cpp_demo[0m
+[ 97%] Built target servo_cpp_demo
+make: *** [Makefile:141: all] Error 2
