@@ -123,13 +123,13 @@ PoseTrackingStatusCode PoseTracking::moveToPose(const Eigen::Vector3d& positiona
 
     if (stop_requested_)
     {
-      ROS_INFO_STREAM_NAMED(LOGGER, "Halting servo motion, a stop was requested.");
+      RCLCPP_INFO_STREAM(LOGGER, "Halting servo motion, a stop was requested.");
       doPostMotionReset();
       return PoseTrackingStatusCode::STOP_REQUESTED;
     }
 
     // Compute servo command from PID controller output and send it to the Servo object, for execution
-    twist_stamped_pub_.publish(calculateTwistCommand());
+    twist_stamped_pub_->publish(PoseTracking::calculateTwistCommand());
   }
 
   doPostMotionReset();
@@ -139,26 +139,27 @@ PoseTrackingStatusCode PoseTracking::moveToPose(const Eigen::Vector3d& positiona
 void PoseTracking::readROSParams()
 {
   // Optional parameter sub-namespace specified in the launch file. All other parameters will be read from this namespace.
-  std::string parameter_ns;
-  rclcpp::param::get("~parameter_ns", parameter_ns);
+  rclcpp::Parameter parameter_ns;
+  //std::string parameter_ns;
+  node_->get_parameter("~parameter_ns", parameter_ns);
 
   // If parameters have been loaded into sub-namespace within the node namespace, append the parameter namespace
   // to load the parameters correctly.
-  ros::NodeHandle nh = parameter_ns.empty() ? nh_ : ros::NodeHandle(nh_, parameter_ns);
+  rclcpp::Node::SharedPtr node = parameter_ns.empty() ? node : ros::NodeHandle(nh_, parameter_ns);
 
   // Wait for ROS parameters to load
-  ros::Time begin = ros::Time::now();
-  while (ros::ok() && !nh.hasParam("planning_frame") && ((ros::Time::now() - begin).toSec() < ROS_STARTUP_WAIT))
+  rclcpp::Time begin = node->now();
+  while (rclcpp::ok() && !nh.hasParam("planning_frame") && ((node->now() - begin).to_chrono<std::chrono::duration<double>>().count() < ROS_STARTUP_WAIT))
   {
     RCLCPP_WARN_STREAM(LOGGER, "Waiting for parameter: "
                                    << "planning_frame");
-    ros::Duration(0.1).sleep();
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
   }
 
   std::size_t error = 0;
 
-  error += !rosparam_shortcuts::get(LOGGER, nh, "planning_frame", planning_frame_);
-  error += !rosparam_shortcuts::get(LOGGER, nh, "move_group_name", move_group_name_);
+  error += !rosparam_shortcuts::get(LOGGER, node_, "planning_frame", planning_frame_);
+  error += !rosparam_shortcuts::get(LOGGER, node_, "move_group_name", move_group_name_);
   if (!planning_scene_monitor_->getRobotModel()->hasJointModelGroup(move_group_name_))
   {
     ++error;
@@ -167,7 +168,7 @@ void PoseTracking::readROSParams()
 
   double publish_period;
   error += !rosparam_shortcuts::get(LOGGER, nh, "publish_period", publish_period);
-  loop_rate_ = ros::Rate(1 / publish_period);
+  loop_rate_ = rclcpp::Rate(1 / publish_period);
 
   x_pid_config_.dt = publish_period;
   y_pid_config_.dt = publish_period;
@@ -208,12 +209,12 @@ void PoseTracking::initializePID(const PIDConfig& pid_config, std::vector<contro
 bool PoseTracking::haveRecentTargetPose(const double timespan)
 {
   std::lock_guard<std::mutex> lock(target_pose_mtx_);
-  return ((ros::Time::now() - target_pose_.header.stamp).toSec() < timespan);
+  return ((node_->now() - target_pose_.header.stamp).to_chrono<std::chrono::duration<double>>().count() < timespan);
 }
 
 bool PoseTracking::haveRecentEndEffectorPose(const double timespan)
 {
-  return ((ros::Time::now() - command_frame_transform_stamp_).toSec() < timespan);
+  return ((node_->now() - command_frame_transform_stamp_).to_chrono<std::chrono::duration<double>>().count() < timespan);
 }
 
 bool PoseTracking::satisfiesPoseTolerance(const Eigen::Vector3d& positional_tolerance, const double angular_tolerance)
@@ -227,7 +228,7 @@ bool PoseTracking::satisfiesPoseTolerance(const Eigen::Vector3d& positional_tole
           (std::abs(z_error) < positional_tolerance(2)) && (std::abs(angular_error_) < angular_tolerance));
 }
 
-void PoseTracking::targetPoseCallback(const geometry_msgs::msg::PoseStampedConstPtr& msg)
+void PoseTracking::targetPoseCallback(const geometry_msgs::msg::PoseStamped::ConstSharedPtr& msg)
 {
   std::lock_guard<std::mutex> lock(target_pose_mtx_);
   target_pose_ = *msg;
@@ -238,7 +239,7 @@ void PoseTracking::targetPoseCallback(const geometry_msgs::msg::PoseStampedConst
     try
     {
       geometry_msgs::msg::TransformStamped target_to_planning_frame = transform_buffer_.lookupTransform(
-          planning_frame_, target_pose_.header.frame_id, ros::Time(0), ros::Duration(0.1));
+          planning_frame_, target_pose_.header.frame_id, rclcpp::Time(0), rclcpp::Duration(0.1));
       tf2::doTransform(target_pose_, target_pose_, target_to_planning_frame);
     }
     catch (const tf2::TransformException& ex)
@@ -265,11 +266,11 @@ geometry_msgs::msg::TwistStamped::ConstSharedPtr PoseTracking::calculateTwistCom
 
     // Position
     twist.linear.x = cartesian_position_pids_[0].computeCommand(
-        target_pose_.pose.position.x - command_frame_transform_.translation()(0), loop_rate_.expectedCycleTime());
+        target_pose_.pose.position.x - command_frame_transform_.translation()(0), loop_rate_.period().count());
     twist.linear.y = cartesian_position_pids_[1].computeCommand(
-        target_pose_.pose.position.y - command_frame_transform_.translation()(1), loop_rate_.expectedCycleTime());
+        target_pose_.pose.position.y - command_frame_transform_.translation()(1), loop_rate_.period().count());
     twist.linear.z = cartesian_position_pids_[2].computeCommand(
-        target_pose_.pose.position.z - command_frame_transform_.translation()(2), loop_rate_.expectedCycleTime());
+        target_pose_.pose.position.z - command_frame_transform_.translation()(2), loop_rate_.period().count());
 
     // Orientation algorithm:
     // - Find the orientation error as a quaternion: q_error = q_desired * q_current ^ -1
@@ -287,7 +288,7 @@ geometry_msgs::msg::TwistStamped::ConstSharedPtr PoseTracking::calculateTwistCom
   // Cache the angular error, for rotation tolerance checking
   angular_error_ = axis_angle.angle();
   double ang_vel_magnitude =
-      cartesian_orientation_pids_[0].computeCommand(angular_error_, loop_rate_.expectedCycleTime());
+      cartesian_orientation_pids_[0].computeCommand(angular_error_, loop_rate_.period().count());
   twist.angular.x = ang_vel_magnitude * axis_angle.axis()[0];
   twist.angular.y = ang_vel_magnitude * axis_angle.axis()[1];
   twist.angular.z = ang_vel_magnitude * axis_angle.axis()[2];
