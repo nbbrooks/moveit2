@@ -191,6 +191,12 @@ private:
   std::atomic<bool> stop_requested_;
 
   double angular_error_;
+  
+  //rosparam_shortcut
+  template <class T>
+  bool rosparam_shortcut_get(const rclcpp::Logger &parent_name, const rclcpp::Node::SharedPtr& node, const std::string &param_name, T &value);
+
+  void shutdownIfError(const std::string &parent_name, std::size_t error_count);
 };
 
 // using alias

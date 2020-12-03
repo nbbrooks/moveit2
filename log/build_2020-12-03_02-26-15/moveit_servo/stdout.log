@@ -1,0 +1,16 @@
+[  5%] Built target gtest_main
+[ 11%] Built target gtest
+[ 20%] Built target fake_command_publisher
+[ 23%] Built target test_servo_parameters_node
+[ 29%] Built target servo_controller_input
+[ 41%] Built target test_servo_integration
+[ 41%] Built target test_servo_collision
+[ 58%] Built target moveit_servo
+[ 64%] Built target test_servo_singularity
+[35m[1mScanning dependencies of target pose_tracking[0m
+[ 70%] Built target test_low_pass_filter
+[ 76%] Built target test_servo_parameters
+[ 82%] Built target servo_server
+[ 88%] Built target test_servo
+[ 94%] Built target servo_cpp_demo
+[ 97%] [32mBuilding CXX object CMakeFiles/pose_tracking.dir/src/pose_tracking.cpp.o[0m

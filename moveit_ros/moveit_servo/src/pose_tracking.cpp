@@ -164,8 +164,8 @@ void PoseTracking::readROSParams()
 
   std::size_t error = 0;
 
-  error += !rosparam_shortcuts::get(LOGGER, node, "planning_frame", planning_frame_);
-  error += !rosparam_shortcuts::get(LOGGER, node, "move_group_name", move_group_name_);
+  error += !PoseTracking::rosparam_shortcut_get(LOGGER, node, "planning_frame", planning_frame_);
+  error += !PoseTracking::rosparam_shortcut_get(LOGGER, node, "move_group_name", move_group_name_);
   if (!planning_scene_monitor_->getRobotModel()->hasJointModelGroup(move_group_name_))
   {
     ++error;
@@ -173,8 +173,8 @@ void PoseTracking::readROSParams()
   }
 
   double publish_period;
-  error += !rosparam_shortcuts::get(LOGGER, node, "publish_period", publish_period);
-  loop_rate_ = rclcpp::Rate(1 / publish_period);
+  error += !PoseTracking::rosparam_shortcut_get(LOGGER, node, "publish_period", publish_period);
+  rclcpp::Rate loop_rate_(publish_period);
 
   x_pid_config_.dt = publish_period;
   y_pid_config_.dt = publish_period;
@@ -182,27 +182,27 @@ void PoseTracking::readROSParams()
   angular_pid_config_.dt = publish_period;
 
   double windup_limit;
-  error += !rosparam_shortcuts::get(LOGGER, node, "windup_limit", windup_limit);
+  error += !PoseTracking::rosparam_shortcut_get(LOGGER, node, "windup_limit", windup_limit);
   x_pid_config_.windup_limit = windup_limit;
   y_pid_config_.windup_limit = windup_limit;
   z_pid_config_.windup_limit = windup_limit;
   angular_pid_config_.windup_limit = windup_limit;
 
-  error += !rosparam_shortcuts::get(LOGGER, node, "x_proportional_gain", x_pid_config_.k_p);
-  error += !rosparam_shortcuts::get(LOGGER, node, "y_proportional_gain", y_pid_config_.k_p);
-  error += !rosparam_shortcuts::get(LOGGER, node, "z_proportional_gain", z_pid_config_.k_p);
-  error += !rosparam_shortcuts::get(LOGGER, node, "x_integral_gain", x_pid_config_.k_i);
-  error += !rosparam_shortcuts::get(LOGGER, node, "y_integral_gain", y_pid_config_.k_i);
-  error += !rosparam_shortcuts::get(LOGGER, node, "z_integral_gain", z_pid_config_.k_i);
-  error += !rosparam_shortcuts::get(LOGGER, node, "x_derivative_gain", x_pid_config_.k_d);
-  error += !rosparam_shortcuts::get(LOGGER, node, "y_derivative_gain", y_pid_config_.k_d);
-  error += !rosparam_shortcuts::get(LOGGER, node, "z_derivative_gain", z_pid_config_.k_d);
+  error += !PoseTracking::rosparam_shortcut_get(LOGGER, node, "x_proportional_gain", x_pid_config_.k_p);
+  error += !PoseTracking::rosparam_shortcut_get(LOGGER, node, "y_proportional_gain", y_pid_config_.k_p);
+  error += !PoseTracking::rosparam_shortcut_get(LOGGER, node, "z_proportional_gain", z_pid_config_.k_p);
+  error += !PoseTracking::rosparam_shortcut_get(LOGGER, node, "x_integral_gain", x_pid_config_.k_i);
+  error += !PoseTracking::rosparam_shortcut_get(LOGGER, node, "y_integral_gain", y_pid_config_.k_i);
+  error += !PoseTracking::rosparam_shortcut_get(LOGGER, node, "z_integral_gain", z_pid_config_.k_i);
+  error += !PoseTracking::rosparam_shortcut_get(LOGGER, node, "x_derivative_gain", x_pid_config_.k_d);
+  error += !PoseTracking::rosparam_shortcut_get(LOGGER, node, "y_derivative_gain", y_pid_config_.k_d);
+  error += !PoseTracking::rosparam_shortcut_get(LOGGER, node, "z_derivative_gain", z_pid_config_.k_d);
 
-  error += !rosparam_shortcuts::get(LOGGER, node, "angular_proportional_gain", angular_pid_config_.k_p);
-  error += !rosparam_shortcuts::get(LOGGER, node, "angular_integral_gain", angular_pid_config_.k_i);
-  error += !rosparam_shortcuts::get(LOGGER, node, "angular_derivative_gain", angular_pid_config_.k_d);
+  error += !PoseTracking::rosparam_shortcut_get(LOGGER, node, "angular_proportional_gain", angular_pid_config_.k_p);
+  error += !PoseTracking::rosparam_shortcut_get(LOGGER, node, "angular_integral_gain", angular_pid_config_.k_i);
+  error += !PoseTracking::rosparam_shortcut_get(LOGGER, node, "angular_derivative_gain", angular_pid_config_.k_d);
 
-  rosparam_shortcuts::shutdownIfError(rclcpp::this_node::getName(), error);
+  PoseTracking::shutdownIfError(node->get_name(), error);
 }
 
 void PoseTracking::initializePID(const PIDConfig& pid_config, std::vector<control_toolbox::Pid>& pid_vector)
@@ -368,5 +368,30 @@ void PoseTracking::resetTargetPose()
 bool PoseTracking::getCommandFrameTransform(geometry_msgs::msg::TransformStamped& transform)
 {
   return servo_->getCommandFrameTransform(transform);
+}
+
+template <class T>
+bool PoseTracking::rosparam_shortcut_get(const rclcpp::Logger &parent_name, const rclcpp::Node::SharedPtr& node, const std::string &param_name, T &value)
+{
+  // Load a param
+  if (!node->has_parameter(param_name))
+  {
+    RCLCPP_ERROR_STREAM(parent_name, "Missing parameter '" << node->get_name() << "/" << param_name << "'.");
+    return false;
+  }
+  node->get_parameter(param_name, value);
+  RCLCPP_DEBUG_STREAM(parent_name, "Loaded parameter '" << node->get_name() << "/" << param_name << "with value" << value);
+
+  return true;
+}
+
+void PoseTracking::shutdownIfError(const std::string &parent_name, std::size_t error_count)
+{
+  if (!error_count)
+    return;
+  
+  RCLCPP_ERROR_STREAM(LOGGER, "Missing " << error_count << " ros parameters that are required. Shutting down to prevent undefined behaviors");
+  rclcpp::shutdown();
+  exit(0);
 }
 }  // namespace moveit_servo
