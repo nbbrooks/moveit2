@@ -71,11 +71,11 @@ PoseTracking::PoseTracking(const rclcpp::Node::SharedPtr& node, const ServoParam
 
   // Connect to Servo ROS interfaces
   target_pose_sub_ = node_->create_subscription<geometry_msgs::msg::PoseStamped>(
-      "target_pose", 1, std::bind(&PoseTracking::targetPoseCallback, this, std::placeholders::_1));
+     "target_pose", 1, std::bind(&PoseTracking::targetPoseCallback, this, std::placeholders::_1));
 
   // Publish outgoing twist commands to the Servo object
   twist_stamped_pub_ =
-      node_->create_publisher<geometry_msgs::msg::TwistStamped>(servo_->getParameters()->cartesian_command_in_topic, 1);
+     node_->create_publisher<geometry_msgs::msg::TwistStamped>(servo_->getParameters()->cartesian_command_in_topic, 1);
 }
 
 PoseTrackingStatusCode PoseTracking::moveToPose(const Eigen::Vector3d& positional_tolerance,
@@ -129,7 +129,7 @@ PoseTrackingStatusCode PoseTracking::moveToPose(const Eigen::Vector3d& positiona
     }
 
     // Compute servo command from PID controller output and send it to the Servo object, for execution
-    twist_stamped_pub_->publish(PoseTracking::calculateTwistCommand());
+    twist_stamped_pub_->publish(*calculateTwistCommand());
   }
 
   doPostMotionReset();
@@ -234,7 +234,7 @@ bool PoseTracking::satisfiesPoseTolerance(const Eigen::Vector3d& positional_tole
           (std::abs(z_error) < positional_tolerance(2)) && (std::abs(angular_error_) < angular_tolerance));
 }
 
-void PoseTracking::targetPoseCallback(const geometry_msgs::msg::PoseStamped::ConstSharedPtr& msg)
+void PoseTracking::targetPoseCallback(const geometry_msgs::msg::PoseStamped::ConstSharedPtr msg)
 {
   std::lock_guard<std::mutex> lock(target_pose_mtx_);
   target_pose_ = *msg;

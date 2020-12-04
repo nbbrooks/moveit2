@@ -1,2 +1,0 @@
-Invoking command in '/home/abishalini/ws_ros2/src/moveit2/build/moveit_servo': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy PS1=\u@\h \[\e[1;34m\]\w \[\e[32m\]$(git_branch)\[\e[00m\]$ /usr/bin/cmake --build /home/abishalini/ws_ros2/src/moveit2/build/moveit_servo -- -j8 -l8
-Invoked command in '/home/abishalini/ws_ros2/src/moveit2/build/moveit_servo' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy PS1=\u@\h \[\e[1;34m\]\w \[\e[32m\]$(git_branch)\[\e[00m\]$ /usr/bin/cmake --build /home/abishalini/ws_ros2/src/moveit2/build/moveit_servo -- -j8 -l8
