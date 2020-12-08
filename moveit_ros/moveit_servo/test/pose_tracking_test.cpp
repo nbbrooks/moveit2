@@ -53,7 +53,7 @@
 static const std::string LOGNAME = "servo_cpp_interface_test";
 static constexpr double TRANSLATION_TOLERANCE = 0.01;  // meters
 static constexpr double ROTATION_TOLERANCE = 0.1;      // quaternion
-static constexpr double ROS_PUB_SUB_DELAY = 4;         // allow for subscribers to initialize
+static constexpr u_int64_t ROS_PUB_SUB_DELAY = 4;         // allow for subscribers to initialize
 
 namespace moveit_servo
 {
@@ -97,7 +97,7 @@ protected:
   Eigen::Vector3d translation_tolerance_;
   moveit_servo::PoseTrackingPtr tracker_;
   //ros::Publisher target_pose_pub_;
-  rclcpp::Publisher<geometry_msgs::msg::PoseStamped> target_pose_pub_;
+  rclcpp::Publisher<geometry_msgs::msg::PoseStamped>::SharedPtr target_pose_pub_;
 };  // class PoseTrackingFixture
 
 // Check for commands going out to ros_control
@@ -138,13 +138,13 @@ TEST_F(PoseTrackingFixture, OutgoingMsgTest)
     size_t msg_count = 0;
     while (++msg_count < 100)
     {
-      target_pose_pub_.publish(target_pose);
+      target_pose_pub_->publish(target_pose);
       std::this_thread::sleep_for(std::chrono::milliseconds(10));;
     }
   });
 
   //ros::Duration(ROS_PUB_SUB_DELAY).sleep();
-  std::this_thread::sleep_for(std::chrono::milliseconds(ROS_PUB_SUB_DELAY));
+  std::this_thread::sleep_for(std::chrono::milliseconds(ROS_PUB_SUB_DELAY*100));
 
 
   // resetTargetPose() can be used to clear the target pose and wait for a new one, e.g. when moving between multiple
