@@ -200,6 +200,15 @@ if(BUILD_TESTING)
   #   ${catkin_LIBRARIES}
   # )
 
+  # pose_tracking
+  ament_add_gtest(pose_tracking_test
+  test/pose_tracking_test.test
+  test/pose_tracking_test.cpp
+  )
+  target_link_libraries(pose_tracking_test
+    pose_tracking
+  )
+
 endif()
 
 # Install include, launch, config directories

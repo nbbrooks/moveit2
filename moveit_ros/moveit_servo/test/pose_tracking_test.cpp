@@ -41,7 +41,7 @@
 #include <thread>
 
 // ROS
-#include <ros/ros.h>
+#include <rclcpp/rclcpp.hpp>
 
 // Testing
 #include <gtest/gtest.h>
@@ -63,10 +63,10 @@ public:
   void SetUp() override
   {
     // Wait for several key topics / parameters
-    ros::topic::waitForMessage<sensor_msgs::JointState>("/joint_states");
-    while (!nh_.hasParam("/robot_description") && ros::ok())
+    rclcpp::topic::waitForMessage<sensor_msgs::msg::JointState>("/joint_states");
+    while (!node_.has_parameter("/robot_description") && rclcpp::ok())
     {
-      ros::Duration(0.1).sleep();
+      std::this_thread::sleep_for(std::chrono::milliseconds(100));;
     }
 
     // Load the planning scene monitor
@@ -78,9 +78,10 @@ public:
         planning_scene_monitor::PlanningSceneMonitor::DEFAULT_PLANNING_SCENE_WORLD_TOPIC,
         false /* skip octomap monitor */);
 
-    tracker_ = std::make_shared<moveit_servo::PoseTracking>(nh_, planning_scene_monitor_);
+    tracker_ = std::make_shared<moveit_servo::PoseTracking>(node_, planning_scene_monitor_);
 
-    target_pose_pub_ = nh_.advertise<geometry_msgs::PoseStamped>("target_pose", 1 /* queue */, true /* latch */);
+    //target_pose_pub_ = nh_.advertise<geometry_msgs::msg::PoseStamped>("target_pose", 1 /* queue */, true /* latch */);
+    target_pose_pub_ = node_.create_publisher<geometry_msgs::msg::PoseStamped>("target_pose", 1);
 
     // Tolerance for pose seeking
     translation_tolerance_ << TRANSLATION_TOLERANCE, TRANSLATION_TOLERANCE, TRANSLATION_TOLERANCE;
@@ -90,11 +91,13 @@ public:
   }
 
 protected:
-  ros::NodeHandle nh_{ "~" };
+  //ros::NodeHandle nh_{ "~" };
+  rclcpp::Node node_{ "~" };
   planning_scene_monitor::PlanningSceneMonitorPtr planning_scene_monitor_;
   Eigen::Vector3d translation_tolerance_;
   moveit_servo::PoseTrackingPtr tracker_;
-  ros::Publisher target_pose_pub_;
+  //ros::Publisher target_pose_pub_;
+  rclcpp::Publisher<geometry_msgs::msg::PoseStamped> target_pose_pub_;
 };  // class PoseTrackingFixture
 
 // Check for commands going out to ros_control
@@ -102,9 +105,9 @@ TEST_F(PoseTrackingFixture, OutgoingMsgTest)
 {
   // halt Servoing when first msg to ros_control is received
   // and test some conditions
-  trajectory_msgs::JointTrajectory last_received_msg;
-  boost::function<void(const trajectory_msgs::JointTrajectoryConstPtr&)> traj_callback =
-      [&/* this */](const trajectory_msgs::JointTrajectoryConstPtr& msg) {
+  trajectory_msgs::msg::JointTrajectory last_received_msg;
+  std::function<void(const trajectory_msgs::msg::JointTrajectory::ConstPtr&)> traj_callback =
+      [&/* this */](const trajectory_msgs::msg::JointTrajectory::ConstPtr& msg) {
         EXPECT_EQ(msg->header.frame_id, "panda_link0");
         // Check for an expected joint position command
         // As of now, the robot doesn't actually move because there are no controllers enabled.
@@ -120,11 +123,11 @@ TEST_F(PoseTrackingFixture, OutgoingMsgTest)
         this->tracker_->stopMotion();
         return;
       };
-  auto traj_sub = nh_.subscribe("servo_server/command", 1, traj_callback);
+  auto traj_sub = node_.create_subscription<trajectory_msgs::msg::JointTrajectory>("servo_server/command", 1, traj_callback);
 
-  geometry_msgs::PoseStamped target_pose;
+  geometry_msgs::msg::PoseStamped target_pose;
   target_pose.header.frame_id = "panda_link4";
-  target_pose.header.stamp = ros::Time::now();
+  target_pose.header.stamp = node_.now();
   target_pose.pose.position.x = 0.2;
   target_pose.pose.position.y = 0.2;
   target_pose.pose.position.z = 0.2;
@@ -136,11 +139,13 @@ TEST_F(PoseTrackingFixture, OutgoingMsgTest)
     while (++msg_count < 100)
     {
       target_pose_pub_.publish(target_pose);
-      ros::Duration(0.01).sleep();
+      std::this_thread::sleep_for(std::chrono::milliseconds(10));;
     }
   });
 
-  ros::Duration(ROS_PUB_SUB_DELAY).sleep();
+  //ros::Duration(ROS_PUB_SUB_DELAY).sleep();
+  std::this_thread::sleep_for(std::chrono::milliseconds(ROS_PUB_SUB_DELAY));
+
 
   // resetTargetPose() can be used to clear the target pose and wait for a new one, e.g. when moving between multiple
   // waypoints
@@ -155,12 +160,20 @@ TEST_F(PoseTrackingFixture, OutgoingMsgTest)
 
 int main(int argc, char** argv)
 {
-  ros::init(argc, argv, LOGNAME);
-  testing::InitGoogleTest(&argc, argv);
+  //Changes referred from test_servo_collision.cpp
+  
+  // ros::init(argc, argv, LOGNAME);
+  // testing::InitGoogleTest(&argc, argv);
 
-  ros::AsyncSpinner spinner(8);
-  spinner.start();
+  // ros::AsyncSpinner spinner(8);
+  // spinner.start();
+
+  // int result = RUN_ALL_TESTS();
+
+  ::testing::InitGoogleTest(&argc, argv);
+  rclcpp::init(argc, argv);
 
   int result = RUN_ALL_TESTS();
+  rclcpp::shutdown();
   return result;
 }
