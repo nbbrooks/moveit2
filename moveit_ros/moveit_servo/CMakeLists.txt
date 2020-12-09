@@ -81,11 +81,11 @@ add_library(${POSE_TRACKING} SHARED src/pose_tracking.cpp)
 ament_target_dependencies(${POSE_TRACKING} ${THIS_PACKAGE_INCLUDE_DEPENDS})
 target_link_libraries(${POSE_TRACKING} ${SERVO_LIB_NAME})
 
-#
+
 # An example of pose tracking
-# set(POSE_TRACKING_DEMO_NAME servo_pose_tracking_demo)
-# add_executable(${POSE_TRACKING_DEMO_NAME} src/cpp_interface_example/pose_tracking_demo.cpp)
-# ament_target_dependencies(${POSE_TRACKING_DEMO_NAME} ${THIS_PACKAGE_INCLUDE_DEPENDS})
+set(POSE_TRACKING_DEMO_NAME servo_pose_tracking_demo)
+add_executable(${POSE_TRACKING_DEMO_NAME} src/cpp_interface_example/pose_tracking_demo.cpp)
+ament_target_dependencies(${POSE_TRACKING_DEMO_NAME} ${THIS_PACKAGE_INCLUDE_DEPENDS})
 
 # Add executable for using a controller
 set(SERVO_CONTROLLER_INPUT servo_controller_input)
@@ -201,13 +201,13 @@ if(BUILD_TESTING)
   # )
 
   # pose_tracking
-  ament_add_gtest(pose_tracking_test
-  test/pose_tracking_test.test
-  test/pose_tracking_test.cpp
-  )
-  target_link_libraries(pose_tracking_test
-    pose_tracking
-  )
+  # ament_add_gtest(pose_tracking_test
+  # test/pose_tracking_test.test
+  # test/pose_tracking_test.cpp
+  # )
+  # target_link_libraries(pose_tracking_test
+  #   pose_tracking
+  # )
 
 endif()
 

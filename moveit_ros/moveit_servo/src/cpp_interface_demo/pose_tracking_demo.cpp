@@ -36,8 +36,8 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *******************************************************************************/
 
-#include <std_msgs/Int8.h>
-#include <geometry_msgs/TransformStamped.h>
+#include <std_msgs/msg/int8.hpp>
+#include <geometry_msgs/msg/transform_stamped.hpp>
 
 #include <moveit_servo/servo.h>
 #include <moveit_servo/pose_tracking.h>
@@ -46,29 +46,31 @@
 #include <thread>
 
 static const std::string LOGNAME = "cpp_interface_example";
+static const rclcpp::Logger LOGGER = rclcpp::get_logger("moveit_servo.cpp_interface_example");
 
 // Class for monitoring status of moveit_servo
 class StatusMonitor
 {
 public:
-  StatusMonitor(ros::NodeHandle& nh, const std::string& topic)
+  StatusMonitor(rclcpp::Node::SharedPtr node, const std::string& topic)
   {
-    sub_ = nh.subscribe(topic, 1, &StatusMonitor::statusCB, this);
+    sub_ = node->create_subscription(topic, 1, std::bind(&StatusMonitor::statusCB, this, std::placeholders::_1));
   }
 
 private:
-  void statusCB(const std_msgs::Int8ConstPtr& msg)
+  void statusCB(const std_msgs::msg::Int8::ConstPtr& msg)
   {
     moveit_servo::StatusCode latest_status = static_cast<moveit_servo::StatusCode>(msg->data);
     if (latest_status != status_)
     {
       status_ = latest_status;
       const auto& status_str = moveit_servo::SERVO_STATUS_CODE_MAP.at(status_);
-      ROS_INFO_STREAM_NAMED(LOGNAME, "Servo status: " << status_str);
+      RCLCPP_INFO_STREAM(LOGGER, "Servo status: " << status_str);
     }
   }
+
   moveit_servo::StatusCode status_ = moveit_servo::StatusCode::INVALID;
-  ros::Subscriber sub_;
+  rclcpp::Subscription<std_msgs::msg::Int8>::SharedPtr sub_;
 };
 
 /**
@@ -78,17 +80,22 @@ private:
  */
 int main(int argc, char** argv)
 {
-  ros::init(argc, argv, LOGNAME);
-  ros::NodeHandle nh("~");
-  ros::AsyncSpinner spinner(8);
-  spinner.start();
+  rclcpp::init(argc, argv);
+  rclcpp::Node::SharedPtr node;
+  //rclcpp::Node node(LOGNAME);
+  //ros::NodeHandle nh("~");
+
+  // ros::AsyncSpinner spinner(8);
+  // spinner.start();
+
+  moveit_servo::ServoParametersPtr parameters;
 
   // Load the planning scene monitor
   planning_scene_monitor::PlanningSceneMonitorPtr planning_scene_monitor;
   planning_scene_monitor = std::make_shared<planning_scene_monitor::PlanningSceneMonitor>("robot_description");
   if (!planning_scene_monitor->getPlanningScene())
   {
-    ROS_ERROR_STREAM_NAMED(LOGNAME, "Error in setting up the PlanningSceneMonitor.");
+    RCLCPP_ERROR_STREAM(LOGGER, "Error in setting up the PlanningSceneMonitor.");
     exit(EXIT_FAILURE);
   }
 
@@ -100,24 +107,25 @@ int main(int argc, char** argv)
   planning_scene_monitor->startStateMonitor();
 
   // Create the pose tracker
-  moveit_servo::PoseTracking tracker(nh, planning_scene_monitor);
+  moveit_servo::PoseTracking tracker(node, parameters, planning_scene_monitor);
 
   // Make a publisher for sending pose commands
-  ros::Publisher target_pose_pub =
-      nh.advertise<geometry_msgs::PoseStamped>("target_pose", 1 /* queue */, true /* latch */);
+  rclcpp::Publisher<geometry_msgs::msg::PoseStamped>::SharedPtr target_pose_pub;
+  target_pose_pub =
+      node->create_publisher<geometry_msgs::msg::PoseStamped>("target_pose", 1 /* queue */);
 
   // Subscribe to servo status (and log it when it changes)
-  StatusMonitor status_monitor(nh, "status");
+  StatusMonitor status_monitor(node, "status");
 
   Eigen::Vector3d lin_tol{ 0.01, 0.01, 0.01 };
   double rot_tol = 0.1;
 
   // Get the current EE transform
-  geometry_msgs::TransformStamped current_ee_tf;
+  geometry_msgs::msg::TransformStamped current_ee_tf;
   tracker.getCommandFrameTransform(current_ee_tf);
 
   // Convert it to a Pose
-  geometry_msgs::PoseStamped target_pose;
+  geometry_msgs::msg::PoseStamped target_pose;
   target_pose.header.frame_id = current_ee_tf.header.frame_id;
   target_pose.pose.position.x = current_ee_tf.transform.translation.x;
   target_pose.pose.position.y = current_ee_tf.transform.translation.y;
@@ -132,21 +140,21 @@ int main(int argc, char** argv)
   tracker.resetTargetPose();
 
   // Publish target pose
-  target_pose.header.stamp = ros::Time::now();
-  target_pose_pub.publish(target_pose);
+  target_pose.header.stamp = node->now();
+  target_pose_pub->publish(target_pose);
 
   // Run the pose tracking in a new thread
   std::thread move_to_pose_thread(
       [&tracker, &lin_tol, &rot_tol] { tracker.moveToPose(lin_tol, rot_tol, 0.1 /* target pose timeout */); });
 
-  ros::Rate loop_rate(50);
+  rclcpp::Rate loop_rate(50);
   for (size_t i = 0; i < 500; ++i)
   {
     // Modify the pose target a little bit each cycle
     // This is a dynamic pose target
     target_pose.pose.position.z += 0.0004;
-    target_pose.header.stamp = ros::Time::now();
-    target_pose_pub.publish(target_pose);
+    target_pose.header.stamp = node->now();
+    target_pose_pub->publish(target_pose);
 
     loop_rate.sleep();
   }

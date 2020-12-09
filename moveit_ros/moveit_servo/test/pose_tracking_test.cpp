@@ -63,7 +63,14 @@ public:
   void SetUp() override
   {
     // Wait for several key topics / parameters
-    rclcpp::topic::waitForMessage<sensor_msgs::msg::JointState>("/joint_states");
+    
+    //TODO: Need to figure out replacement. How to use WaitSet?
+    //
+    //rclcpp::topic::waitForMessage<sensor_msgs::msg::JointState>("/joint_states");       <--- from ROS1    
+    //rclcpp::Node temp_node_=rclcpp::Node("temp");
+    //rclcpp::Subscription<sensor_msgs::msg::JointState>::SharedPtr joint_state_sub_ = temp_node_.create_subscription<sensor_msgs::msg::JointState>("joint_states", 1, RCLCPP__ANY_SUBSCRIPTION_CALLBACK_HPP_);
+    //rclcpp::WaitResult()
+
     while (!node_.has_parameter("/robot_description") && rclcpp::ok())
     {
       std::this_thread::sleep_for(std::chrono::milliseconds(100));;
@@ -123,7 +130,7 @@ TEST_F(PoseTrackingFixture, OutgoingMsgTest)
         this->tracker_->stopMotion();
         return;
       };
-  auto traj_sub = node_.create_subscription<trajectory_msgs::msg::JointTrajectory>("servo_server/command", 1, traj_callback);
+  auto traj_sub = node_.create_subscription<trajectory_msgs::msg::JointTrajectory::ConstPtr>("servo_server/command", 1, traj_callback);
 
   geometry_msgs::msg::PoseStamped target_pose;
   target_pose.header.frame_id = "panda_link4";
