@@ -84,7 +84,8 @@ target_link_libraries(${POSE_TRACKING} ${SERVO_LIB_NAME})
 
 # An example of pose tracking
 set(POSE_TRACKING_DEMO_NAME servo_pose_tracking_demo)
-add_executable(${POSE_TRACKING_DEMO_NAME} src/cpp_interface_example/pose_tracking_demo.cpp)
+add_executable(${POSE_TRACKING_DEMO_NAME} src/cpp_interface_demo/pose_tracking_demo.cpp)
+target_link_libraries(${POSE_TRACKING_DEMO_NAME} ${POSE_TRACKING} )
 ament_target_dependencies(${POSE_TRACKING_DEMO_NAME} ${THIS_PACKAGE_INCLUDE_DEPENDS})
 
 # Add executable for using a controller
@@ -200,14 +201,14 @@ if(BUILD_TESTING)
   #   ${catkin_LIBRARIES}
   # )
 
-  # pose_tracking
-  # ament_add_gtest(pose_tracking_test
-  # test/pose_tracking_test.test
-  # test/pose_tracking_test.cpp
-  # )
-  # target_link_libraries(pose_tracking_test
-  #   pose_tracking
-  # )
+  #pose_tracking
+  ament_add_gtest(pose_tracking_test
+  test/pose_tracking_test.test
+  test/pose_tracking_test.cpp
+  )
+  target_link_libraries(pose_tracking_test
+    pose_tracking
+  )
 
 endif()
 

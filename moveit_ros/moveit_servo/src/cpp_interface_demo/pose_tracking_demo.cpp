@@ -54,11 +54,11 @@ class StatusMonitor
 public:
   StatusMonitor(rclcpp::Node::SharedPtr node, const std::string& topic)
   {
-    sub_ = node->create_subscription(topic, 1, std::bind(&StatusMonitor::statusCB, this, std::placeholders::_1));
+    sub_ = node->create_subscription<std_msgs::msg::Int8>(topic, 1, std::bind(&StatusMonitor::statusCB, this, std::placeholders::_1));
   }
 
 private:
-  void statusCB(const std_msgs::msg::Int8::ConstPtr& msg)
+  void statusCB(const std_msgs::msg::Int8::ConstSharedPtr msg)
   {
     moveit_servo::StatusCode latest_status = static_cast<moveit_servo::StatusCode>(msg->data);
     if (latest_status != status_)
@@ -92,7 +92,7 @@ int main(int argc, char** argv)
 
   // Load the planning scene monitor
   planning_scene_monitor::PlanningSceneMonitorPtr planning_scene_monitor;
-  planning_scene_monitor = std::make_shared<planning_scene_monitor::PlanningSceneMonitor>("robot_description");
+  planning_scene_monitor = std::make_shared<planning_scene_monitor::PlanningSceneMonitor>(node, "robot_description");
   if (!planning_scene_monitor->getPlanningScene())
   {
     RCLCPP_ERROR_STREAM(LOGGER, "Error in setting up the PlanningSceneMonitor.");

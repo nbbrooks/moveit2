@@ -65,11 +65,24 @@ public:
     // Wait for several key topics / parameters
     
     //TODO: Need to figure out replacement. How to use WaitSet?
-    //
+    
     //rclcpp::topic::waitForMessage<sensor_msgs::msg::JointState>("/joint_states");       <--- from ROS1    
-    //rclcpp::Node temp_node_=rclcpp::Node("temp");
-    //rclcpp::Subscription<sensor_msgs::msg::JointState>::SharedPtr joint_state_sub_ = temp_node_.create_subscription<sensor_msgs::msg::JointState>("joint_states", 1, RCLCPP__ANY_SUBSCRIPTION_CALLBACK_HPP_);
-    //rclcpp::WaitResult()
+    
+    
+    // rclcpp::Node temp_node_=rclcpp::Node("temp");
+    // rclcpp::Subscription<sensor_msgs::msg::JointState>::SharedPtr joint_state_sub_ = temp_node_.create_subscription<sensor_msgs::msg::JointState>("joint_states", 1, RCLCPP__ANY_SUBSCRIPTION_CALLBACK_HPP_);
+    // rclcpp::WaitSet::add_subscription()
+    // rclcpp::WaitResult()
+
+  
+      bool have_message = false;
+      auto sub = node_.create_subscription<sensor_msgs::msg::JointState>(
+          "joint_states", 1,
+          std::function<void(const sensor_msgs::msg::JointState::ConstSharedPtr)>(
+              [have_message](const auto msg) mutable { have_message = true; }));
+      while (!have_message)
+        ;
+    
 
     while (!node_.has_parameter("/robot_description") && rclcpp::ok())
     {
@@ -77,15 +90,18 @@ public:
     }
 
     // Load the planning scene monitor
-    planning_scene_monitor_ = std::make_shared<planning_scene_monitor::PlanningSceneMonitor>("robot_description");
+    planning_scene_monitor_ = std::make_shared<planning_scene_monitor::PlanningSceneMonitor>(node_, "robot_description");
     planning_scene_monitor_->startSceneMonitor();
     planning_scene_monitor_->startStateMonitor();
     planning_scene_monitor_->startWorldGeometryMonitor(
         planning_scene_monitor::PlanningSceneMonitor::DEFAULT_COLLISION_OBJECT_TOPIC,
         planning_scene_monitor::PlanningSceneMonitor::DEFAULT_PLANNING_SCENE_WORLD_TOPIC,
         false /* skip octomap monitor */);
-
-    tracker_ = std::make_shared<moveit_servo::PoseTracking>(node_, planning_scene_monitor_);
+    
+    moveit_servo::ServoParametersPtr parameters_;
+    parameters_ = std::make_shared<moveit_servo::ServoParameters>();
+    
+    tracker_ = std::make_shared<moveit_servo::PoseTracking>(node_, parameters_, planning_scene_monitor_);
 
     //target_pose_pub_ = nh_.advertise<geometry_msgs::msg::PoseStamped>("target_pose", 1 /* queue */, true /* latch */);
     target_pose_pub_ = node_.create_publisher<geometry_msgs::msg::PoseStamped>("target_pose", 1);
@@ -113,8 +129,8 @@ TEST_F(PoseTrackingFixture, OutgoingMsgTest)
   // halt Servoing when first msg to ros_control is received
   // and test some conditions
   trajectory_msgs::msg::JointTrajectory last_received_msg;
-  std::function<void(const trajectory_msgs::msg::JointTrajectory::ConstPtr&)> traj_callback =
-      [&/* this */](const trajectory_msgs::msg::JointTrajectory::ConstPtr& msg) {
+  std::function<void(const trajectory_msgs::msg::JointTrajectory::ConstSharedPtr&)> traj_callback =
+      [&/* this */](const trajectory_msgs::msg::JointTrajectory::ConstSharedPtr& msg) {
         EXPECT_EQ(msg->header.frame_id, "panda_link0");
         // Check for an expected joint position command
         // As of now, the robot doesn't actually move because there are no controllers enabled.
@@ -130,7 +146,7 @@ TEST_F(PoseTrackingFixture, OutgoingMsgTest)
         this->tracker_->stopMotion();
         return;
       };
-  auto traj_sub = node_.create_subscription<trajectory_msgs::msg::JointTrajectory::ConstPtr>("servo_server/command", 1, traj_callback);
+  auto traj_sub = node_.create_subscription<trajectory_msgs::msg::JointTrajectory>("servo_server/command", 1, traj_callback);
 
   geometry_msgs::msg::PoseStamped target_pose;
   target_pose.header.frame_id = "panda_link4";
