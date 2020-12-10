@@ -86,7 +86,7 @@ PoseTrackingStatusCode PoseTracking::moveToPose(const Eigen::Vector3d& positiona
   // The target pose may get updated by new messages as the robot moves (in a callback function).
   const rclcpp::Time start_time = node_->now();
   while ((!haveRecentTargetPose(target_pose_timeout) || !haveRecentEndEffectorPose(target_pose_timeout)) &&
-         ((node_->now() - start_time).to_chrono<std::chrono::duration<double>>().count() < target_pose_timeout))
+         ((node_->now() - start_time).seconds() < target_pose_timeout))
   {
     if (servo_->getCommandFrameTransform(command_frame_transform_))
     {
@@ -157,7 +157,7 @@ void PoseTracking::readROSParams()
 
   // Wait for ROS parameters to load
   rclcpp::Time begin = node->now();
-  while (rclcpp::ok() && !node->has_parameter("planning_frame") && ((node->now() - begin).to_chrono<std::chrono::duration<double>>().count() < ROS_STARTUP_WAIT))
+  while (rclcpp::ok() && !node->has_parameter("planning_frame") && ((node->now() - begin).seconds() < ROS_STARTUP_WAIT))
   {
     RCLCPP_WARN_STREAM(LOGGER, "Waiting for parameter: "
                                    << "planning_frame");
@@ -217,12 +217,12 @@ void PoseTracking::initializePID(const PIDConfig& pid_config, std::vector<contro
 bool PoseTracking::haveRecentTargetPose(const double timespan)
 {
   std::lock_guard<std::mutex> lock(target_pose_mtx_);
-  return ((node_->now() - target_pose_.header.stamp).to_chrono<std::chrono::duration<double>>().count() < timespan);
+  return ((node_->now() - target_pose_.header.stamp).seconds() < timespan);
 }
 
 bool PoseTracking::haveRecentEndEffectorPose(const double timespan)
 {
-  return ((node_->now() - command_frame_transform_stamp_).to_chrono<std::chrono::duration<double>>().count() < timespan);
+  return ((node_->now() - command_frame_transform_stamp_).seconds() < timespan);
 }
 
 bool PoseTracking::satisfiesPoseTolerance(const Eigen::Vector3d& positional_tolerance, const double angular_tolerance)

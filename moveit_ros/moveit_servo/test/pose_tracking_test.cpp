@@ -84,9 +84,9 @@ public:
       ;
   
 
-    while (!node_->has_parameter("/robot_description") && rclcpp::ok())
+    while (!node_->has_parameter("robot_description") && rclcpp::ok())
     {
-      std::this_thread::sleep_for(std::chrono::milliseconds(100));;
+      rclcpp::sleep_for(std::chrono::milliseconds(100));
     }
 
     // Load the planning scene monitor
@@ -114,12 +114,10 @@ public:
   }
 
 protected:
-  //ros::NodeHandle nh_{ "~" };
-  rclcpp::Node::SharedPtr node_;
+  rclcpp::Node::SharedPtr node_ = rclcpp::Node::make_shared("test");
   planning_scene_monitor::PlanningSceneMonitorPtr planning_scene_monitor_;
   Eigen::Vector3d translation_tolerance_;
   moveit_servo::PoseTrackingPtr tracker_;
-  //ros::Publisher target_pose_pub_;
   rclcpp::Publisher<geometry_msgs::msg::PoseStamped>::SharedPtr target_pose_pub_;
 };  // class PoseTrackingFixture
 
@@ -129,8 +127,8 @@ TEST_F(PoseTrackingFixture, OutgoingMsgTest)
   // halt Servoing when first msg to ros_control is received
   // and test some conditions
   trajectory_msgs::msg::JointTrajectory last_received_msg;
-  std::function<void(const trajectory_msgs::msg::JointTrajectory::ConstSharedPtr&)> traj_callback =
-      [&/* this */](const trajectory_msgs::msg::JointTrajectory::ConstSharedPtr& msg) {
+  std::function<void(const trajectory_msgs::msg::JointTrajectory::ConstSharedPtr)> traj_callback =
+      [&/* this */](const trajectory_msgs::msg::JointTrajectory::ConstSharedPtr msg) {
         EXPECT_EQ(msg->header.frame_id, "panda_link0");
         // Check for an expected joint position command
         // As of now, the robot doesn't actually move because there are no controllers enabled.
