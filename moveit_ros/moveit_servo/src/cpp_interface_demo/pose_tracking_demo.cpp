@@ -45,8 +45,8 @@
 #include <moveit_servo/make_shared_from_pool.h>
 #include <thread>
 
-static const std::string LOGNAME = "cpp_interface_example";
-static const rclcpp::Logger LOGGER = rclcpp::get_logger("moveit_servo.cpp_interface_example");
+static const std::string LOGNAME = "cpp_interface_demo";
+static const rclcpp::Logger LOGGER = rclcpp::get_logger("moveit_servo.cpp_interface_demo");
 
 // Class for monitoring status of moveit_servo
 class StatusMonitor
@@ -81,12 +81,9 @@ private:
 int main(int argc, char** argv)
 {
   rclcpp::init(argc, argv);
-  rclcpp::Node::SharedPtr node;
+  rclcpp::Node::SharedPtr node = rclcpp::Node::make_shared(LOGNAME);
   //rclcpp::Node node(LOGNAME);
   //ros::NodeHandle nh("~");
-
-  // ros::AsyncSpinner spinner(8);
-  // spinner.start();
 
   moveit_servo::ServoParametersPtr parameters;
 

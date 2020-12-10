@@ -28,6 +28,13 @@ def load_yaml(package_name, file_path):
 
 def generate_launch_description():
 
+    # Get URDF and SRDF
+    robot_description_config = load_file('moveit_resources_panda_description', 'urdf/panda.urdf')
+    robot_description = {'robot_description' : robot_description_config}
+
+    robot_description_semantic_config = load_file('moveit_resources_panda_moveit_config', 'config/panda.srdf')
+    robot_description_semantic = {'robot_description_semantic' : robot_description_semantic_config}
+
     # Get parameters for the Pose Tracking node
     pose_tracking_yaml = load_yaml('moveit_servo', 'config/pose_tracking_settings.yaml')
     pose_tracking_params = { 'moveit_servo' : pose_tracking_yaml }
@@ -39,7 +46,7 @@ def generate_launch_description():
         package='moveit_servo',
         executable='servo_pose_tracking_demo',
         output='screen',
-        parameters=[pose_tracking_params, ur_simulated_params]
+        parameters=[pose_tracking_params, ur_simulated_params, robot_description, robot_description_semantic]
     )
 
     return LaunchDescription([ pose_tracking_node ])
