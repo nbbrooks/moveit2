@@ -33,6 +33,7 @@
  *********************************************************************/
 
 #include "moveit_servo/pose_tracking.h"
+#include "moveit_servo/servo_parameters.cpp"
 
 namespace
 {
@@ -92,6 +93,7 @@ PoseTrackingStatusCode PoseTracking::moveToPose(const Eigen::Vector3d& positiona
       command_frame_transform_stamp_ = node_->now();
     }
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
+    
   }
 
   if (!haveRecentTargetPose(target_pose_timeout))

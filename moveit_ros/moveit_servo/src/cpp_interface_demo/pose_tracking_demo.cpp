@@ -92,7 +92,7 @@ int main(int argc, char** argv)
 
   // Load the planning scene monitor
   planning_scene_monitor::PlanningSceneMonitorPtr planning_scene_monitor;
-  planning_scene_monitor = std::make_shared<planning_scene_monitor::PlanningSceneMonitor>(node, "robot_description");
+  planning_scene_monitor = std::make_shared<planning_scene_monitor::PlanningSceneMonitor>(node_,"robot_description");
   if (!planning_scene_monitor->getPlanningScene())
   {
     RCLCPP_ERROR_STREAM(LOGGER, "Error in setting up the PlanningSceneMonitor.");

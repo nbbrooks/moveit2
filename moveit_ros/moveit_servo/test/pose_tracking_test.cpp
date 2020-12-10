@@ -75,16 +75,16 @@ public:
     // rclcpp::WaitResult()
 
   
-      bool have_message = false;
-      auto sub = node_.create_subscription<sensor_msgs::msg::JointState>(
-          "joint_states", 1,
-          std::function<void(const sensor_msgs::msg::JointState::ConstSharedPtr)>(
-              [have_message](const auto msg) mutable { have_message = true; }));
-      while (!have_message)
-        ;
-    
+    bool have_message = false;
+    auto sub = node_->create_subscription<sensor_msgs::msg::JointState>(
+        "joint_states", 1,
+        std::function<void(const sensor_msgs::msg::JointState::ConstSharedPtr)>(
+            [have_message](const auto msg) mutable { have_message = true; }));
+    while (!have_message)
+      ;
+  
 
-    while (!node_.has_parameter("/robot_description") && rclcpp::ok())
+    while (!node_->has_parameter("/robot_description") && rclcpp::ok())
     {
       std::this_thread::sleep_for(std::chrono::milliseconds(100));;
     }
@@ -104,7 +104,7 @@ public:
     tracker_ = std::make_shared<moveit_servo::PoseTracking>(node_, parameters_, planning_scene_monitor_);
 
     //target_pose_pub_ = nh_.advertise<geometry_msgs::msg::PoseStamped>("target_pose", 1 /* queue */, true /* latch */);
-    target_pose_pub_ = node_.create_publisher<geometry_msgs::msg::PoseStamped>("target_pose", 1);
+    target_pose_pub_ = node_->create_publisher<geometry_msgs::msg::PoseStamped>("target_pose", 1);
 
     // Tolerance for pose seeking
     translation_tolerance_ << TRANSLATION_TOLERANCE, TRANSLATION_TOLERANCE, TRANSLATION_TOLERANCE;
@@ -115,7 +115,7 @@ public:
 
 protected:
   //ros::NodeHandle nh_{ "~" };
-  rclcpp::Node node_{ "~" };
+  rclcpp::Node::SharedPtr node_;
   planning_scene_monitor::PlanningSceneMonitorPtr planning_scene_monitor_;
   Eigen::Vector3d translation_tolerance_;
   moveit_servo::PoseTrackingPtr tracker_;
@@ -146,11 +146,11 @@ TEST_F(PoseTrackingFixture, OutgoingMsgTest)
         this->tracker_->stopMotion();
         return;
       };
-  auto traj_sub = node_.create_subscription<trajectory_msgs::msg::JointTrajectory>("servo_server/command", 1, traj_callback);
+  auto traj_sub = node_->create_subscription<trajectory_msgs::msg::JointTrajectory>("servo_server/command", 1, traj_callback);
 
   geometry_msgs::msg::PoseStamped target_pose;
   target_pose.header.frame_id = "panda_link4";
-  target_pose.header.stamp = node_.now();
+  target_pose.header.stamp = node_->now();
   target_pose.pose.position.x = 0.2;
   target_pose.pose.position.y = 0.2;
   target_pose.pose.position.z = 0.2;
