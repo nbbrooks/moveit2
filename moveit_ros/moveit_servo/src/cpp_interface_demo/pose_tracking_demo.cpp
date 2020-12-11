@@ -42,6 +42,8 @@
 #include <moveit_servo/servo.h>
 #include <moveit_servo/pose_tracking.h>
 #include <moveit_servo/status_codes.h>
+#include <moveit_servo/servo_parameters.h>
+#include <moveit_servo/servo_parameters.cpp>
 #include <moveit_servo/make_shared_from_pool.h>
 #include <thread>
 
@@ -54,7 +56,8 @@ class StatusMonitor
 public:
   StatusMonitor(rclcpp::Node::SharedPtr node, const std::string& topic)
   {
-    sub_ = node->create_subscription<std_msgs::msg::Int8>(topic, 1, std::bind(&StatusMonitor::statusCB, this, std::placeholders::_1));
+    sub_ = node->create_subscription<std_msgs::msg::Int8>(
+        topic, 1, std::bind(&StatusMonitor::statusCB, this, std::placeholders::_1));
   }
 
 private:
@@ -82,14 +85,17 @@ int main(int argc, char** argv)
 {
   rclcpp::init(argc, argv);
   rclcpp::Node::SharedPtr node = rclcpp::Node::make_shared(LOGNAME);
-  //rclcpp::Node node(LOGNAME);
-  //ros::NodeHandle nh("~");
+  // rclcpp::Node node(LOGNAME);
+  // ros::NodeHandle nh("~");
 
-  moveit_servo::ServoParametersPtr parameters;
+  // Get the servo parameters
+  moveit_servo::ServoParametersPtr parameters = std::make_shared<moveit_servo::ServoParameters>();
+  if (!moveit_servo::readParameters(parameters, node, LOGGER))
+    RCLCPP_ERROR(LOGGER, "Could not get parameters");
 
   // Load the planning scene monitor
   planning_scene_monitor::PlanningSceneMonitorPtr planning_scene_monitor;
-  planning_scene_monitor = std::make_shared<planning_scene_monitor::PlanningSceneMonitor>(node,"robot_description");
+  planning_scene_monitor = std::make_shared<planning_scene_monitor::PlanningSceneMonitor>(node, "robot_description");
   if (!planning_scene_monitor->getPlanningScene())
   {
     RCLCPP_ERROR_STREAM(LOGGER, "Error in setting up the PlanningSceneMonitor.");
@@ -108,8 +114,7 @@ int main(int argc, char** argv)
 
   // Make a publisher for sending pose commands
   rclcpp::Publisher<geometry_msgs::msg::PoseStamped>::SharedPtr target_pose_pub;
-  target_pose_pub =
-      node->create_publisher<geometry_msgs::msg::PoseStamped>("target_pose", 1 /* queue */);
+  target_pose_pub = node->create_publisher<geometry_msgs::msg::PoseStamped>("target_pose", 1 /* queue */);
 
   // Subscribe to servo status (and log it when it changes)
   StatusMonitor status_monitor(node, "status");

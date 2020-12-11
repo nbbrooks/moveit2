@@ -72,11 +72,11 @@ PoseTracking::PoseTracking(const rclcpp::Node::SharedPtr& node, const ServoParam
 
   // Connect to Servo ROS interfaces
   target_pose_sub_ = node_->create_subscription<geometry_msgs::msg::PoseStamped>(
-     "target_pose", 1, std::bind(&PoseTracking::targetPoseCallback, this, std::placeholders::_1));
+      "target_pose", 1, std::bind(&PoseTracking::targetPoseCallback, this, std::placeholders::_1));
 
   // Publish outgoing twist commands to the Servo object
   twist_stamped_pub_ =
-     node_->create_publisher<geometry_msgs::msg::TwistStamped>(servo_->getParameters()->cartesian_command_in_topic, 1);
+      node_->create_publisher<geometry_msgs::msg::TwistStamped>(servo_->getParameters()->cartesian_command_in_topic, 1);
 }
 
 PoseTrackingStatusCode PoseTracking::moveToPose(const Eigen::Vector3d& positional_tolerance,
@@ -140,42 +140,17 @@ PoseTrackingStatusCode PoseTracking::moveToPose(const Eigen::Vector3d& positiona
 
 void PoseTracking::readROSParams()
 {
-  // Optional parameter sub-namespace specified in the launch file. All other parameters will be read from this namespace.
-  rclcpp::Parameter parameter_ns;
-  //std::string parameter_ns;
-  node_->get_parameter("~parameter_ns", parameter_ns);
+  const std::string ns = "moveit_servo";
 
-  // If parameters have been loaded into sub-namespace within the node namespace, append the parameter namespace
-  // to load the parameters correctly.
-  rclcpp::Node::SharedPtr node;
-  //= node_->has_parameter("~parameter_ns") ? node_ : rclcpp::Node::SharedPtr(node_, parameter_ns.as_string());
-  if (node_->has_parameter("~parameter_ns"))
-    node = node_;
-  else
-    node->declare_parameter("~parameter_ns");
-    //node->set_parameter("~parameter_ns", parameter_ns.as_string());
-
-  // Wait for ROS parameters to load
-  rclcpp::Time begin = node->now();
-  while (rclcpp::ok() && !node->has_parameter("planning_frame") && ((node->now() - begin).seconds() < ROS_STARTUP_WAIT))
-  {
-    RCLCPP_WARN_STREAM(LOGGER, "Waiting for parameter: "
-                                   << "planning_frame");
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
-  }
-
-  std::size_t error = 0;
-
-  error += !PoseTracking::rosparam_shortcut_get(LOGGER, node, "planning_frame", planning_frame_);
-  error += !PoseTracking::rosparam_shortcut_get(LOGGER, node, "move_group_name", move_group_name_);
+  declareOrGetParam(planning_frame_, ns + ".planning_frame", node_, LOGGER);
+  declareOrGetParam(move_group_name_, ns + ".move_group_name", node_, LOGGER);
   if (!planning_scene_monitor_->getRobotModel()->hasJointModelGroup(move_group_name_))
   {
-    ++error;
     RCLCPP_ERROR_STREAM(LOGGER, "Unable to find the specified joint model group: " << move_group_name_);
   }
 
   double publish_period;
-  error += !PoseTracking::rosparam_shortcut_get(LOGGER, node, "publish_period", publish_period);
+  declareOrGetParam(publish_period, ns + ".publish_period", node_, LOGGER);
   rclcpp::Rate loop_rate_(publish_period);
 
   x_pid_config_.dt = publish_period;
@@ -184,27 +159,26 @@ void PoseTracking::readROSParams()
   angular_pid_config_.dt = publish_period;
 
   double windup_limit;
-  error += !PoseTracking::rosparam_shortcut_get(LOGGER, node, "windup_limit", windup_limit);
+  declareOrGetParam(windup_limit, ns + ".windup_limit", node_, LOGGER);
   x_pid_config_.windup_limit = windup_limit;
   y_pid_config_.windup_limit = windup_limit;
   z_pid_config_.windup_limit = windup_limit;
   angular_pid_config_.windup_limit = windup_limit;
 
-  error += !PoseTracking::rosparam_shortcut_get(LOGGER, node, "x_proportional_gain", x_pid_config_.k_p);
-  error += !PoseTracking::rosparam_shortcut_get(LOGGER, node, "y_proportional_gain", y_pid_config_.k_p);
-  error += !PoseTracking::rosparam_shortcut_get(LOGGER, node, "z_proportional_gain", z_pid_config_.k_p);
-  error += !PoseTracking::rosparam_shortcut_get(LOGGER, node, "x_integral_gain", x_pid_config_.k_i);
-  error += !PoseTracking::rosparam_shortcut_get(LOGGER, node, "y_integral_gain", y_pid_config_.k_i);
-  error += !PoseTracking::rosparam_shortcut_get(LOGGER, node, "z_integral_gain", z_pid_config_.k_i);
-  error += !PoseTracking::rosparam_shortcut_get(LOGGER, node, "x_derivative_gain", x_pid_config_.k_d);
-  error += !PoseTracking::rosparam_shortcut_get(LOGGER, node, "y_derivative_gain", y_pid_config_.k_d);
-  error += !PoseTracking::rosparam_shortcut_get(LOGGER, node, "z_derivative_gain", z_pid_config_.k_d);
+  declareOrGetParam(x_pid_config_.k_p, ns + ".x_proportional_gain", node_, LOGGER);
+  declareOrGetParam(x_pid_config_.k_p, ns + ".x_proportional_gain", node_, LOGGER);
+  declareOrGetParam(y_pid_config_.k_p, ns + ".y_proportional_gain", node_, LOGGER);
+  declareOrGetParam(z_pid_config_.k_p, ns + ".z_proportional_gain", node_, LOGGER);
+  declareOrGetParam(x_pid_config_.k_i, ns + ".x_integral_gain", node_, LOGGER);
+  declareOrGetParam(y_pid_config_.k_i, ns + ".y_integral_gain", node_, LOGGER);
+  declareOrGetParam(z_pid_config_.k_i, ns + ".z_integral_gain", node_, LOGGER);
+  declareOrGetParam(x_pid_config_.k_d, ns + ".x_derivative_gain", node_, LOGGER);
+  declareOrGetParam(y_pid_config_.k_d, ns + ".y_derivative_gain", node_, LOGGER);
+  declareOrGetParam(z_pid_config_.k_d, ns + ".z_derivative_gain", node_, LOGGER);
 
-  error += !PoseTracking::rosparam_shortcut_get(LOGGER, node, "angular_proportional_gain", angular_pid_config_.k_p);
-  error += !PoseTracking::rosparam_shortcut_get(LOGGER, node, "angular_integral_gain", angular_pid_config_.k_i);
-  error += !PoseTracking::rosparam_shortcut_get(LOGGER, node, "angular_derivative_gain", angular_pid_config_.k_d);
-
-  PoseTracking::shutdownIfError(node->get_name(), error);
+  declareOrGetParam(angular_pid_config_.k_p, ns + ".angular_proportional_gain", node_, LOGGER);
+  declareOrGetParam(angular_pid_config_.k_i, ns + ".angular_integral_gain", node_, LOGGER);
+  declareOrGetParam(angular_pid_config_.k_d, ns + ".angular_derivative_gain", node_, LOGGER);
 }
 
 void PoseTracking::initializePID(const PIDConfig& pid_config, std::vector<control_toolbox::Pid>& pid_vector)
@@ -295,8 +269,7 @@ geometry_msgs::msg::TwistStamped::ConstSharedPtr PoseTracking::calculateTwistCom
   Eigen::AngleAxisd axis_angle(q_error);
   // Cache the angular error, for rotation tolerance checking
   angular_error_ = axis_angle.angle();
-  double ang_vel_magnitude =
-      cartesian_orientation_pids_[0].computeCommand(angular_error_, loop_rate_.period().count());
+  double ang_vel_magnitude = cartesian_orientation_pids_[0].computeCommand(angular_error_, loop_rate_.period().count());
   twist.angular.x = ang_vel_magnitude * axis_angle.axis()[0];
   twist.angular.y = ang_vel_magnitude * axis_angle.axis()[1];
   twist.angular.z = ang_vel_magnitude * axis_angle.axis()[2];
@@ -370,30 +343,5 @@ void PoseTracking::resetTargetPose()
 bool PoseTracking::getCommandFrameTransform(geometry_msgs::msg::TransformStamped& transform)
 {
   return servo_->getCommandFrameTransform(transform);
-}
-
-template <class T>
-bool PoseTracking::rosparam_shortcut_get(const rclcpp::Logger &parent_name, const rclcpp::Node::SharedPtr& node, const std::string &param_name, T &value)
-{
-  // Load a param
-  if (!node->has_parameter(param_name))
-  {
-    RCLCPP_ERROR_STREAM(parent_name, "Missing parameter '" << node->get_name() << "/" << param_name << "'.");
-    return false;
-  }
-  node->get_parameter(param_name, value);
-  RCLCPP_DEBUG_STREAM(parent_name, "Loaded parameter '" << node->get_name() << "/" << param_name << "with value" << value);
-
-  return true;
-}
-
-void PoseTracking::shutdownIfError(const std::string &parent_name, std::size_t error_count)
-{
-  if (!error_count)
-    return;
-  
-  RCLCPP_ERROR_STREAM(LOGGER, "Missing " << error_count << " ros parameters that are required. Shutting down to prevent undefined behaviors");
-  rclcpp::shutdown();
-  exit(0);
 }
 }  // namespace moveit_servo
