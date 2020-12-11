@@ -39,14 +39,17 @@ def generate_launch_description():
     pose_tracking_yaml = load_yaml('moveit_servo', 'config/pose_tracking_settings.yaml')
     pose_tracking_params = { 'moveit_servo' : pose_tracking_yaml }
 
-    ur_simulated_yaml = load_yaml('moveit_servo', 'config/panda_simulated_config.yaml')
-    ur_simulated_params = { 'moveit_servo' : ur_simulated_yaml }
+    panda_simulated_yaml = load_yaml('moveit_servo', 'config/panda_simulated_config.yaml')
+    panda_simulated_params = { 'moveit_servo' : panda_simulated_yaml }
+
+    panda_kinematics_yaml = load_yaml('moveit_resources_panda_moveit_config', 'config/kinematics.yaml')
+    panda_kinematics_params = {'robot_description_kinematics' : panda_kinematics_yaml }
 
     pose_tracking_node = Node(
         package='moveit_servo',
         executable='servo_pose_tracking_demo',
         output='screen',
-        parameters=[pose_tracking_params, ur_simulated_params, robot_description, robot_description_semantic]
+        parameters=[pose_tracking_params, panda_simulated_params, robot_description, robot_description_semantic, panda_kinematics_params]
     )
 
     return LaunchDescription([ pose_tracking_node ])
