@@ -45,9 +45,21 @@ def generate_launch_description():
     panda_kinematics_yaml = load_yaml('moveit_resources_panda_moveit_config', 'config/kinematics.yaml')
     panda_kinematics_params = {'robot_description_kinematics' : panda_kinematics_yaml }
 
+    # RViz
+    # rviz_config_file = get_package_share_directory('moveit_servo') + "/config/demo_rviz_config.rviz"
+    # rviz_node = Node(package='rviz2',
+    #                  executable='rviz2',
+    #                  name='rviz2',
+    #                  prefix=['xterm -e gdb -ex run --args'],
+    #                  output='log',
+    #                  arguments=['-d', rviz_config_file],
+    #                  parameters=[robot_description, robot_description_semantic])
+
+
     pose_tracking_node = Node(
         package='moveit_servo',
         executable='servo_pose_tracking_demo',
+        prefix=['xterm -e gdb -ex run --args'],
         output='screen',
         parameters=[pose_tracking_params, panda_simulated_params, robot_description, robot_description_semantic, panda_kinematics_params]
     )

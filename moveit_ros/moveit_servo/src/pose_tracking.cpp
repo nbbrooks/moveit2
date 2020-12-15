@@ -144,6 +144,7 @@ void PoseTracking::readROSParams()
 
   declareOrGetParam(planning_frame_, ns + ".planning_frame", node_, LOGGER);
   declareOrGetParam(move_group_name_, ns + ".move_group_name", node_, LOGGER);
+
   if (!planning_scene_monitor_->getRobotModel()->hasJointModelGroup(move_group_name_))
   {
     RCLCPP_ERROR_STREAM(LOGGER, "Unable to find the specified joint model group: " << move_group_name_);
@@ -151,7 +152,7 @@ void PoseTracking::readROSParams()
 
   double publish_period;
   declareOrGetParam(publish_period, ns + ".publish_period", node_, LOGGER);
-  rclcpp::Rate loop_rate_(publish_period);
+  rclcpp::Rate loop_rate_(1/publish_period);
 
   x_pid_config_.dt = publish_period;
   y_pid_config_.dt = publish_period;
