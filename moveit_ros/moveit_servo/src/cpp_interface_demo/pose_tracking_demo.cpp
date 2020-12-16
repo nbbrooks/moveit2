@@ -87,7 +87,17 @@ int main(int argc, char** argv)
   //rclcpp::Node node(LOGNAME);
   //ros::NodeHandle nh("~");
 
+  rclcpp::executors::MultiThreadedExecutor executor;
+  executor.add_node(node);
+  
+
   moveit_servo::ServoParametersPtr parameters;
+  parameters = std::make_shared<moveit_servo::ServoParameters>();
+  if (!moveit_servo::readParameters(parameters, node, LOGGER))
+  {
+    RCLCPP_ERROR_STREAM(LOGGER, "Could not get server parameters!");
+    exit(EXIT_FAILURE);
+  }
 
   // Load the planning scene monitor
   planning_scene_monitor::PlanningSceneMonitorPtr planning_scene_monitor;

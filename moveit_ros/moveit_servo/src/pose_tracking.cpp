@@ -85,6 +85,7 @@ PoseTrackingStatusCode PoseTracking::moveToPose(const Eigen::Vector3d& positiona
   // Wait a bit for a target pose message to arrive.
   // The target pose may get updated by new messages as the robot moves (in a callback function).
   const rclcpp::Time start_time = node_->now();
+
   while ((!haveRecentTargetPose(target_pose_timeout) || !haveRecentEndEffectorPose(target_pose_timeout)) &&
          ((node_->now() - start_time).seconds() < target_pose_timeout))
   {
@@ -192,6 +193,9 @@ void PoseTracking::initializePID(const PIDConfig& pid_config, std::vector<contro
 bool PoseTracking::haveRecentTargetPose(const double timespan)
 {
   std::lock_guard<std::mutex> lock(target_pose_mtx_);
+  RCLCPP_INFO(LOGGER, "Node now: %u", node_->now());
+  RCLCPP_INFO(LOGGER, "Target pose : %u", target_pose_.header.stamp);
+  RCLCPP_INFO(LOGGER, "Seconds : %u", (node_->now() - target_pose_.header.stamp).seconds());
   return ((node_->now() - target_pose_.header.stamp).seconds() < timespan);
 }
 
@@ -224,6 +228,8 @@ void PoseTracking::targetPoseCallback(const geometry_msgs::msg::PoseStamped::Con
       geometry_msgs::msg::TransformStamped target_to_planning_frame = transform_buffer_.lookupTransform(
           planning_frame_, target_pose_.header.frame_id, rclcpp::Time(0), rclcpp::Duration(0.1));
       tf2::doTransform(target_pose_, target_pose_, target_to_planning_frame);
+      target_pose_.header.stamp = node_->now();
+      RCLCPP_INFO(LOGGER, "From callback - target pose: %u", target_pose_.header.stamp);
     }
     catch (const tf2::TransformException& ex)
     {
