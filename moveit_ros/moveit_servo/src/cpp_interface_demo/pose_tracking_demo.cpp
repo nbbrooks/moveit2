@@ -87,9 +87,12 @@ int main(int argc, char** argv)
   //rclcpp::Node node(LOGNAME);
   //ros::NodeHandle nh("~");
 
-  rclcpp::executors::MultiThreadedExecutor executor;
+  // rclcpp::executors::SingleThreadedExecutor executor;
+  // executor.add_node(node);
+  // std::thread([&executor]() { executor.spin(); }).detach();
+
+  rclcpp::executors::MultiThreadedExecutor executor; 
   executor.add_node(node);
-  
 
   moveit_servo::ServoParametersPtr parameters;
   parameters = std::make_shared<moveit_servo::ServoParameters>();
@@ -168,9 +171,14 @@ int main(int argc, char** argv)
     loop_rate.sleep();
   }
 
+  //executor.spin();
+
   // Make sure the tracker is stopped and clean up
   tracker.stopMotion();
   move_to_pose_thread.join();
 
+  executor.spin();
+
+  rclcpp::shutdown();
   return EXIT_SUCCESS;
 }
