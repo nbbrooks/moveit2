@@ -87,12 +87,12 @@ int main(int argc, char** argv)
   //rclcpp::Node node(LOGNAME);
   //ros::NodeHandle nh("~");
 
-  // rclcpp::executors::SingleThreadedExecutor executor;
-  // executor.add_node(node);
-  // std::thread([&executor]() { executor.spin(); }).detach();
-
-  rclcpp::executors::MultiThreadedExecutor executor; 
+  rclcpp::executors::SingleThreadedExecutor executor;
   executor.add_node(node);
+  std::thread([&executor]() { executor.spin(); }).detach();
+
+  // rclcpp::executors::MultiThreadedExecutor executor; 
+  // executor.add_node(node);
 
   moveit_servo::ServoParametersPtr parameters;
   parameters = std::make_shared<moveit_servo::ServoParameters>();
@@ -111,6 +111,7 @@ int main(int argc, char** argv)
     exit(EXIT_FAILURE);
   }
 
+  planning_scene_monitor->providePlanningSceneService();
   planning_scene_monitor->startSceneMonitor();
   planning_scene_monitor->startWorldGeometryMonitor(
       planning_scene_monitor::PlanningSceneMonitor::DEFAULT_COLLISION_OBJECT_TOPIC,
@@ -164,7 +165,7 @@ int main(int argc, char** argv)
   {
     // Modify the pose target a little bit each cycle
     // This is a dynamic pose target
-    target_pose.pose.position.z += 0.0004;
+    target_pose.pose.position.z += 0.0020;
     target_pose.header.stamp = node->now();
     target_pose_pub->publish(target_pose);
 
@@ -177,7 +178,7 @@ int main(int argc, char** argv)
   tracker.stopMotion();
   move_to_pose_thread.join();
 
-  executor.spin();
+  //executor.spin();
 
   rclcpp::shutdown();
   return EXIT_SUCCESS;

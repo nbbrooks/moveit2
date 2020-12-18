@@ -193,16 +193,16 @@ void PoseTracking::initializePID(const PIDConfig& pid_config, std::vector<contro
 bool PoseTracking::haveRecentTargetPose(const double timespan)
 {
   std::lock_guard<std::mutex> lock(target_pose_mtx_);
-  RCLCPP_INFO(LOGGER, "Node now: %u", node_->now());
-  RCLCPP_INFO(LOGGER, "Target pose : %u", target_pose_.header.stamp);
-  RCLCPP_INFO(LOGGER, "Seconds : %d", (node_->now() - target_pose_.header.stamp).seconds());
+  // RCLCPP_INFO(LOGGER, "Node now: %u", node_->now());
+  // RCLCPP_INFO(LOGGER, "Target pose : %u", target_pose_.header.stamp);
+  // RCLCPP_INFO(LOGGER, "Seconds : %d", (node_->now() - target_pose_.header.stamp).seconds());
   return ((node_->now() - target_pose_.header.stamp).seconds() < timespan);
 }
 
 bool PoseTracking::haveRecentEndEffectorPose(const double timespan)
 {
-  RCLCPP_INFO(LOGGER, "Node now: %u", node_->now());
-  RCLCPP_INFO(LOGGER, "Command Frame Transform Stamp : %u", command_frame_transform_stamp_);
+  // RCLCPP_INFO(LOGGER, "Node now: %u", node_->now());
+  // RCLCPP_INFO(LOGGER, "Command Frame Transform : %u", command_frame_transform_stamp_);
   return ((node_->now() - command_frame_transform_stamp_).seconds() < timespan);
 }
 
@@ -221,7 +221,7 @@ void PoseTracking::targetPoseCallback(const geometry_msgs::msg::PoseStamped::Con
 {
   std::lock_guard<std::mutex> lock(target_pose_mtx_);
   target_pose_ = *msg;
-  RCLCPP_INFO(LOGGER, "Callback reached");
+  //RCLCPP_INFO(LOGGER, "Callback reached");
   // If the target pose is not defined in planning frame, transform the target pose.
   if (target_pose_.header.frame_id != planning_frame_)
   {

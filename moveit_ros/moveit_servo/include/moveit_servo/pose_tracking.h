@@ -174,7 +174,7 @@ private:
 
   // Transforms w.r.t. planning_frame_
   Eigen::Isometry3d command_frame_transform_;
-  rclcpp::Time command_frame_transform_stamp_;
+  rclcpp::Time command_frame_transform_stamp_ = rclcpp::Time(0, 0, RCL_ROS_TIME);
   geometry_msgs::msg::PoseStamped target_pose_;
   mutable std::mutex target_pose_mtx_;
 
