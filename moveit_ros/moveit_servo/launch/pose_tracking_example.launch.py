@@ -3,6 +3,8 @@ import yaml
 from launch import LaunchDescription
 from launch_ros.actions import Node
 from ament_index_python.packages import get_package_share_directory
+from launch_ros.actions import ComposableNodeContainer
+from launch_ros.descriptions import ComposableNode
 
 
 def load_file(package_name, file_path):
@@ -39,11 +41,12 @@ def generate_launch_description():
     pose_tracking_yaml = load_yaml('moveit_servo', 'config/pose_tracking_settings.yaml')
     pose_tracking_params = { 'moveit_servo' : pose_tracking_yaml }
 
-    panda_simulated_yaml = load_yaml('moveit_servo', 'config/panda_simulated_config.yaml')
-    panda_simulated_params = { 'moveit_servo' : panda_simulated_yaml }
+    # Get parameters for the Servo node
+    servo_yaml = load_yaml('moveit_servo', 'config/panda_simulated_config.yaml')
+    servo_params = { 'moveit_servo' : servo_yaml }
 
-    panda_kinematics_yaml = load_yaml('moveit_resources_panda_moveit_config', 'config/kinematics.yaml')
-    panda_kinematics_params = {'robot_description_kinematics' : panda_kinematics_yaml }
+    kinematics_yaml = load_yaml('moveit_resources_panda_moveit_config', 'config/kinematics.yaml')
+    #panda_kinematics_params = {'robot_description_kinematics' : kinematics_yaml }
 
     #RViz
     rviz_config_file = get_package_share_directory('moveit_servo') + "/config/demo_rviz_config.rviz"
@@ -53,26 +56,37 @@ def generate_launch_description():
                      #prefix=['xterm -e gdb -ex run --args'],
                      output='log',
                      arguments=['-d', rviz_config_file],
-                     parameters=[robot_description, robot_description_semantic, panda_kinematics_params])
+                     parameters=[robot_description, robot_description_semantic])
 
+    # Publishes tf's for the robot
+    robot_state_publisher = Node(
+        package='robot_state_publisher',
+        executable='robot_state_publisher',
+        output='screen',
+        parameters=[robot_description]
+    )
+
+    # A node to publish world -> panda_link0 transform
+    static_tf = Node(package='tf2_ros',
+                     executable='static_transform_publisher',
+                     name='static_transform_publisher',
+                     output='log',
+                     arguments=['0.0', '0.0', '0.0', '0.0', '0.0', '0.0', 'world', 'panda_link0'])
 
     pose_tracking_node = Node(
         package='moveit_servo',
         executable='servo_pose_tracking_demo',
         prefix=['xterm -e gdb -ex run --args'],
         output='screen',
-        parameters=[pose_tracking_params, panda_simulated_params, robot_description, robot_description_semantic, panda_kinematics_params]
+        parameters=[robot_description, robot_description_semantic, kinematics_yaml, pose_tracking_params, servo_params]
     )
 
     # Fake joint driver
     fake_joint_driver_node = Node(package='fake_joint_driver',
                                   executable='fake_joint_driver_node',
-                                  # TODO(JafarAbdi): Why this launch the two nodes (controller manager and the fake joint driver) with the same name!
-                                  # name='fake_joint_driver_node',
-                                  parameters=[{'controller_name': 'panda_arm_controller'},
-                                              os.path.join(get_package_share_directory("run_moveit_cpp"), "config", "panda_controllers.yaml"),
-                                              os.path.join(get_package_share_directory("run_moveit_cpp"), "config", "start_positions.yaml"),
-                                              robot_description]
-                                  )
+                                  parameters=[{'controller_name': 'fake_joint_trajectory_controller'},
+                                              os.path.join(get_package_share_directory("moveit_servo"), "config", "panda_controllers.yaml"),
+                                              os.path.join(get_package_share_directory("moveit_servo"), "config", "start_positions.yaml"),
+                                              robot_description])
 
-    return LaunchDescription([ pose_tracking_node, rviz_node, fake_joint_driver_node ])
+    return LaunchDescription([rviz_node, static_tf, pose_tracking_node, fake_joint_driver_node, robot_state_publisher])

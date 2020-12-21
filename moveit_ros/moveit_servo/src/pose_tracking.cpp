@@ -40,6 +40,7 @@ namespace
 static const rclcpp::Logger LOGGER = rclcpp::get_logger("moveit_servo.pose_tracking");
 constexpr double DEFAULT_LOOP_RATE = 100;  // Hz
 constexpr double ROS_STARTUP_WAIT = 10;    // sec
+constexpr size_t LOG_THROTTLE_PERIOD = 5;
 }  // namespace
 
 namespace moveit_servo
@@ -85,6 +86,7 @@ PoseTrackingStatusCode PoseTracking::moveToPose(const Eigen::Vector3d& positiona
   // Wait a bit for a target pose message to arrive.
   // The target pose may get updated by new messages as the robot moves (in a callback function).
   const rclcpp::Time start_time = node_->now();
+  rclcpp::Clock clock;
 
   while ((!haveRecentTargetPose(target_pose_timeout) || !haveRecentEndEffectorPose(target_pose_timeout)) &&
          ((node_->now() - start_time).seconds() < target_pose_timeout))
@@ -133,6 +135,11 @@ PoseTrackingStatusCode PoseTracking::moveToPose(const Eigen::Vector3d& positiona
 
     // Compute servo command from PID controller output and send it to the Servo object, for execution
     twist_stamped_pub_->publish(*calculateTwistCommand());
+
+    if (!loop_rate_.sleep())
+    {
+      RCLCPP_WARN_STREAM_THROTTLE(LOGGER, clock, LOG_THROTTLE_PERIOD, "Target control rate was missed");
+    }
   }
 
   doPostMotionReset();
@@ -193,9 +200,9 @@ void PoseTracking::initializePID(const PIDConfig& pid_config, std::vector<contro
 bool PoseTracking::haveRecentTargetPose(const double timespan)
 {
   std::lock_guard<std::mutex> lock(target_pose_mtx_);
-  // RCLCPP_INFO(LOGGER, "Node now: %u", node_->now());
-  // RCLCPP_INFO(LOGGER, "Target pose : %u", target_pose_.header.stamp);
-  // RCLCPP_INFO(LOGGER, "Seconds : %d", (node_->now() - target_pose_.header.stamp).seconds());
+  RCLCPP_INFO(LOGGER, "Node now: %u", node_->now());
+  RCLCPP_INFO(LOGGER, "Target pose : %u", target_pose_.header.stamp);
+  RCLCPP_INFO(LOGGER, "Seconds : %d", (node_->now() - target_pose_.header.stamp).seconds());
   return ((node_->now() - target_pose_.header.stamp).seconds() < timespan);
 }
 
@@ -221,7 +228,6 @@ void PoseTracking::targetPoseCallback(const geometry_msgs::msg::PoseStamped::Con
 {
   std::lock_guard<std::mutex> lock(target_pose_mtx_);
   target_pose_ = *msg;
-  //RCLCPP_INFO(LOGGER, "Callback reached");
   // If the target pose is not defined in planning frame, transform the target pose.
   if (target_pose_.header.frame_id != planning_frame_)
   {
