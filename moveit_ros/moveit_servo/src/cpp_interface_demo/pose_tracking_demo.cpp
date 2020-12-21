@@ -47,8 +47,8 @@
 #include <moveit_servo/make_shared_from_pool.h>
 #include <thread>
 
-static const std::string LOGNAME = "cpp_interface_demo";
-static const rclcpp::Logger LOGGER = rclcpp::get_logger("moveit_servo.cpp_interface_demo");
+static const std::string LOGNAME = "pose_tracking_demo";
+static const rclcpp::Logger LOGGER = rclcpp::get_logger("moveit_servo.pose_tracking_demo");
 
 // Class for monitoring status of moveit_servo
 class StatusMonitor

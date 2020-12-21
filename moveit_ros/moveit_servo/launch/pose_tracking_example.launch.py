@@ -46,17 +46,17 @@ def generate_launch_description():
     servo_params = { 'moveit_servo' : servo_yaml }
 
     kinematics_yaml = load_yaml('moveit_resources_panda_moveit_config', 'config/kinematics.yaml')
-    #panda_kinematics_params = {'robot_description_kinematics' : kinematics_yaml }
+    panda_kinematics_params = {'robot_description_kinematics' : kinematics_yaml }
 
     #RViz
     rviz_config_file = get_package_share_directory('moveit_servo') + "/config/demo_rviz_config.rviz"
     rviz_node = Node(package='rviz2',
                      executable='rviz2',
                      name='rviz2',
-                     #prefix=['xterm -e gdb -ex run --args'],
+                     prefix=['xterm -e gdb -ex run --args'],
                      output='log',
                      arguments=['-d', rviz_config_file],
-                     parameters=[robot_description, robot_description_semantic])
+                     parameters=[robot_description, robot_description_semantic, kinematics_yaml])
 
     # Publishes tf's for the robot
     robot_state_publisher = Node(
