@@ -117,7 +117,10 @@ int main(int argc, char** argv)
       planning_scene_monitor::PlanningSceneMonitor::DEFAULT_COLLISION_OBJECT_TOPIC,
       planning_scene_monitor::PlanningSceneMonitor::DEFAULT_PLANNING_SCENE_WORLD_TOPIC,
       false /* skip octomap monitor */);
-  planning_scene_monitor->startStateMonitor();
+  planning_scene_monitor->startStateMonitor("/joint_states");
+  planning_scene_monitor->startPublishingPlanningScene(planning_scene_monitor::PlanningSceneMonitor::UPDATE_SCENE);
+
+  rclcpp::sleep_for(std::chrono::seconds(5));
 
   // Create the pose tracker
   moveit_servo::PoseTracking tracker(node, parameters, planning_scene_monitor);
@@ -165,7 +168,7 @@ int main(int argc, char** argv)
   {
     // Modify the pose target a little bit each cycle
     // This is a dynamic pose target
-    target_pose.pose.position.z += 0.0020;
+    target_pose.pose.position.z += 0.0001;
     target_pose.header.stamp = node->now();
     target_pose_pub->publish(target_pose);
 
