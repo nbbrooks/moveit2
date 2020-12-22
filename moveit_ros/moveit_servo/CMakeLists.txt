@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 project(moveit_servo)
-add_compile_options(-g)
+#add_compile_options(-g)
 
 set(SERVO_LIB_NAME moveit_servo)
 set(COMPOSABLE_NODE_NAME servo_server)

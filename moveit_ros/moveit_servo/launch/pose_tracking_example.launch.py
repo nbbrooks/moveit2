@@ -53,7 +53,7 @@ def generate_launch_description():
     rviz_node = Node(package='rviz2',
                      executable='rviz2',
                      name='rviz2',
-                     prefix=['xterm -e gdb -ex run --args'],
+                     #prefix=['xterm -e gdb -ex run --args'],
                      output='log',
                      arguments=['-d', rviz_config_file],
                      parameters=[robot_description, robot_description_semantic, kinematics_yaml])
@@ -76,7 +76,7 @@ def generate_launch_description():
     pose_tracking_node = Node(
         package='moveit_servo',
         executable='servo_pose_tracking_demo',
-        prefix=['xterm -e gdb -ex run --args'],
+        #prefix=['xterm -e gdb -ex run --args'],
         output='screen',
         parameters=[robot_description, robot_description_semantic, kinematics_yaml, pose_tracking_params, servo_params]
     )
