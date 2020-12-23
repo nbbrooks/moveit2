@@ -49,7 +49,7 @@ def generate_launch_description():
     panda_kinematics_params = {'robot_description_kinematics' : kinematics_yaml }
 
     #RViz
-    rviz_config_file = get_package_share_directory('moveit_servo') + "/config/demo_rviz_config.rviz"
+    rviz_config_file = get_package_share_directory('moveit_servo') + "/config/demo_rviz_pose_tracking.rviz"
     rviz_node = Node(package='rviz2',
                      executable='rviz2',
                      name='rviz2',

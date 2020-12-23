@@ -200,9 +200,9 @@ void PoseTracking::initializePID(const PIDConfig& pid_config, std::vector<contro
 bool PoseTracking::haveRecentTargetPose(const double timespan)
 {
   std::lock_guard<std::mutex> lock(target_pose_mtx_);
-  RCLCPP_INFO(LOGGER, "Node now: %u", node_->now());
-  RCLCPP_INFO(LOGGER, "Target pose : %u", target_pose_.header.stamp);
-  RCLCPP_INFO(LOGGER, "Seconds : %d", (node_->now() - target_pose_.header.stamp).seconds());
+  //RCLCPP_INFO(LOGGER, "Node now: %u", node_->now());
+  //RCLCPP_INFO(LOGGER, "Target pose : %u", target_pose_.header.stamp);
+  //RCLCPP_INFO(LOGGER, "Seconds : %d", (node_->now() - target_pose_.header.stamp).seconds());
   return ((node_->now() - target_pose_.header.stamp).seconds() < timespan);
 }
 

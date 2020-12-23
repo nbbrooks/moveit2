@@ -2,6 +2,8 @@ import os
 import yaml
 import launch_testing.actions
 from launch import LaunchDescription
+from launch.some_substitutions_type import SomeSubstitutionsType
+from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
 from launch_ros.actions import Node
 from ament_index_python.packages import get_package_share_directory
 from launch_ros.actions import ComposableNodeContainer
