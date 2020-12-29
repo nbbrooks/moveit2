@@ -1,0 +1,20 @@
+/snap/clion/137/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo
+CMake Error at CMakeLists.txt:9 (find_package):
+  By not providing "Findmoveit_common.cmake" in CMAKE_MODULE_PATH this
+  project has asked CMake to find a package configuration file provided by
+  "moveit_common", but CMake did not find one.
+
+  Could not find a package configuration file provided by "moveit_common"
+  with any of the following names:
+
+    moveit_commonConfig.cmake
+    moveit_common-config.cmake
+
+  Add the installation prefix of "moveit_common" to CMAKE_PREFIX_PATH or set
+  "moveit_common_DIR" to a directory containing one of the above files.  If
+  "moveit_common" provides a separate development package or SDK, be sure it
+  has been installed.
+
+
+-- Configuring incomplete, errors occurred!
+See also "/home/abishalini/ws_ros2/src/moveit2/moveit_ros/moveit_servo/cmake-build-debug/CMakeFiles/CMakeOutput.log".
