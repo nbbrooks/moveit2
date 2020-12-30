@@ -53,7 +53,7 @@
 static const std::string LOGNAME = "servo_cpp_interface_test";
 static constexpr double TRANSLATION_TOLERANCE = 0.01;  // meters
 static constexpr double ROTATION_TOLERANCE = 0.1;      // quaternion
-static constexpr u_int64_t ROS_PUB_SUB_DELAY = 4;         // allow for subscribers to initialize
+static constexpr u_int64_t ROS_PUB_SUB_DELAY = 4;      // allow for subscribers to initialize
 
 namespace moveit_servo
 {
@@ -63,18 +63,16 @@ public:
   void SetUp() override
   {
     // Wait for several key topics / parameters
-    
-    //TODO: Need to figure out replacement. How to use WaitSet?
-    
-    //rclcpp::topic::waitForMessage<sensor_msgs::msg::JointState>("/joint_states");       <--- from ROS1    
-    
-    
-    // rclcpp::Node temp_node_=rclcpp::Node("temp");
-    // rclcpp::Subscription<sensor_msgs::msg::JointState>::SharedPtr joint_state_sub_ = temp_node_.create_subscription<sensor_msgs::msg::JointState>("joint_states", 1, RCLCPP__ANY_SUBSCRIPTION_CALLBACK_HPP_);
-    // rclcpp::WaitSet::add_subscription()
-    // rclcpp::WaitResult()
 
-  
+    // TODO: Need to figure out replacement. How to use WaitSet?
+
+    // rclcpp::topic::waitForMessage<sensor_msgs::msg::JointState>("/joint_states");       <--- from ROS1
+
+    // rclcpp::Node temp_node_=rclcpp::Node("temp");
+    // rclcpp::Subscription<sensor_msgs::msg::JointState>::SharedPtr joint_state_sub_ =
+    // temp_node_.create_subscription<sensor_msgs::msg::JointState>("joint_states", 1,
+    // RCLCPP__ANY_SUBSCRIPTION_CALLBACK_HPP_); rclcpp::WaitSet::add_subscription() rclcpp::WaitResult()
+
     bool have_message = false;
     auto sub = node_->create_subscription<sensor_msgs::msg::JointState>(
         "joint_states", 1,
@@ -82,7 +80,6 @@ public:
             [have_message](const auto msg) mutable { have_message = true; }));
     while (!have_message)
       ;
-  
 
     // while (!node_->has_parameter("robot_description") && rclcpp::ok())
     // {
@@ -90,7 +87,8 @@ public:
     // }
 
     // Load the planning scene monitor
-    planning_scene_monitor_ = std::make_shared<planning_scene_monitor::PlanningSceneMonitor>(node_, "robot_description");
+    planning_scene_monitor_ =
+        std::make_shared<planning_scene_monitor::PlanningSceneMonitor>(node_, "robot_description");
     planning_scene_monitor_->waitForCurrentRobotState(node_->now(), 0.1);
     planning_scene_monitor_->startSceneMonitor();
     planning_scene_monitor_->startStateMonitor();
@@ -98,13 +96,13 @@ public:
         planning_scene_monitor::PlanningSceneMonitor::DEFAULT_COLLISION_OBJECT_TOPIC,
         planning_scene_monitor::PlanningSceneMonitor::DEFAULT_PLANNING_SCENE_WORLD_TOPIC,
         false /* skip octomap monitor */);
-    
+
     moveit_servo::ServoParametersPtr parameters_;
     parameters_ = std::make_shared<moveit_servo::ServoParameters>();
-    
+
     tracker_ = std::make_shared<moveit_servo::PoseTracking>(node_, parameters_, planning_scene_monitor_);
 
-    //target_pose_pub_ = nh_.advertise<geometry_msgs::msg::PoseStamped>("target_pose", 1 /* queue */, true /* latch */);
+    // target_pose_pub_ = nh_.advertise<geometry_msgs::msg::PoseStamped>("target_pose", 1 /* queue */, true /* latch */);
     target_pose_pub_ = node_->create_publisher<geometry_msgs::msg::PoseStamped>("target_pose", 1);
 
     // Tolerance for pose seeking
@@ -145,7 +143,8 @@ TEST_F(PoseTrackingFixture, OutgoingMsgTest)
         this->tracker_->stopMotion();
         return;
       };
-  auto traj_sub = node_->create_subscription<trajectory_msgs::msg::JointTrajectory>("servo_server/command", 1, traj_callback);
+  auto traj_sub =
+      node_->create_subscription<trajectory_msgs::msg::JointTrajectory>("servo_server/command", 1, traj_callback);
 
   geometry_msgs::msg::PoseStamped target_pose;
   target_pose.header.frame_id = "panda_link4";
@@ -161,13 +160,13 @@ TEST_F(PoseTrackingFixture, OutgoingMsgTest)
     while (++msg_count < 100)
     {
       target_pose_pub_->publish(target_pose);
-      std::this_thread::sleep_for(std::chrono::milliseconds(10));;
+      std::this_thread::sleep_for(std::chrono::milliseconds(10));
+      ;
     }
   });
 
-  //ros::Duration(ROS_PUB_SUB_DELAY).sleep();
-  std::this_thread::sleep_for(std::chrono::milliseconds(ROS_PUB_SUB_DELAY*100));
-
+  // ros::Duration(ROS_PUB_SUB_DELAY).sleep();
+  std::this_thread::sleep_for(std::chrono::milliseconds(ROS_PUB_SUB_DELAY * 100));
 
   // resetTargetPose() can be used to clear the target pose and wait for a new one, e.g. when moving between multiple
   // waypoints

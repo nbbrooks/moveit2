@@ -96,7 +96,6 @@ PoseTrackingStatusCode PoseTracking::moveToPose(const Eigen::Vector3d& positiona
       command_frame_transform_stamp_ = node_->now();
     }
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
-    
   }
 
   if (!haveRecentTargetPose(target_pose_timeout))
@@ -160,7 +159,7 @@ void PoseTracking::readROSParams()
 
   double publish_period;
   declareOrGetParam(publish_period, ns + ".publish_period", node_, LOGGER);
-  rclcpp::Rate loop_rate_(1/publish_period);
+  rclcpp::Rate loop_rate_(1 / publish_period);
 
   x_pid_config_.dt = publish_period;
   y_pid_config_.dt = publish_period;
@@ -200,9 +199,9 @@ void PoseTracking::initializePID(const PIDConfig& pid_config, std::vector<contro
 bool PoseTracking::haveRecentTargetPose(const double timespan)
 {
   std::lock_guard<std::mutex> lock(target_pose_mtx_);
-  //RCLCPP_INFO(LOGGER, "Node now: %u", node_->now());
-  //RCLCPP_INFO(LOGGER, "Target pose : %u", target_pose_.header.stamp);
-  //RCLCPP_INFO(LOGGER, "Seconds : %d", (node_->now() - target_pose_.header.stamp).seconds());
+  // RCLCPP_INFO(LOGGER, "Node now: %u", node_->now());
+  // RCLCPP_INFO(LOGGER, "Target pose : %u", target_pose_.header.stamp);
+  // RCLCPP_INFO(LOGGER, "Seconds : %d", (node_->now() - target_pose_.header.stamp).seconds());
   return ((node_->now() - target_pose_.header.stamp).seconds() < timespan);
 }
 
@@ -237,7 +236,7 @@ void PoseTracking::targetPoseCallback(const geometry_msgs::msg::PoseStamped::Con
           planning_frame_, target_pose_.header.frame_id, rclcpp::Time(0), rclcpp::Duration(0.1));
       tf2::doTransform(target_pose_, target_pose_, target_to_planning_frame);
       target_pose_.header.stamp = node_->now();
-      RCLCPP_INFO(LOGGER, "From callback - target pose: %u", target_pose_.header.stamp);
+      // RCLCPP_INFO(LOGGER, "From callback - target pose: %u", target_pose_.header.stamp);
     }
     catch (const tf2::TransformException& ex)
     {
