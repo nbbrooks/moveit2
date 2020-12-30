@@ -130,10 +130,10 @@ int main(int argc, char** argv)
   // Subscribe to servo status (and log it when it changes)
   StatusMonitor status_monitor(node, "status");
 
-  Eigen::Vector3d lin_tol{ 0.01, 0.01, 0.01 };
-  double rot_tol = 0.1;
+  Eigen::Vector3d lin_tol{ 0.001, 0.001, 0.001 };
+  double rot_tol = 0.01;
 
-  // Get the current EE transform
+  // Get the current EE transform in servo planning frame
   geometry_msgs::msg::TransformStamped current_ee_tf;
   tracker.getCommandFrameTransform(current_ee_tf);
 
@@ -152,16 +152,6 @@ int main(int argc, char** argv)
   // waypoints
   tracker.resetTargetPose();
 
-  target_pose.header.frame_id = "world";
-  target_pose.pose.position.x = current_ee_tf.transform.translation.x;
-  target_pose.pose.position.y = current_ee_tf.transform.translation.y;
-  target_pose.pose.position.z = current_ee_tf.transform.translation.z;
-  // target_pose.pose.orientation = current_ee_tf.transform.rotation;
-  target_pose.pose.orientation.w = 1.0;
-  target_pose.pose.orientation.x = 0;
-  target_pose.pose.orientation.y = 0;
-  target_pose.pose.orientation.z = 0;
-
   // Publish target pose
   target_pose.header.stamp = node->now();
   target_pose_pub->publish(target_pose);
@@ -179,7 +169,8 @@ int main(int argc, char** argv)
     {
       // Modify the pose target a little bit each cycle
       // This is a dynamic pose target
-      target_pose.pose.position.z += 0.0001 * sign;
+      target_pose.header.stamp = node->now();
+      target_pose.pose.position.z += (0.0001 * sign);
       target_pose.header.stamp = node->now();
       target_pose_pub->publish(target_pose);
 
