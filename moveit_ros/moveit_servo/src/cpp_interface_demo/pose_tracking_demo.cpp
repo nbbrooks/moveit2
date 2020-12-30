@@ -91,9 +91,6 @@ int main(int argc, char** argv)
   executor.add_node(node);
   std::thread([&executor]() { executor.spin(); }).detach();
 
-  // rclcpp::executors::MultiThreadedExecutor executor; 
-  // executor.add_node(node);
-
   moveit_servo::ServoParametersPtr parameters;
   parameters = std::make_shared<moveit_servo::ServoParameters>();
   if (!moveit_servo::readParameters(parameters, node, LOGGER))

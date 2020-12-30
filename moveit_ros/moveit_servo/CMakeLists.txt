@@ -205,13 +205,12 @@ if(BUILD_TESTING)
   # )
 
   # pose_tracking
-  ament_add_gtest(pose_tracking_test
-        test/pose_tracking_test.test
+  ament_add_gtest_executable(test_servo_pose_tracking
         test/pose_tracking_test.cpp
   )
-  target_link_libraries(pose_tracking_test
-    ${POSE_TRACKING}
-  )
+  ament_target_dependencies(test_servo_pose_tracking ${THIS_PACKAGE_INCLUDE_DEPENDS})
+  target_link_libraries(test_servo_pose_tracking ${POSE_TRACKING})
+  add_ros_test(test/launch/test_servo_pose_tracking.test.py ARGS "test_binary_dir:=${CMAKE_CURRENT_BINARY_DIR}")
 
 endif()
 

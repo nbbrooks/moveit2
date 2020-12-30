@@ -84,13 +84,14 @@ public:
       ;
   
 
-    while (!node_->has_parameter("robot_description") && rclcpp::ok())
-    {
-      rclcpp::sleep_for(std::chrono::milliseconds(100));
-    }
+    // while (!node_->has_parameter("robot_description") && rclcpp::ok())
+    // {
+    //   rclcpp::sleep_for(std::chrono::milliseconds(100));
+    // }
 
     // Load the planning scene monitor
     planning_scene_monitor_ = std::make_shared<planning_scene_monitor::PlanningSceneMonitor>(node_, "robot_description");
+    planning_scene_monitor_->waitForCurrentRobotState(node_->now(), 0.1);
     planning_scene_monitor_->startSceneMonitor();
     planning_scene_monitor_->startStateMonitor();
     planning_scene_monitor_->startWorldGeometryMonitor(
@@ -181,16 +182,6 @@ TEST_F(PoseTrackingFixture, OutgoingMsgTest)
 
 int main(int argc, char** argv)
 {
-  //Changes referred from test_servo_collision.cpp
-  
-  // ros::init(argc, argv, LOGNAME);
-  // testing::InitGoogleTest(&argc, argv);
-
-  // ros::AsyncSpinner spinner(8);
-  // spinner.start();
-
-  // int result = RUN_ALL_TESTS();
-
   ::testing::InitGoogleTest(&argc, argv);
   rclcpp::init(argc, argv);
 
