@@ -208,6 +208,8 @@ void mesh_filter::DepthSelfFiltering::connectCb()
   else if (!sub_depth_image_)
   {
     image_transport::TransportHints hints("raw", ros::TransportHints(), getPrivateNodeHandle());
+    rclcpp::QoS qos(rclcpp::QoSInitialization::from_rmw(rmw_qos_profile_sensor_data));
+    qos.depth = queue_size;
     sub_depth_image_ = input_depth_transport_->subscribeCamera("depth", queue_size_, &DepthSelfFiltering::depthCb, this,
                                                                hints, rmw_qos_profile_sensor_data);
   }
